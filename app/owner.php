@@ -111,6 +111,41 @@
 			Busines methods
 		*/
 		
+		
+		//Retrieve ownerInformation based on telephone
+		public function getOwnerInformation(string $telephone) {
+			$this->setTelephone ($telephone);
+			try{
+				$sql = "select 	vipCode, 
+								ownerName, 
+								ownerTelephone, 
+								ownerEmail, 
+								ownerFaceBook,
+								ownerAddress, 
+								ownerReturned from tbVipCode where vipCode = '{$this->vipCode->getVipCode()}' 
+															 and ownerTelephone = '{$this->getTelephone()}';";
+				
+				$connection = new Conexao();
+				$connection->setSQL($sql);
+				$fetch = $connection->consultar();
+				if($fetch != null) {
+					foreach($fetch as $value) {
+						$this->setName($value->ownerName);
+						$this->setTelephone($value->ownerTelephone);
+						$this->setEmail($value->ownerEmail);
+						$this->setFaceBook($value->ownerFaceBook);
+						$this->setAddress($value->ownerAddress);
+						$this->setReturn($value->ownerReturned);
+					}
+				}
+				}
+				catch(Exception $error) {
+					//write the logs in the application log
+					$error->getTrace();
+			}
+			//select * from tbVipCode where vipCode = '{$this->vipCode}' and ownerTelephone = '{$this->owner->getTelephone()}';
+			
+		}
 				
 		//reffer attendee
 		public function reffer(Attendee $attendee) {
@@ -128,8 +163,9 @@
 		}
 		
 		//IsThisVipCodeMine
-		public function isThisVipCodeMine() {
-			$sql = "select ownerTelephone from tbVipCode where ownerTelephone = '{$this->telephone}'";
+		public function isThisVipCodeMine(VipCode $vipCode) {
+			
+			$sql = "select ownerTelephone from tbVipCode where ownerTelephone = '{$this->telephone}' and vipCode = '{$vipCode->getVipCode()}'";
 			
 			$connection = new Conexao();
 			$connection->setSQL($sql);
@@ -147,8 +183,31 @@
 				return false;
 			}
 			
-		}		
-	
+		}	
+		
+		
+		//attend
+		public function attend() {
+			//Owner attends his own vip code
+			$this->setStatus("ownerAttended");
+			
+			$sql = "update tbVipCode set status = '{$this->status}' where vipCode = '{$this->vipCode->getVipCode()}'";
+			
+			try{
+				$connection = new Conexao();
+				$connection->setSQL($sql);
+				if($connection->executar() == null) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			catch(Exception $error) {
+				//write the logs in the application log
+				$error->getTrace();
+			}
+		}	
 		
 		
 		

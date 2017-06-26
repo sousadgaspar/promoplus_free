@@ -15,10 +15,12 @@
 	class VipCode{
 		
 		//constructor
-		public function __construct(Enterprise $enterprise, Owner $owner) {
+		public function __construct(Enterprise $enterprise, Owner $owner=null) {
 			$this->enterprise = $enterprise;
-			$this->owner = $owner;
-			$this->owner->setVipCode($this);
+			if($owner != null) {
+				$this->owner = $owner;
+				$this->owner->setVipCode($this);
+			}
 		}
 		
 		//Properties
@@ -26,7 +28,7 @@
 		private $vipCode;
 		private $vipCodeUniqueId;
 		private $minDiscount;
-		private $maxDixount;
+		private $maxDiscount;
 		private $credit;
 		private $creationDate;
 		private $validTill;
@@ -132,11 +134,12 @@
 		}
 		
 		//New VipCode
-		public function createNewVipCode($discount, $credit , $validityInDays, $status, Notifyer $notifyer) {
+		public function createNewVipCode($minDiscount, $maxDiscount , $validityInDays, $status) {
 			$connection = new Conexao();
 			$this->setVipCode($this->formVipCode());
-			$this->setDiscount($discount);
-			$this->setCredit($credit);
+			$this->setMinDiscount($minDiscount);
+			$this->setMaxDiscount($maxDiscount);
+			$this->setCredit($minDiscount);
 			$this->setValidityPeriod($validityInDays);
 			$this->setStatus($status);
 			
@@ -154,8 +157,8 @@
 											ownerAddress ) 
 											values( '$this->vipCode'
 													, {$this->enterprise->getId()} 
-													,'$this->mindiscount'
-													,'$this->maxdiscount'
+													,'$this->minDiscount'
+													,'$this->maxDiscount'
 													,'$this->credit'
 													,'$this->validTill'
 													,'$this->status'
@@ -167,8 +170,13 @@
 			try{
 				$connection = new Conexao();
 				$connection->setSQL($sql);
-				$connection->executar();
-								
+				if($connection->executar() == null) {
+					return true;
+				}
+				else {
+					return false;
+				}
+				
 				//At the end nitify user with SMS
 				//$notifiyer->sendSMS();
 			}
@@ -224,7 +232,7 @@
 		
 		
 		//Disable VipCode
-		public function disableVipCode($typeOfDisable="awnerAttended", Notifyer $notifiyer) {
+		public function disableVipCode($typeOfDisable="awnerAttended") {
 			/*
 				Vip code can assume the following status:
 					- awnerAttended
@@ -254,58 +262,51 @@
 		public function addCreditToVipCode() {
 			//get the number of attendees for the vip code
 			//select count(vipCode) from tbAttendee where vipCode = '{$this->vipCode}';
-			$connection = new Conexao();
+			try{
+				$connection = new Conexao();
 			
-			$sql = "select count(vipCode) as numberOfAttendees from tbVipCodeAttendee where vipCode = '{$this->vipCode}'";
-			$connection->setSQL($sql);
-			
-			$numberOfAttendees = $connection->consultar();
-			foreach($numberOfAttendees as $value) {
-				$numberOfAttendees = $value->numberOfAttendees;
-			}
-			
-			//apply credit depending of the number os attendees.
-			//if one indicated apply credit += (maxDiscount - minDiscount) * 0,2
-			//if two indicated apply credit += (maxDiscount - minDiscount) * 0,4
-			//if three indicated apply credit += (maxDiscount - minDiscount) * 0,6
-			//if four indicated apply credit += (maxDiscount - minDiscount) * 0,8
-			//if five indicated apply credit += (maxDiscount - minDiscount) * 1
-			
-			//if both min and max discount are iqual it means that there's no discount regardless the number of refferral vip code owner brings to a place. 
-			if($this->minDiscount == $this->maxDiscount) {
-				return $this->credit;
-			}
-			
-			for ($i = 0; $i < $numberOfAttendees; $i + 0.2) {
-				$this->credit += ($this->maxDiscount - $this-> minDiscount) * $i;
-			}
-			
-			return $this->credit;
-		}
-		
-		//validateVipCode
-		public function validateVipCode(Notifyer $notifiyer) {
-			//is VipCode still valid?
-			if($this->isStillValid() == false) { return "O vipCode '{$this->vipCode}' j&aacute; n&atilde;o &eacute; v&aacute;lido."; }
-			
-			
-			//if yes 
-				//isOwner?
-				//if yes
-				//update table tbVipCode set ownerReturned = true, status = "expired", expirationDate = date('Y-m-da H:i:s')
-			
-				//if no
-				//check if attendee attended already the vip code
-				//attended?
-				//if yes, says: sorry you already used this vipCode do you want a new one?
-				//if no
-				//
+				$sql = "select count(vipCode) as numberOfAttendees from tbVipCodeAttendee where vipCode = '{$this->vipCode}'";
+				$connection->setSQL($sql);
 				
-			//if no
-			// sorry this vip code is still no longuer valid. Do you want a new one?
+				$numberOfAttendees = $connection->consultar();
+				foreach($numberOfAttendees as $value) {
+					$numberOfAttendees = $value->numberOfAttendees;
+				}
+				
+				/*
+					apply credit depending of the number os attendees.
+					if one indicated apply credit += (maxDiscount - minDiscount) * 0,2
+					if two indicated apply credit += (maxDiscount - minDiscount) * 0,4
+					if three indicated apply credit += (maxDiscount - minDiscount) * 0,6
+					if four indicated apply credit += (maxDiscount - minDiscount) * 0,8
+					if five indicated apply credit += (maxDiscount - minDiscount) * 1
+				*/
+				
+				//if both min and max discount are iqual it means that there's no discount regardless the number of refferral vip code owner brings to a place. 
+				if($this->minDiscount == $this->maxDiscount) {
+					return $this->credit;
+				}
+				
+				for ($i = 0; $i < $numberOfAttendees; $i + 0.2) {
+					$this->credit += ($this->maxDiscount - $this-> minDiscount) * $i;
+				}
+				
+				//persist the new credit to database
+				$sql = "update tbVipCode set credit = '{$this->credit}' where vipCode = '{$this->vipCode}'";
+				
+				$connection = new Conexao();
+				$connection->setSQL($sql);
+				if($connection->executar() == null) {
+					return true;
+				}
+			}
+			catch(Exception $error) {
+				//Write the error in the application log files
+				$error->getTrace();
+			}
+			
 		}
 		
-		//
 		
 		//setValidityPeriod
 		public function setValidityPeriod(int $days) {
@@ -349,7 +350,7 @@
 		//is Owner?
 		public function isOwner($telephone) {
 			$this->owner->setTelephone($telephone);
-			return $this->owner->isThisVipCodeMine();
+			return $this->owner->isThisVipCodeMine($this);
 		}
 		
 	
