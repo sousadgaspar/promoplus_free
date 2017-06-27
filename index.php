@@ -177,6 +177,7 @@
 		  </form>
 	  </div><!-- End Recomend vip Code to friends -->
 	  
+	  <!-- standardReportCard -->
 	  <div class="card standardReportCard" id="standardReportCard">
 	  	<div class="standardReportCardHeader" id="standardReportCardHeader">
 		  	<label>Desempenho do VipCode</label>
@@ -190,7 +191,32 @@
 	  			</p>
 	  		</div>
 	  	</div>
-	  </div>
+	  </div><!-- End standardReportCard -->
+	  
+	  <!-- validate vipcode card -->
+	  <div class="card validateVipCodeCard" id="validateVipCodeCard">
+	  	<button class="closeCard">X</button> 
+	  	<form action="index.php" method="post" accept-charset="utf-8">
+		  	<span class="formTitle">Validar VipCode</span>
+		  	<br />
+		  	<br />
+		  	<div class="textInputInvisible">
+				<label for="vipCode">DeVoltaAo{Estabelecimento}# </label><input id="vipCode" type="text" name="vipCode" placeholder="Ex. 87626554324345" value="">
+			</div>
+			
+			<hr />
+			
+			<div class="textInputInvisible">
+				<label for="name">Nome: </label><input id="name" type="text" name="name" placeholder="Ex. Paulo Júnior" value="">
+			</div>
+		  	<div class="textInputInvisible">
+				<label for="attendeeTelephone">Telef: </label><input id="attendeeTelephone" type="text" name="attendeeTelephone" placeholder="Ex. 923432XXX" value="">
+			</div>
+			<br />
+			<input type="submit" class="btn btnBase" name="ShareVipCodeForm" value="Validar VipCode" />
+		  	
+	  	</form>
+	  </div><!-- End validate vipcode card -->
  
   </main>
   

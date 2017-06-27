@@ -106,6 +106,10 @@ body {
   text-align: center;
   padding: 4% 8%;
 }
+.validateVipCodeCard {
+  background: #D7E6F7;
+  border: 1px solid #8EBAEF;
+}
 .btnBase {
   font-size: 1em;
   color: #FFFFFF;
