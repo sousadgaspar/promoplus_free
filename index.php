@@ -134,8 +134,11 @@
 	  
 	  <!-- Recomend vip Code to friends -->
 	  <div class="card recomendVipCodeToFriendsCard" id="recomendVipCodeToFriendsCard">
+		<button class="closeCard">X</button> 
 	  	<form action="index.php" method="post" accept-charset="utf-8">
 		  	<span class="formTitle">Recomendar amigos</span>
+		  	<br />
+		  	<br />
 		  	<div class="textInputInvisible">
 				<label for="attendeeName">Nome: </label><input id="attendeeName" type="text" name="attendeeName" placeholder="Ex. Paulo Júnior" value="">
 			</div>
@@ -169,9 +172,24 @@
 		  	<div class="textInputInvisible">
 				<label for="attendeeTelephone">Telef: </label><input id="attendeeTelephone" type="text" name="attendeeTelephone" placeholder="Ex. 923432XXX" value="">
 			</div>
-			
-			<hr />
-		  	</form>
+			<br />
+			<input type="submit" class="btn btnBase" name="ShareVipCodeForm" value="Partilhar desconto" />
+		  </form>
+	  </div><!-- End Recomend vip Code to friends -->
+	  
+	  <div class="card standardReportCard" id="standardReportCard">
+	  	<div class="standardReportCardHeader" id="standardReportCardHeader">
+		  	<label>Desempenho do VipCode</label>
+	  	</div>
+	  	<div id="" class="standardReportCardBody">
+	  		<p><b>DeVoltaAoMoments#908765</b></p>
+	  		
+	  		<div id="numberOfVipCodesIndications">
+	  			<p><span class="number">4</span><span class="label">
+		  			<br />Indica&ccedil;&otilde;es</span>
+	  			</p>
+	  		</div>
+	  	</div>
 	  </div>
  
   </main>

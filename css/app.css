@@ -83,6 +83,29 @@ body {
   width: 20%;
   margin: 4% 0%;
 }
+.standardReportCard {
+  padding: 0%;
+}
+.standardReportCard .standardReportCardHeader {
+  text-align: center;
+  padding: 4% 8%;
+  width: 100%;
+  background-color: #99FFA8;
+  color: #383838;
+}
+.standardReportCard #numberOfVipCodesIndications {
+  width: 138px;
+  border: solid 2px #92EFA0;
+  border-radius: 100px;
+  margin: 0 auto;
+}
+.standardReportCard #numberOfVipCodesIndications .number {
+  font-size: 4em;
+}
+.standardReportCard .standardReportCardBody {
+  text-align: center;
+  padding: 4% 8%;
+}
 .btnBase {
   font-size: 1em;
   color: #FFFFFF;
