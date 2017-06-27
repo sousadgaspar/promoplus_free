@@ -201,7 +201,7 @@
 		  	<br />
 		  	<br />
 		  	<div class="textInputInvisible">
-				<label for="vipCode">BackTo{Estabelecimento}# </label><input id="vipCode" type="text" name="vipCode" placeholder="Ex. 87626554324345" value="">
+				<label for="vipCode">BackTo{enterprise}# </label><input id="vipCode" type="number" name="vipCode" placeholder="Ex. 87626554324345" value="">
 			</div>
 			
 			<hr />
