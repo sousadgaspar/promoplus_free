@@ -112,3 +112,9 @@ newEnterpriseCardCloseCard.on("click", function( event ){
 $("#vipCodeOwnerName").on("focus", function(Event) {
 	
 })
+
+//login events
+
+$("#email").on("focus", function(Event) {
+	$("#welcomeHomeLogo").css("width", "50%");
+})

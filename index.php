@@ -31,12 +31,11 @@
     <div class="card" id="login-card">
 	    <form action="app.php" method="post" accept-charset="utf-8">
 	    	<div class="textInputInvisible">
-			  <label for="emailOrPhoneNumber">Email ou Telef: </label><input id="emailOrPhoneNumber" type="text" name="emailOrPhoneNumber" placeholder="Ex. paulo.junior@gmail.com" value="">
+			  <label for="email">Email: </label><input id="email" type="text" name="email" placeholder="Ex. paulo.junior@gmail.com" value="">
 			</div>
 			<div class="textInputInvisible">
-			  <label for="password">Senha: </label><input id="password" type="text" name="password" placeholder="************************************" value="">
+			  <label for="password">Pass: </label><input id="password" type="text" name="password" placeholder="************************************" value="">
 			</div>
-			<br />
 			<br />
 			<input type="submit" class="btn btnRose" name="login" value="Entrar" />
 		</form> 
