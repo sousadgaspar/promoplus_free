@@ -107,3 +107,8 @@ newEnterpriseCardCloseCard.on("click", function( event ){
 	$('#newEnterpriseCard').hide();
 });
 
+
+//for validation
+$("#vipCodeOwnerName").on("focus", function(Event) {
+	
+})

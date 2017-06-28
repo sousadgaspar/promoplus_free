@@ -23,9 +23,32 @@ body {
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
   height: 56px;
 }
+.header .logo {
+  color: #FFFFFF;
+  font-size: 1.2em;
+  border-radius: 16px;
+  margin-left: 6%;
+}
+.header .logo img {
+  width: 140%;
+}
 .header .menu img {
   width: 14%;
   float: right;
+}
+#welcomeHomeScreen {
+  position: fixed;
+  z-index: 10000;
+  background: #FF3365;
+  background-image: linear-gradient(-134deg, rgba(255, 50, 101, 0.5) 22%, rgba(156, 3, 41, 0.5) 100%);
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  text-align: center;
+}
+#welcomeHomeScreen #welcomeHomeLogo img {
+  width: 50%;
+  margin: 0 auto;
 }
 #menuTableContent {
   position: fixed;
@@ -46,37 +69,6 @@ body {
 }
 #menuTableContent ul li:first {
   margin: 0%;
-}
-.logo {
-  color: #FFFFFF;
-  font-size: 1.2em;
-  border-radius: 16px;
-  width: 30%;
-  margin-left: 6%;
-}
-.card {
-  background-color: #FFFFFF;
-  margin: 18%;
-  padding: 4% 8%;
-  border-radius: 8px;
-  margin: 4% auto;
-  border: solid 1px #EBEBEB;
-  overflow: hidden;
-  font-weight: 200;
-}
-.card .notificationCard {
-  text-align: center;
-}
-.closeCard {
-  color: #FD96B0;
-  float: right;
-  border: none;
-  background: none;
-  font-size: 1.4em;
-  font-weight: 100;
-}
-.closeCard:focus {
-  outline: none;
 }
 #dashBoardIconContainer {
   text-align: center;
@@ -99,6 +91,47 @@ body {
 #dashBoardIconContainer menuTable {
   cursor: pointer;
 }
+/*
+	this class defines the card structure
+*/
+.card {
+  background-color: #FFFFFF;
+  margin: 18%;
+  padding: 4% 8%;
+  border-radius: 8px;
+  margin: 4% auto;
+  border: solid 1px #EBEBEB;
+  overflow: hidden;
+  font-weight: 200;
+}
+.card .notificationCard {
+  text-align: center;
+}
+/*
+	this class define the style of close btn in cards
+*/
+.closeCard {
+  color: #FD96B0;
+  float: right;
+  border: none;
+  background: none;
+  font-size: 1.4em;
+  font-weight: 100;
+}
+.closeCard:focus {
+  outline: none;
+}
+/*
+	This class define the login card
+*/
+#login-card {
+  width: 80%;
+  background: none;
+  border: solid 1px #FFC1D1;
+}
+/*
+	this class define Success notification cards
+*/
 #successNotificationCard {
   display: none;
   background: #E7FFEB;
@@ -106,6 +139,9 @@ body {
   text-align: center;
   color: #585858;
 }
+/*
+	this class define Fail notification cards
+*/
 #failNotificationCard {
   display: none;
   background: #FFE7E7;
@@ -178,6 +214,24 @@ body {
   background-color: #397AC6;
   border: 4px solid #DDE9F8;
   outline: none;
+}
+.btnRose {
+  font-size: 1em;
+  color: #FFFFFF;
+  background: #4590E8;
+  border-radius: 8px;
+  border: none;
+  padding: 4% 8%;
+  background: #E68888;
+}
+.btnRose:focus {
+  background-color: #397AC6;
+  border: 4px solid #DDE9F8;
+  outline: none;
+}
+.btnRose:focus {
+  background-color: #FFC1D1;
+  border: 4px solid #E68888;
 }
 .formTitle {
   color: #A5A5A5;
