@@ -116,5 +116,5 @@ $("#vipCodeOwnerName").on("focus", function(Event) {
 //login events
 
 $("#email").on("focus", function(Event) {
-	$("#welcomeHomeLogo").css("width", "50%");
+	$("#welcomeHomeLogo").css("width", "36%");
 })
