@@ -1,19 +1,51 @@
+html,
+body {
+  height: 100%;
+}
 body {
   margin: 0%;
+  display: flex;
   background-color: #F6F6F6;
   font-family: AvenirNext-Regular, helvetica;
 }
 .main {
   background-color: #F6F6F6;
+  flex: 1;
 }
 .header {
   /* MainHeader: */
+  position: fixed;
+  z-index: 10000;
   background: #FF3365;
   background-image: linear-gradient(-134deg, rgba(255, 50, 101, 0.5) 22%, rgba(156, 3, 41, 0.5) 100%);
   width: 100%;
-  padding: 5% 0%;
+  padding: 4% 0%;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
   height: 56px;
+}
+.header .menu img {
+  width: 14%;
+  float: right;
+}
+#menuTableContent {
+  position: fixed;
+  z-index: 9999;
+  display: none;
+  width: 70%;
+  height: 100%;
+  text-align: center;
+  background-color: #ffffff;
+}
+#menuTableContent ul {
+  padding: 0%;
+  margin: 0%;
+}
+#menuTableContent ul li {
+  margin: 4%;
+  padding: 2% 0%;
+}
+#menuTableContent ul li:first {
+  margin: 0%;
 }
 .logo {
   color: #FFFFFF;
@@ -60,21 +92,36 @@ body {
   color: #585858;
   font-size: 0.9em;
 }
+#dashBoardIconContainer #newVipCodeIcon,
+#dashBoardIconContainer #validateVipCodeIcon,
+#dashBoardIconContainer reportsVipCodeIcon,
+#dashBoardIconContainer configurationVipCodeIcon,
+#dashBoardIconContainer menuTable {
+  cursor: pointer;
+}
 #successNotificationCard {
+  display: none;
   background: #E7FFEB;
   border: 1px solid #88E696;
   text-align: center;
   color: #585858;
 }
 #failNotificationCard {
+  display: none;
   background: #FFE7E7;
   border: 1px solid #E68888;
   text-align: center;
   color: #585858;
 }
 #newVipCodeBtnCard {
+  display: none;
   text-align: center;
-  /* Novo VipCode: */
+}
+#createNewVipCodeFormCard {
+  display: none;
+}
+#recomendVipCodeToFriendsCard {
+  display: none;
 }
 .notificationCard {
   color: #585858;
@@ -82,6 +129,9 @@ body {
 .notificationCard img {
   width: 20%;
   margin: 4% 0%;
+}
+#standardReportCard {
+  display: none;
 }
 .standardReportCard {
   padding: 0%;
@@ -106,9 +156,15 @@ body {
   text-align: center;
   padding: 4% 8%;
 }
+#validateVipCodeCard {
+  display: none;
+}
 .validateVipCodeCard {
   background: #D7E6F7;
   border: 1px solid #8EBAEF;
+}
+#newEnterpriseCard {
+  display: none;
 }
 .btnBase {
   font-size: 1em;
@@ -142,5 +198,12 @@ body {
   width: 80%;
 }
 .textInputInvisible input[type='text']:focus {
+  outline: none;
+}
+.textInputInvisible input[type='number'] {
+  border: none;
+  width: 80%;
+}
+.textInputInvisible input[type='number']:focus {
   outline: none;
 }

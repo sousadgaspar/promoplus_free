@@ -8,6 +8,7 @@
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" type="text/css" href="css/app.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap-grid-system.min.css">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <!-- Add to home screen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -15,13 +16,39 @@
   <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
 </head>
 <body>
+  <!-- header -->
   <header class="header">
-   <div id="logo" class="logo">
-   	VIPCode
+   <div class="col-xs-6">
+	   <div id="logo" class="logo" id="applicationHome">
+	   	VIPCode
+	   </div>
+   </div><!-- End header -->
+   <div class="col-xs-6 menu">
+	   <img id="menuTable" class="" src="img/menu.png" />
    </div>
-  </header>
+   <div class="clearfix"></div>
+   
+  </header> <!-- header -->
+
+  <!--  -->
+  <div class="" id="menuTableContent">
+	<br />
+	<br />
+	<br />
+  	<ul>
+	  	<li><a href="#"><i class="fa fa-bug" aria-hidden="true"></i>Menu #1</a></li>
+	  	<li><a href="#">Menu #2</a></li>
+	  	<li><a href="#">Menu #3</a></li>
+	  	<li><a href="#">Menu #4</a></li>
+	  	<li><a href="#">Menu #5</a></li>
+	  	<li><a href="#">Menu #6</a></li>
+	  	<li><a href="#">Menu #7</a></li>
+  	</ul>
+  </div>
 
   <main class="main container-fluid">
+	 <br />
+	 <br />
 	 <br />
 	 <br />
     <div class="card" id="dashborad-card">
@@ -34,7 +61,7 @@
 		    		<label>Novo código Vip</label>
 		    	</div>
 		    	
-		    	<div id="newVipCodeIcon" class="col-xs-6">
+		    	<div id="validateVipCodeIcon" class="col-xs-6">
 		    		<img src="img/validate-vip-code-icon.png"/>
 		    		<div class="clearfix"></div>
 		    		<label>Validar código Vip</label>
@@ -45,13 +72,13 @@
 	    	
 	    	<div id="" class="row">
 		    	<!-- dashboard icons -->
-		    	<div id="newVipCodeIcon" class="col-xs-6">
+		    	<div id="reportsVipCodeIcon" class="col-xs-6">
 		    		<img src="img/vip-code-reports-icon.png"/>
 		    		<div class="clearfix"></div>
 		    		<label>Relat&oacute;rios</label>
 		    	</div>
 		    	
-		    	<div id="newVipCodeIcon" class="col-xs-6">
+		    	<div id="configurationVipCodeIcon" class="col-xs-6">
 		    		<img src="img/vip-code-configuration.png"/>
 		    		<div class="clearfix"></div>
 		    		<label>Configura&ccedil;&oacute;es</label>
@@ -62,7 +89,7 @@
 	    	
 	    	<div id="" class="row">
 		    	<!-- dashboard icons -->
-		    	<div id="newVipCodeIcon" class="col-xs-6">
+		    	<div id="quitVipcodeDashBoard" class="col-xs-6">
 		    		<img src="img/quit-vip-code-dash-board.png"/>
 		    		<div class="clearfix"></div>
 		    		<label>Sair</label>
@@ -102,8 +129,8 @@
 	  </div><!-- End NewVipCodeBtnCard -->
 	  
 	  <!-- Create New VipCode -->
-	  <div class="card" id="createNewVipCodeForm">
-		<button class="closeCard">X</button>
+	  <div class="card" id="createNewVipCodeFormCard">
+		<button id="createNewVipCodeFormCloseCard" class="closeCard">X</button>
 	  	<form action="" method="post" accept-charset="utf-8">
 		  <span class="formTitle">Novo c&oacute;digo Vip</span>
 		  <br />
@@ -117,13 +144,6 @@
 		  <div class="textInputInvisible">
 		  	<label for="vipCodeOwnerEmail">Email: </label><input id="vipCodeOwnerEmail" type="text" name="vipCodeOwnerEmail" placeholder="paulo.junior@sgenial.co" value="">
 		  </div>
-		  <!--
-		  <div class="textInputInvisible">
-		  	<label for="vipCodeOwnerFaceBook">FaceBook: </label><input id="vipCodeOwnerFaceBook" type="text" name="vipCodeOwnerFaceBook" placeholder="www.faceboo.com/paulo.junior" value="">
-		  </div>
-		  <div class="textInputInvisible">
-		  	<label for="vipCodeOwnerAddress">Endere&ccedil;o: </label><input id="vipCodeOwnerAddress" type="text" name="vipCodeOwnerAddress" placeholder="Alvalade, Rua do hotel Alvalade" value="">
-		  </div>-->
 		  <input id="vipCodeOwnerAgreeWithPrivacyPolicy" type="checkbox" name="vipCodeOwnerAgreeWithPrivacyPolicy" checked="checked"><label for="vipCodeOwnerAgreeWithPrivacyPolicy">Concordo com os termos de privacidade. </label>
 		  <br />
 		  <br />
@@ -134,7 +154,7 @@
 	  
 	  <!-- Recomend vip Code to friends -->
 	  <div class="card recomendVipCodeToFriendsCard" id="recomendVipCodeToFriendsCard">
-		<button class="closeCard">X</button> 
+		<button id="recomendVipCodeToFriendsCardCloseCard" class="closeCard">X</button> 
 	  	<form action="index.php" method="post" accept-charset="utf-8">
 		  	<span class="formTitle">Recomendar amigos</span>
 		  	<br />
@@ -195,7 +215,7 @@
 	  
 	  <!-- validate vipcode card -->
 	  <div class="card validateVipCodeCard" id="validateVipCodeCard">
-	  	<button class="closeCard">X</button> 
+	  	<button id="validateVipCodeCardCloseCard" class="closeCard">X</button> 
 	  	<form action="index.php" method="post" accept-charset="utf-8">
 		  	<span class="formTitle">Validar VipCode</span>
 		  	<br />
@@ -217,21 +237,57 @@
 		  	
 	  	</form>
 	  </div><!-- End validate vipcode card -->
+	  
+	  <!-- newEnterpriseCard -->
+	  <div class="card newEnterpriseCard" id="newEnterpriseCard">
+	  	<button id="newEnterpriseCardCloseCard" class="closeCard">X</button> 
+	  	<form action="index.php" method="post" accept-charset="utf-8">
+		  	<span class="formTitle">Cadastrar novo Estabelecimento</span>
+		  	<br />
+		  	<br />
+		  	<div class="textInputInvisible">
+				<label for="enterpriseName">Nome: </label><input id="enterpriseName" type="text" name="enterpriseName" placeholder="Ex. SGenial, SA" value="">
+			</div>
+			<div class="textInputInvisible">
+				<label for="enterpriseLegalNumber">NIF: </label><input id="enterpriseLegalNumber" type="text" name="enterpriseLegalNumber" placeholder="Ex. 88766122671" value="">
+			</div>
+			<div class="textInputInvisible">
+				<label for="enterpriseAddress">Endere&ccedil;o: </label><input id="enterpriseAddress" type="text" name="enterpriseAddress" placeholder="Ex. Av. Combatentes. Rua X, Luanda, Angola" value="">
+			</div>
+			<div class="textInputInvisible">
+				<label for="enterpriseTelephone">Telef: </label><input id="enterpriseTelephone" type="text" name="enterpriseTelephone" placeholder="Ex. 923432XXX" value="">
+			</div>
+			<div class="textInputInvisible">
+				<label for="enterpriseTelephone">Telef: </label><input id="enterpriseTelephone" type="text" name="enterpriseTelephone" placeholder="Ex. 912432XXX" value="">
+			</div>
+			<div class="textInputInvisible">
+				<label for="enterpriseEmail">Email: </label><input id="enterpriseEmail" type="text" name="enterpriseEmail" placeholder="Ex. falecom@sgenial.co" value="">
+			</div>
+			<div class="textInputInvisible">
+				<label for="enterpriseWebSite">WebSite: </label><input id="enterpriseWebSite" type="text" name="enterpriseWebSite" placeholder="Ex. www.sgenial.co" value="">
+			</div>
+			
+			
+			<hr />
+			
+			<div class="textInputInvisible">
+				<label for="enterpriseManagerName">Nome do gestor: </label><input id="enterpriseManagerName" type="text" name="enterpriseManagerName" placeholder="Paulo J&uacute;nior" value="">
+			</div>
+			<div class="textInputInvisible">
+				<label for="enterpriseManagerTelephone">Telef: </label><input id="enterpriseManagerTelephone" type="text" name="enterpriseManagerTelephone" placeholder="Ex. 923432XXX" value="">
+			</div>
+			<div class="textInputInvisible">
+				<label for="enterpriseManagerEmail">Email: </label><input id="enterpriseManagerEmail" type="text" name="enterpriseManagerEmail" placeholder="Ex. paulo.junior@gmail.com" value="">
+			</div>
+			
+			<br />
+			<input type="submit" class="btn btnBase" name="ShareVipCodeForm" value="Gravar novo estabelecimento" />
+
+	  </div> <!-- End newEnterpriseCard -->
  
   </main>
-  
-
-
-  <div class="dialog-container">
-  . . .
-  </div>
-
-  <div class="loader">
-    <svg viewBox="0 0 32 32" width="32" height="32">
-      <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
-    </svg>
-  </div>
-
-  <!-- Insert link to app.js here -->
+  <!-- JS scrips -->
+  <script src="js/jquery.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
