@@ -254,6 +254,13 @@ body {
 .textInputInvisible input[type='text']:focus {
   outline: none;
 }
+.textInputInvisible input[type='password'] {
+  border: none;
+  width: 80%;
+}
+.textInputInvisible input[type='password']:focus {
+  outline: none;
+}
 .textInputInvisible input[type='number'] {
   border: none;
   width: 80%;
