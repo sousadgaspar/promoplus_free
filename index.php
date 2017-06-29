@@ -1,3 +1,9 @@
+<?php
+	
+	session_start();
+	print @$_SESSION['mobilePhone'];
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,15 +35,15 @@
     
     <!-- login form -->
     <div class="card" id="login-card">
-	    <form action="app.php" method="post" accept-charset="utf-8">
+	    <form action="" method="post" accept-charset="utf-8">
 	    	<div class="textInputInvisible">
 			  <label for="email">Email: </label><input id="email" type="text" name="email" placeholder="Ex. paulo.junior@gmail.com" value="">
 			</div>
 			<div class="textInputInvisible">
-			  <label for="password">Pass: </label><input id="password" type="password" name="password" placeholder="************************************" value="">
+			  <label for="password">Pass: </label><input id="password" type="text" name="password" placeholder="************************************" value="">
 			</div>
 			<br />
-			<input type="submit" class="btn btnRose" name="login" value="Entrar" />
+			<input id="btnRequestLogin" type="submit" onsubmit="" class="btn btnRose" name="login" value="Entrar" />
 		</form> 
     </div><!-- End login form -->
     

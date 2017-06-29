@@ -6,27 +6,49 @@
 	require_once 'vipcode.php';
 	require_once 'attendee.php';
 	require_once 'owner.php';
+	require_once 'user.php';
 	require_once 'helpers/notifyer.php';
 	
 
 	$enterprise = new Enterprise("DianaSpa");
 	$enterprise->setId(2);
-	$owner = new Owner("Sousa", '922300521');
-	$vipCode = new VipCode($enterprise, $owner);
-	//$vipCode->createNewVipCode(10, 30, 45, 'valid'));
-	$vipCode->retrieveVipCode("DeVoltaAoMoments#14983080504158");
 	
-	$attendee = new Attendee("Domingos", '9223080521');
-	$attendee->setVipCode($vipCode);
-			
-	if($attendee->wasEnvited()) {
-		print "'{$attendee->getAttendeeTelephone()}' foi convidado  no vipCode '{$attendee->getVipCode()}'	";
-		$attendee->attend();
-	}
-	else {
-		print "'{$attendee->getAttendeeTelephone()}' nao foi convidado no vipCode '{$attendee->getVipCode()}'";
-	}
+	$user = new User($enterprise);
 	
+	$user->setName("Silvio Gomes");
+	$user->setMobilePhone("923433423");
+	$user->setEmail("silviogomes@sgenial.co");
+	$user->setPassword("654321");
+	$user->setCategory("basic");
+	
+	//$user->createNewUser();
+	//var_dump($user->deativateUser());
+	//var_dump($user->changePassword());
+	//var_dump($user->login());
+	
+	print dirname(__DIR__);
+
+	
+
+	
+	/*
+		$owner = new Owner("Sousa", '922300521');
+		$vipCode = new VipCode($enterprise, $owner);
+		//$vipCode->createNewVipCode(10, 30, 45, 'valid'));
+		$vipCode->retrieveVipCode("DeVoltaAoMoments#14983080504158");
+		
+		$attendee = new Attendee("Domingos", '9223080521');
+		$attendee->setVipCode($vipCode);
+				
+		if($attendee->wasEnvited()) {
+			print "'{$attendee->getAttendeeTelephone()}' foi convidado  no vipCode '{$attendee->getVipCode()}'	";
+			$attendee->attend();
+		}
+		else {
+			print "'{$attendee->getAttendeeTelephone()}' nao foi convidado no vipCode '{$attendee->getVipCode()}'";
+		}
+		
+	*/
 	
 	
 	//rever o code $attendee->attend()
