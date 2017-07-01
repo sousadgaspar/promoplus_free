@@ -3,8 +3,10 @@
 	define('APPPATH', dirname(__DIR__));
 	define('CLASSESPATH', APPPATH . "/classes");
 	
-	$_POST['email'] = 'silviogomes@sgenial.co';
-	$_POST['password'] = '654321';
+	//test credencials
+	//$_POST['email'] = 'silviogomes@sgenial.co';
+	//$_POST['password'] = '654321';
+	
 	
 	if(!isset($_POST['email']) or (!isset($_POST['password'])))
 		return false;
@@ -22,9 +24,13 @@
 	if($user->login()) {
 		
 		//get user information
+		$user->retrieveUserInformation($user->getEmail());
 		$user->getEnterpriseId();
 		$enterprise->retrieveEnterpriseInformation($user->getEnterpriseId());
-		
+		$user->getSessionInformation();
+	}
+	else {
+		print 0;
 	}
 
 	

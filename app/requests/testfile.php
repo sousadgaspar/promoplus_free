@@ -1,34 +1,42 @@
 <?php
 	session_start();
-	
-	/*
-		
-		require_once 'enterprise.php';
-		require_once 'vipcode.php';
-		require_once 'attendee.php';
-		require_once 'owner.php';
-		require_once 'user.php';
-		require_once 'helpers/notifyer.php';
+	define('PATH', dirname(__DIR__).'/classes/');
+			
+		require_once PATH.'enterprise.php';
+		require_once PATH.'vipcode.php';
+		require_once PATH.'attendee.php';
+		require_once PATH.'owner.php';
+		require_once PATH.'user.php';
+		require_once PATH.'helpers/notifyer.php';
 		
 	
 		$enterprise = new Enterprise("DianaSpa");
 		$enterprise->setId(2);
 		
+		$owner = new Owner('Sox', '923111252', 'so@gma.com');
+		
 		$user = new User($enterprise);
 		
 		$user->setName("Silvio Gomes");
-		$user->setMobilePhone("923433423");
+		$user->setMobilePhone("skjkjkj2899382");
 		$user->setEmail("silviogomes@sgenial.co");
 		$user->setPassword("654321");
 		$user->setCategory("basic");
-	*/
+		
+		$vipcode = new Vipcode($enterprise, $owner);
+		
+		$vipcode->setVipCode('DeVoltaAoRoot#149882280263373');
+		
+		var_dump($vipcode->doesVipCodeExists());
 	
 	//$user->createNewUser();
 	//var_dump($user->deativateUser());
 	//var_dump($user->changePassword());
 	//var_dump($user->login());
 	
-	print dirname(__DIR__);
+
+	
+
 
 	
 
