@@ -231,6 +231,50 @@
 		}
 		
 		
+		/*
+			RetrieveVipCodeFromOwnerTelephone
+		*/
+		public function retrieveVipCodeFromOwnerTelephone() {
+			
+			// Get all Vip Code Information
+			$sql = "select * from tbVipCode where ownerTelephone = '{$this->owner->getTelephone()}'";
+			
+			try{
+				$connection = new Conexao();
+				$connection->setSQL($sql);
+				$fetch = $connection->consultar();
+				
+				foreach($fetch as $value) {
+					$this->setId($value->id);
+					$this->setVipCode($value->vipCode);
+					$this->setMinDiscount($value->minDiscount);
+					$this->setMaxDiscount($value->maxDiscount);
+					$this->setCredit($value->credit);
+					$this->setCreationDate($value->creationtDate);
+					$this->setModificationDate($value->modificationDate);
+					$this->setValidTill($value->validTill);
+					$this->setStatus($value->status);
+					$this->setVipCodeVisibility($value->isPublic);
+					$this->enterprise->setId($value->enterpriseId);
+					$this->owner->setName($value->ownerName);
+					$this->owner->setTelephone ($value->ownerTelephone);
+					$this->owner->setEmail($value->OwnerEmail);
+					$this->owner->setFaceBook($value->ownerFaceBook);
+					$this->owner->setAddress($value->ownerAddress);
+				}
+				
+				//foreach($fetch as $value) {
+					
+				//}
+				
+			}
+			catch(Exception $error) {
+				//Write the error to the application log
+				$error->getTrace();
+			}
+		}
+		
+		
 		//Disable VipCode
 		public function disableVipCode($typeOfDisable="awnerAttended") {
 			/*
@@ -273,22 +317,17 @@
 					$numberOfAttendees = $value->numberOfAttendees;
 				}
 				
-				/*
-					apply credit depending of the number os attendees.
-					if one indicated apply credit += (maxDiscount - minDiscount) * 0,2
-					if two indicated apply credit += (maxDiscount - minDiscount) * 0,4
-					if three indicated apply credit += (maxDiscount - minDiscount) * 0,6
-					if four indicated apply credit += (maxDiscount - minDiscount) * 0,8
-					if five indicated apply credit += (maxDiscount - minDiscount) * 1
-				*/
-				
 				//if both min and max discount are iqual it means that there's no discount regardless the number of refferral vip code owner brings to a place. 
 				if($this->minDiscount == $this->maxDiscount) {
 					return $this->credit;
 				}
 				
-				for ($i = 0; $i < $numberOfAttendees; $i + 0.2) {
-					$this->credit += ($this->maxDiscount - $this-> minDiscount) * $i;
+				//if owner envites 5 peoples, will get the 100% of the addicional discount.
+				for ($i = 0; $i < $numberOfAttendees; $i++) {
+					if($this->credit == $this->maxDiscount) {
+						break;
+					}
+					$this->credit += ($this->maxDiscount - $this->minDiscount) * 0.2;
 				}
 				
 				//persist the new credit to database

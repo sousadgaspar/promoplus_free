@@ -1,0 +1,61 @@
+//To do 30.Junho.2017
+
+		
+	- Implementar API de SMS
+	- Concluir o retorno do cartão de falha após a geração de código vip.
+	- Concluir o menu configuracoes de vip code
+	- Concluir o burger menu
+	- Aplicar cliterios de seguranca nos campos dos formularios.
+		
+		
+		
+	
+	
+	
+	Feitas
+	- Concluir botao sair - matar a sessao / Done :
+	- Concluir o retorno do cartão de sucesso após a geração de código vip. 
+	- finish the validate vipCode process
+		- is this vipCode valid?
+			Yes ...
+			No - End.
+		- is this vipCode of owner?
+			Yes - owner attend - disable vipcode - Notify Owner - End.
+			No ...
+		- Does attendee attended this vipcode?
+			Yes - MSG: You already attended this vipCode. Please ask a new one. - End.
+			No - Attendee attend  - increese vipcode credit - Notify attendee - End.
+	
+	- validar se o cliente nao tem um vipcode aberto
+		- this client has a valid vicode?	
+		- Yes - you have the vipCode XXX with 10% of discount. - End.
+		- No ..
+		- Form new vipcode
+		- create vipcode
+		- notify client
+		- End
+	
+	
+	
+	
+	
+	//Ideias for next versions
+	
+	- Notify vipCode owner when an attendee attends his vipcode.
+	- Melhorar a coleta de dados dos clientes 
+		- coletar primeiro e ultimo nome
+		- preparar a interface para tal.
+		- colegar o numero no formato internacional (2449.......)
+		
+		
+	Regras	
+	//Cada vipCode deve ser usado para uma unica factura
+	
+	
+	
+	
+	//Ideia
+	Criar uma loja virtual para a venda dos relógios da sistec
+		solicitar a sistec um serviço que mostra os relógios disponível com preço, referencia, photo, descricao.
+			
+	

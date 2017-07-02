@@ -6,6 +6,10 @@
 	define('APPPATH', dirname(__DIR__));
 	define('CLASSESPATH', APPPATH . "/classes");
 	
+	//helpers
+	require_once CLASSESPATH.'/helpers/smsGateway.php';
+	
+	//business classes
 	require_once CLASSESPATH . '/enterprise.php';
 	require_once CLASSESPATH . '/owner.php';
 	require_once CLASSESPATH . '/vipcode.php';
@@ -14,37 +18,61 @@
 	$enterprise->setId($_SESSION['enterpriseId']);
 	
 	$owner = new Owner($_POST['name'], $_POST['telephone'], $_POST['email']);
+	//flag for js request handler
+	$ownerHasAnOpenVipCode = '';
+	$smsResponse = '';
+	
 	$vipcode = new Vipcode($enterprise, $owner);
+
 	
-	//check if the client as an open vipCode
 	
-/*
-	Debug
-	print $_POST['name'];
-	print $_POST['telephone'];
-	print $_POST['email'];
-*/
+	//check if the owner as a valid vipcode
+	if($owner->hasAValidVipCode()) {
+		
+		$ownerHasAnOpenVipCode = 'true';
+		$vipcode->retrieveVipCodeFromOwnerTelephone();
+		
+	}
+	else {
+		//create the new vipCode
+		$vipcode->setVipCode(($vipcode->createNewVipCode(10, 25, 30)));
+		$vipcode->retrieveVipCode($vipcode->getVipCode());
+		
+		//Send a SMS to vipCode owner
+		$notifiyer = new SmsGateway('sousadgaspar@gmail.com', '10senhapadrao20');
+		
+		$deviceId = '51532';
+		$enterpriseName = @$_SESSION[enterpriseName];
 	
-	//create the new vipCode
-	$vipcode->setVipCode(($vipcode->createNewVipCode(10, 25, 30)));
-	$vipcode->retrieveVipCode($vipcode->getVipCode());
+		
+		$message  = "VIPCode: {$vipcode->getVipCode()} Quando voltar ao {$enterpriseName} recebera {$vipcode->getMinDiscount()}% de desconto. Se partilhar esse VIPCode com os seus amigos o seu desconto pode aumentar ate {$vipcode->getMaxDiscount()}, eles tambem recebem {$vipcode->getMinDiscount()}% de desconto. Reencaminhe essa SMS para os seu amigos!";
+		
+		$smsResponse = $notifiyer->sendMessageToNumber($owner->getTelephone(), $message, $deviceId);
+		
+	}
 	
-	$array = array('vipcode' => $vipcode->getVipCode(),
-			 'minDiscount' => $vipcode->getMinDiscount(),
-			 'maxDiscount' => $vipcode->getMaxDiscount(),
-			 'credit' => $vipcode->getCredit(),
-			 'creationTime' => $vipcode->getCreationTime(),
-			 'validTill' => $vipcode->getValidTill(),
-			 'status' => $vipcode->getStatus(),
-			 'vipCodeIsPublic' => $vipcode->vipCodeIsPublic(),
-			 'name' => $owner->getName(),
-			 'ownerId' => $owner->getId(),
-			 'OwnerStatus' => $owner->getStatus(),
-			 'telephone' => $owner->getTelephone(),
-			 'faceBook' => $owner->getFaceBook(),
-			 'email' => $owner->getEmail(),
-			 'address' => $owner->getAddress(),
-			 'returned' => $owner->getReturned()
+	
+	
+	$array = array(
+		
+				'hasAnOpenVipCode' => $ownerHasAnOpenVipCode,
+				'vipcode' => $vipcode->getVipCode(),
+				'minDiscount' => $vipcode->getMinDiscount(),
+				'maxDiscount' => $vipcode->getMaxDiscount(),
+				'credit' => $vipcode->getCredit(),
+				'creationTime' => $vipcode->getCreationTime(),
+				'validTill' => $vipcode->getValidTill(),
+				'status' => $vipcode->getStatus(),
+				'vipCodeIsPublic' => $vipcode->vipCodeIsPublic(),
+				'name' => $owner->getName(),
+				'ownerId' => $owner->getId(),
+				'OwnerStatus' => $owner->getStatus(),
+				'telephone' => $owner->getTelephone(),
+				'faceBook' => $owner->getFaceBook(),
+				'email' => $owner->getEmail(),
+				'address' => $owner->getAddress(),
+				'returned' => $owner->getReturned(),
+				'smsResponse' => $smsResponse
 			
 	);
 	

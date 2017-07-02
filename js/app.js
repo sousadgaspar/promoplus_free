@@ -84,7 +84,7 @@ $(document).ready(function(){
 		menuTableContent.hide();
 		failNotificationCard.hide();
 		successNotificationCard.hide();
-		dashBoard.show().slideDown( 300 ).delay( 1200 ).fadeIn( 400 );
+		dashBoard.show();
 		$('#createNewVipCodeFormCard').hide();
 		
 	});
@@ -94,7 +94,7 @@ $(document).ready(function(){
 		failNotificationCard.hide();
 		successNotificationCard.hide();
 		newVipCodeBtnCard.hide();
-		dashBoard.show().slideDown( 300 ).delay( 1200 ).fadeIn( 400 );
+		dashBoard.show();
 		$('#validateVipCodeCard').hide();
 	});
 	
@@ -125,45 +125,11 @@ $(document).ready(function(){
 	/*
 		AJAX requests
 	*/
-	//newAJAXObject
-	function newAJAXObject() {
-		var AJAXObject = false;
-		if(window.XMLHttpRequest) {
-			AJAXObject = new XMLHttpRequest();
-		}
-		else if(window.ActivexObject) {
-			AJAXObject = new ActivexObject("Msxml2.XMLHTTP");
-			if(!AJAXObject) {
-				AJAXObject = new ActivexObject("Microsoft.XMLHTTP");
-			}
-		}
-		else {
-			AJAXObject = false;
-		}
-		return AJAXObject;	
-	}
-	
-	//AJAX information sent
-	function getAJAXInformationState(paramAJAXObject, state) {
-		var AJAXObject = paramAJAXObject;
-		if(!AJAXObject) {
-			return false;
-		}
-		
-		if(AJAXObject.readystate == state) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 	
 	//redirect
 	function redirect(url) {
 		window.location.assign(url);
 	}
-	
-
 
 	//Login Process
 	var btnLogin = $('#btnRequestLogin');
@@ -214,6 +180,7 @@ $(document).ready(function(){
 		var ownerName = $('#vipCodeOwnerName').val();
 		var ownerTelephone = $('#vipCodeTelephone').val();
 		var ownerEmail = $('#vipCodeOwnerEmail').val();
+		var message = '';
 		
 		$.ajax({
 			type: 'post',
@@ -224,24 +191,50 @@ $(document).ready(function(){
 	            email: ownerEmail
             },
             success: function (data) {
+                //debug
                 //alert(data);
+                
                 ownerName = data['name'];
                 var vipCode = data['vipcode'];
                 var minDiscount = data['minDiscount'];
                 var maxDiscount = data['maxDiscount'];
                 var validityPeriod = data['validTill'];
+             
+				//check if user user as a valid vipcode
+                if(data.hasAnOpenVipCode) {
+	                message = "<img src='../img/error-icon.png' /> <br />"; 
+	                message += ownerName +", Voc&ecirc; possui um VIPCode v&aacute;lido com um desconto de " + data.credit + "%.<br />"; 
+	                message += "VIPCode: <br />";
+	                message += "<b>" + data.vipcode +"</b>";
+					
+					failNotificationCard.html(message);
+					failNotificationCard.show();
+					createNewVipCodeFormCard.hide();
+					
+					//fill validate vipcode fields
+					$('#vipcode').val(data.vipcode);
+					$('#name').val(data.name);
+					$('#telephone').val(data.telephone);
+					
+					validateVipCodeCard.show();
+					
+					
+                }
+                else {
+	                message = ownerName +", Parab&eacute;ns!<br />";
+	                message += "<img src='../img/seccess-icon.png' /> <br />"; 
+	                message += "O seu VIPCode &eacute: <br />";
+	                message += "<b>" + vipCode +"</b>";
+	                message += "quando voltar ao " + data.enterpriseName + " receber&aacute; um desconto de " + minDiscount + "%";
+					message += "Se partilhar esse VIPCode com os seus amigos o seu desconto pode aumentar at&eacute; " + maxDiscount + "%. <br />";
+					message += ", eles tamb&eacute;m recebem " + minDiscount + "% de desconto! <br />";
+					message += "Partilhe! Nos vemos em breve.";
+					
+					successNotificationCard.html(message);
+					successNotificationCard.show();
+                }
                 
-                var message = ownerName +", Parab&eacute;ns!<br />";
-                message += "<img src='../img/seccess-icon.png' /> <br />"; 
-                message += "O seu VIPCode &eacute: <br />";
-                message += "<b>" + vipCode +"</b>";
-                message += "Quando voltar receberá um desconto de" + minDiscount + "%";
-				message += "e para cada amigo seu que vir ao nosso estabelecimento com esse VIPCode";
-				message += "o seu desconto aumenta at&eacute; " + maxDiscount + " e os seus amigos recebem" + minDiscount + "% tamb&eacute;m <br />";
-				message += "Partilhe! Nos vemos em breve.";
 				
-				successNotificationCard.html(message);
-				successNotificationCard.show();
 				
 				//reset Fields
 				resetFieldSumitNewVipCodeFormCard();
@@ -297,7 +290,7 @@ $(document).ready(function(){
 					resetFieldsValidateVipCodeCard();
 				}
 				else if(data.newAttendee) {
-					message = data.attendeeName + ', Bemvindo ao ' + data.enterpriseName + '<br />';
+					message = data.attendeeName + ', Benvindo ao ' + data.enterpriseName + '<br />';
 					message += "<img src='../img/seccess-icon.png' /> <br />";
 					message += 'Vo&ccedil;&ecirc; merece um desconto de ' + data.minVipCodeDiscount + '%' + ' do ' + data.ownerName;
 					//show success notification card

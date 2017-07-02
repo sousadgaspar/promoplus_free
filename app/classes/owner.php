@@ -186,6 +186,30 @@
 		}	
 		
 		
+		//hasAValidVipCode
+		public function hasAValidVipCode() {
+			
+			$sql = "select ownerTelephone from tbVipCode where ownerTelephone = '{$this->telephone}' and status='valid'";
+			
+			$connection = new Conexao();
+			$connection->setSQL($sql);
+			
+			$fetch = $connection->consultar();
+			$fetchedTelephone = '';
+			foreach($fetch as $value) {
+				$fetchedTelephone = $value->ownerTelephone;
+			}
+			
+			if($this->telephone == $fetchedTelephone) { 
+				return true; 
+			}
+			else {
+				return false;
+			}
+			
+		}	
+		
+		
 		//attend
 		public function attend() {
 			//Owner attends his own vip code

@@ -13,7 +13,7 @@
 		$enterprise = new Enterprise("DianaSpa");
 		$enterprise->setId(2);
 		
-		$owner = new Owner('Sox', '923111252', 'so@gma.com');
+		$owner = new Owner('Sox', '923435465', 'so@gma.com');
 		
 		$user = new User($enterprise);
 		
@@ -25,9 +25,19 @@
 		
 		$vipcode = new Vipcode($enterprise, $owner);
 		
-		$vipcode->setVipCode('DeVoltaAoRoot#14988280263373');
+		$vipcode->setVipCode('DeVoltaAoRoot#14990150925508');
 		
-		var_dump($owner->attend());
+		//var_dump($vipcode->addCreditToVipCode());
+		
+		$numberOfAttendees = 5;
+		$credit = 10;
+		$addicionalDiscount = 15;
+		
+		for ($i = 0; $i < $numberOfAttendees; $i++) {
+					$credit += (15 * 0.2);
+					
+				}
+		print $credit;
 	
 	//$user->createNewUser();
 	//var_dump($user->deativateUser());

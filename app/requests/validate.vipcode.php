@@ -46,12 +46,27 @@
 				else {	
 						$vipcode->retrieveVipCode($vipcode->getVipCode());
 						if($attendee->wasEnvited()) {
+							
+						//Attendee alter the status of his own vipcode
 						$attendee->attend();
+						
+						//vipCode add credit to awner 
+						$vipcode->addCreditToVipCode();
+						
+						//flag for js request handler 
 						$newAttendee = 'true';
 						}
 						else {
+							//owener sends an invite to attendee
 							$vipcode->enviteAttendee( $attendee );
+							
+							//attendee accept the envite - alter the status to attended
 							$attendee->attend();
+							
+							//increese the discount of the vipcode owner
+							$vipcode->addCreditToVipCode();
+							
+							//flag for js request handler
 							$newAttendee = 'true';
 						}
 				}
@@ -61,6 +76,7 @@
 	}//End check if this vipCode is valid
 	
 	
+	//Data for JS request handler
 	$array = array(	'newAttendee'=>$newAttendee, 
 					'attendeeAlreadyAttended'=>$attendeeAlreadyAttended, 
 					'isOwner'=>$isOwner, 
