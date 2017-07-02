@@ -25,9 +25,9 @@
 		
 		$vipcode = new Vipcode($enterprise, $owner);
 		
-		$vipcode->setVipCode('DeVoltaAoRoot#149882280263373');
+		$vipcode->setVipCode('DeVoltaAoRoot#14988280263373');
 		
-		var_dump($vipcode->doesVipCodeExists());
+		var_dump($owner->attend());
 	
 	//$user->createNewUser();
 	//var_dump($user->deativateUser());

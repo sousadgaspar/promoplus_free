@@ -205,7 +205,8 @@
 			$this->setId($id);
 			try {
 				//sql
-				$sql = "select 	name, 
+				$sql = "select 	id,
+								name, 
 								address, 
 								coords, 
 								telephone, 
@@ -231,7 +232,7 @@
 					$this->setName($value->name);
 					$this->setAddress($value->address);
 					$this->setCoords($value->coords);
-					$this->setTelephone($value->telepnone);
+					$this->setTelephone($value->telephone);
 					$this->setMobilePhone($value->mobilePhone);
 					$this->setMobilePhoneOptional($value->mobilePhoneOptional);
 					$this->setWebsite($value->website);

@@ -18,6 +18,7 @@
 		private $attendeeTelephone;
 		private $attendeeEmail;
 		private $attendedDate;
+		private $creationTime;
 		private $status;
 		
 		
@@ -51,6 +52,11 @@
 			return $this->attendedDate;
 		}
 		
+		
+		public function getCreationTime() {
+			return $this->creationTime;
+		}
+		
 		public function getStatus() {
 			return $this->status;
 		}
@@ -80,9 +86,53 @@
 			$this->status = $status;
 		}
 		
+		public function setCreationTime($creationTime) {
+			$this->creationTime = $creationTime;
+		}
+		
 		public function setVipCode(VipCode $vipCode) {
 			$this->vipCode = $vipCode;
 		}
+		
+		//
+		//get attendee information
+		public function getAttendeeInformation(string $telephone) {
+			$this->setAttendeeTelephone($telephone);
+			$sql = "select 	id, 
+							vipcode, 
+							attendeeName, 
+							attendeeTelephone, 
+							attendeeEmail, 
+							creationTime, 
+							attendedDate, 
+							status 
+							
+							from tbVipcodeAttendee 
+								where attendeeTelephone = '{$this->getAttendeeTelephone()}';";
+			
+			try{
+				$connection = new Conexao();
+				$connection->setSQL($sql);
+				$fetch = $connection->consultar();
+				
+				foreach($fetch as $value) {
+					$this->setId($value->id);
+					$this->setAttendeeName($value->attendeeName);
+					$this->setAttendeeTelephone($value->attendeeTelephone);
+					$this->setAttendeeEmail($value->attendeeEmail);
+					$this->setCreationTime($value->creationTime);
+					$this->setAttendedDate($value->attendedDate);
+					
+					$this->setStatus($value->status);
+					
+				}
+			}
+			catch(Exception $error) {
+				//write error in application logs
+				$error->getTrace();
+			}
+		}
+
 		
 		//Crud methods
 		public function saveEnvite() {
@@ -130,7 +180,7 @@
 		public function attended() {
 			//return true or false
 			//select attendeeTelephone where vipCode = '{vipCode}' and status="attended";
-			$sql = "select attendeeTelephone where vipCode = '{$this->vipCode}' and status=attended;";
+			$sql = "select attendeeTelephone from tbVipcodeAttendee where vipCode = '{$this->getVipCode()}' and status='attended';";
 			
 			try{
 				$connection = new Conexao();
@@ -142,15 +192,11 @@
 					$fetchedTelephone = $value->attendeeTelephone;
 				}
 				
-				if(($fetchedTelephone != $this->attendeeTelephone) or ($fetchedTelephone == null)) {
-					print "false" . PHP_EOL;
-					print $sql . PHP_EOL;
-					return false;
+				if($fetchedTelephone == $this->attendeeTelephone) {
+					return true;
 				}
 				else{
-					print "true" . PHP_EOL;
-					print $sql . PHP_EOL;
-					return true;
+					return false;
 				}
 			}
 			catch(Exception $error) {

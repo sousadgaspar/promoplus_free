@@ -1,3 +1,10 @@
+<?php
+	session_start();
+	if(($_SESSION['logged'] == false) && is_null($_SESSION['name']) && is_null($_SESSION['mobilePhone']) && is_null($_SESSION['enterpriseId'])) {
+		header("Location: /index.php");
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,8 +96,8 @@
 	    	
 	    	<div id="" class="row">
 		    	<!-- dashboard icons -->
-		    	<div id="quitVipcodeDashBoard" class="col-xs-6">
-		    		<a href="index.php" alt="sair do vipCode App"><img src="img/quit-vip-code-dash-board.png"/></a>
+		    	<div id="quitVipcodeDashIcon" class="col-xs-6">
+		    		<a href="" alt="sair do vipCode App"><img src="img/quit-vip-code-dash-board.png"/></a>
 		    		<div class="clearfix"></div>
 		    		<label>Sair</label>
 		    	</div>
@@ -131,7 +138,7 @@
 	  <!-- Create New VipCode -->
 	  <div class="card" id="createNewVipCodeFormCard">
 		<button id="createNewVipCodeFormCloseCard" class="closeCard">X</button>
-	  	<form action="" method="post" accept-charset="utf-8">
+	  	<form id="createNewVipCodeForm" action="" method="post" accept-charset="utf-8">
 		  <span class="formTitle">Novo c&oacute;digo Vip</span>
 		  <br />
 		  <br />
@@ -144,10 +151,10 @@
 		  <div class="textInputInvisible">
 		  	<label for="vipCodeOwnerEmail">Email: </label><input id="vipCodeOwnerEmail" type="text" name="vipCodeOwnerEmail" placeholder="paulo.junior@sgenial.co" value="">
 		  </div>
-		  <input id="vipCodeOwnerAgreeWithPrivacyPolicy" type="checkbox" name="vipCodeOwnerAgreeWithPrivacyPolicy" checked="checked"><label for="vipCodeOwnerAgreeWithPrivacyPolicy">Concordo com os termos de privacidade. </label>
+		  <!--<input id="vipCodeOwnerAgreeWithPrivacyPolicy" type="checkbox" name="vipCodeOwnerAgreeWithPrivacyPolicy" checked="checked"><label for="vipCodeOwnerAgreeWithPrivacyPolicy">Concordo com os termos de privacidade. </label>-->
 		  <br />
 		  <br />
-		  <input type="submit" class="btn btnBase" name="sumitNewVipCodeForm" value="Novo c&oacute;digoVip" />
+		  <button id="sumitNewVipCodeForm" class="btn btnBase" name="sumitNewVipCodeForm" value="">VIPCode</button>
 
 	  	</form>
 	  </div><!-- End Create New VipCode -->
@@ -221,7 +228,12 @@
 		  	<br />
 		  	<br />
 		  	<div class="textInputInvisible">
-				<label for="vipCode">BackTo{enterprise}# </label><input id="vipCode" type="number" name="vipCode" placeholder="Ex. 87626554324345" value="">
+				<label for="vipCode">VIPCode</label>
+				<input 	id="vipcode" 
+						type="text" 
+						name="vipCode" 
+						value="BackTo<?=ucfirst(strtolower($_SESSION['enterpriseName']))?>#" 
+						placeholder="Ex. 87626554324345" value="">
 			</div>
 			
 			<hr />
@@ -230,10 +242,10 @@
 				<label for="name">Nome: </label><input id="name" type="text" name="name" placeholder="Ex. Paulo Júnior" value="">
 			</div>
 		  	<div class="textInputInvisible">
-				<label for="attendeeTelephone">Telef: </label><input id="attendeeTelephone" type="text" name="attendeeTelephone" placeholder="Ex. 923432XXX" value="">
+				<label for="telephone">Telef: </label><input id="telephone" type="text" name="telephone" placeholder="Ex. 923432XXX" value="">
 			</div>
 			<br />
-			<input type="submit" class="btn btnBase" name="ShareVipCodeForm" value="Validar VipCode" />
+			<button class="btn btnBase" id="validateVipCode" name="ShareVipCodeForm">Validar VipCode</button>
 		  	
 	  	</form>
 	  </div><!-- End validate vipcode card -->

@@ -30,7 +30,7 @@
 		private $minDiscount;
 		private $maxDiscount;
 		private $credit;
-		private $creationDate;
+		private $creationTime;
 		private $validTill;
 		private $status;
 		private $isPublic;
@@ -104,7 +104,7 @@
 		}	
 		
 		public function setCreationDate($creationDate) {
-			$this->creationDate = $creationDate;
+			$this->creationTime = $creationDate;
 		}	
 		
 		public function setModificationDate($modificationDate) {
@@ -134,7 +134,7 @@
 		}
 		
 		//New VipCode
-		public function createNewVipCode($minDiscount, $maxDiscount , $validityInDays, $status) {
+		public function createNewVipCode($minDiscount, $maxDiscount , $validityInDays, $status='valid') {
 			$connection = new Conexao();
 			$this->setVipCode($this->formVipCode());
 			$this->setMinDiscount($minDiscount);
@@ -171,7 +171,7 @@
 				$connection = new Conexao();
 				$connection->setSQL($sql);
 				if($connection->executar() == null) {
-					return true;
+					return $this->vipCode;
 				}
 				else {
 					return false;
@@ -190,7 +190,7 @@
 		/*
 			RetrieveVipCode
 		*/
-		public function retrieveVipCode($vipCode) {
+		public function retrieveVipCode(string $vipCode) {
 			
 			$this->setVipCode($vipCode);
 			// Get all Vip Code Information
@@ -319,7 +319,7 @@
 		*/
 		public function enviteAttendee (Attendee $attendee) {
 			if($this->isStillValid() == false) { return "VipCode '{$this->vipCode}' já não é válido"; }
-			$attendee->setVipCode($this->getVipCode());
+			$attendee->setVipCode($this);
 			try {
 				$attendee->saveEnvite();
 			}
@@ -337,9 +337,9 @@
 				$this->setStatus($value->status);
 			}
 			if($this->status != null) {
-				if($this->status == "valid") {return true;} // the vipCode is valid
-				if($this->status == "expired") {return false;} //expired validity period
-				if($this->status == "awnerAttended") {return false;} // owner of vipCode attended his own vipCode
+				if($this->status == "valid") {return "valid";} // the vipCode is valid
+				if($this->status == "expired") {return "expired";} //expired validity period
+				if($this->status == "ownerAttended") {return "ownerAttended";} // owner of vipCode attended his own vipCode
 			}
 			else{
 				return false;
@@ -354,7 +354,33 @@
 		}
 		
 	
-		
+		//DoesVipCodeExists
+		public function doesVipCodeExists() {
+			// Get all Vip Code Information
+			$sql = "select vipcode from tbVipCode where vipCode = '$this->vipCode'";
+			
+			try{
+				$connection = new Conexao();
+				$connection->setSQL($sql);
+				$fetch = $connection->consultar();
+				
+				$fetchedVipcode = '';
+				foreach($fetch as $value) {
+					$fetchedVipcode = $value->vipcode;
+				}
+				if($fetchedVipcode == $this->vipCode) {
+					return true;
+				}
+				else {
+					return false;
+				}				
+			}
+			catch(Exception $error) {
+				//Write the error to the application log
+				$error->getTrace();
+			}
+
+		} 
 		
 		
 		

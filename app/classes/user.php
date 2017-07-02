@@ -271,16 +271,24 @@
 			$_SESSION['category'] = $this->category;
 			$_SESSION['enterpriseId'] = $this->getEnterpriseId();
 			$_SESSION['enterpriseName'] = $this->enterprise->getName();
+			$_SESSION['logged'] = true;
 		}
 		
 		//logout
 		public function logout() {
+			$_SESSION['name'] = null;
+			$_SESSION['mobilePhone'] = null;
 			$_SESSION['email'] = null;
-			$_SESSION['password'] = null;
-			$_SESSION['id'] = null;
+			$_SESSION['category'] = null;
 			$_SESSION['enterpriseId'] = null;
 			$_SESSION['enterpriseName'] = null;
-			$_SESSION['mobilePhone'] = null;
+			$_SESSION['logged'] = false;
+			if($_SESSION['logged'] == false) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
 		}
 	}
 	

@@ -13,27 +13,70 @@
 	require_once CLASSESPATH . '/enterprise.php';
 	
 	$enterprise = new Enterprise($_SESSION['enterpriseName']);
-	$vipcode = new Vipcode($enterprise);
+	$owner = new Owner($_POST['name'], $_POST['telephone']);
+	$vipcode = new Vipcode($enterprise, $owner);
+	
+	$attendee = new Attendee($_POST['name'], $_POST['telephone']);
 	$vipcode->setVipCode($_POST['vipCode']);
 	
-	$validity = [];
-	$validity['validity'] = $vipcode->isStillValid();
+	$validity = $vipcode->isStillValid();
 	$isOwner = '';
 	$ownerAttended = '';
+	$isAttendee = '';
+	$attendeeAlreadyAttended = ''; // This attendee needs a new vipCode
+	$newAttendee = ''; // The attendee that comes by referrals
+	
 	//check if this vipCode is valid
-	if(($validity['validity']) == 'valid') {
+	if($validity == 'valid') {
 		
-		$owner = new Owner($_POST['name'], $_POST['telephone']);
 		$isOwner = $owner->isThisVipCodeMine($vipcode);
 		
 		//check if the vipcode is of owner
 		if($isOwner) {
-			$owner->attend();
+				$owner->setVipCode( $vipcode );
+				$ownerAttended = $owner->attend();
+				$vipcode->retrieveVipCode($vipcode->getVipCode());
+		} 
+		else {
+				$attendee->setVipCode($vipcode);
+				$attendee->getAttendeeInformation($_POST['telephone']);
+				if($attendee->attended()) {
+					$attendeeAlreadyAttended = 'true';
+				}
+				else {	
+						$vipcode->retrieveVipCode($vipcode->getVipCode());
+						if($attendee->wasEnvited()) {
+						$attendee->attend();
+						$newAttendee = 'true';
+						}
+						else {
+							$vipcode->enviteAttendee( $attendee );
+							$attendee->attend();
+							$newAttendee = 'true';
+						}
+				}
+				
 		}
-	}
-
+		
+	}//End check if this vipCode is valid
 	
-	$array = array('isOwner'=>$isOwner, 'validity'=>$validity['validity'],'name'=>$_POST['name'], 'vipcode'=>$_POST['vipCode'], 'telephone'=>$_POST['telephone'], 'enterpriseName'=>$_SESSION['enterpriseName']);
+	
+	$array = array(	'newAttendee'=>$newAttendee, 
+					'attendeeAlreadyAttended'=>$attendeeAlreadyAttended, 
+					'isOwner'=>$isOwner, 
+					'ownerAttended' => $ownerAttended,
+					'ownerName' => $owner->getName(),
+					'ownerTelephone' => $owner->getTelephone(),
+					'owenrEmail' => $owner->getEmail(),
+					'vipCodeCreationTime' => $vipcode->getCreationTime(),
+					'minVipCodeDiscount' => $vipcode->getMinDiscount(),
+					'credit' => $vipcode->getCredit(),
+					'attendeeName' => $attendee->getAttendeeName(),
+					'validity'=>$validity,
+					'name'=>$_POST['name'], 
+					'vipcode'=>$_POST['vipCode'], 
+					'telephone'=>$_POST['telephone'], 
+					'enterpriseName'=>$_SESSION['enterpriseName']);
 	$json = json_encode($array);
 	echo ($json);
 	
