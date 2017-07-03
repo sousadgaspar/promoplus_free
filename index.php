@@ -1,7 +1,7 @@
 <?php
 	
 	session_start();
-	if(($_SESSION['logged'] == true) && !is_null($_SESSION['name']) && !is_null($_SESSION['mobilePhone']) && !is_null($_SESSION['enterpriseId'])) {
+	if((@$_SESSION['logged'] == true) && !is_null($_SESSION['name']) && !is_null($_SESSION['mobilePhone']) && !is_null($_SESSION['enterpriseId'])) {
 		header("Location: /app.php");
 	}
 ?>
