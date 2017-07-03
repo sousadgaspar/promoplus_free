@@ -58,11 +58,11 @@
 		}
 		
 		public function getMobilePhoneOptional() {
-			return $$this->mobilePhoneOptional;
+			return $this->mobilePhoneOptional;
 		}
 		
 		public function getWebsite() {
-			return $this->webSite;
+			return $this->website;
 		}
 		
 		public function getFaceBookPage() {
@@ -175,13 +175,13 @@
 								'{$this->getName()}', 
 								'{$this->getAddress()}', 
 								'{$this->getTelephone()}', 
-								'{$this->getMobileTelePhoneOptional()}', 
-								'{$this->getWebsite}', 
-								'{$this->getFaceBook()}', 
+								'{$this->getMobilePhoneOptional()}', 
+								'{$this->getWebsite()}', 
+								'{$this->getFaceBookPage()}', 
 								'{$this->getManagerName()}', 
 								'{$this->getManagerMobilePhone()}', 
 								'{$this->getManagerEmail()}', 
-								'{$this->getManagerEmail}', '', 
+								'{$this->getManagerEmail()}', '', 
 								'{$this->getEnterpriseLegalId()}',
 								 1);";
 								 

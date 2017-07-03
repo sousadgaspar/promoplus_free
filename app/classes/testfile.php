@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	
-	
+	require_once 'connection.php';
 	require_once 'enterprise.php';
 	require_once 'vipcode.php';
 	require_once 'attendee.php';
@@ -10,25 +10,34 @@
 	require_once 'helpers/notifyer.php';
 	
 
-	$enterprise = new Enterprise("DianaSpa");
-	$enterprise->setId(2);
+	$enterprise = new Enterprise("root");
+	//$enterprise->createNewEnterprise();
 	
 	$user = new User($enterprise);
 	
-	$user->setName("Silvio Gomes");
+	$user->setName("Sousa Gaspar");
 	$user->setMobilePhone("923433423");
-	$user->setEmail("silviogomes@sgenial.co");
+	$user->setEmail("sousagaspar@sgenial.co");
 	$user->setPassword("654321");
-	$user->setCategory("basic");
+	$user->setCategory("root");
+	$user->setEnterpriseId(6);
 	
-	//$user->createNewUser();
+	$user->createNewUser();
+
+	
 	//var_dump($user->deativateUser());
 	//var_dump($user->changePassword());
 	//var_dump($user->login());
 	
-	print dirname(__DIR__);
+	//print dirname(__DIR__);
 
+	//$conn = new Conexao();
 	
+	//var_dump($conn->conectar());
+	
+	//$conn->setSQL("insert into tbUser(name, mobilePhone, email, password, category, enterpriseId) values('Sousa Gaspar', +244922300521, 'sousadgaspar@gmail.com', 654321, 'root', 2)");
+	
+	//$conn->executar();
 
 	
 	/*

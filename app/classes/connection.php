@@ -16,10 +16,21 @@
 		
 		//funcao contrutora
 		public function __construct(){
+/*
+			Local connection
+			
 			$this->server = 'localhost';
 			$this->bancoDados = 'dbVipCode';
 			$this->user = 'root';
 			$this->pass = '10senhapadrao20$';
+			$this->dbType = 'mysql';
+*/
+
+			//Remote connection
+			$this->server = 'sql10.freemysqlhosting.net';
+			$this->bancoDados = 'sql10183141';
+			$this->user = 'sql10183141';
+			$this->pass = 'h7wR9XysVz';
 			$this->dbType = 'mysql';
 			}
 			
@@ -45,9 +56,9 @@
 			}
 			
 		//método para conectar ao banco de dados	
-		private function conectar(){
+		public function conectar(){
 			try{
-				$conn = new PDO("$this->dbType:host=$this->server;dbname=$this->bancoDados", $this->user, $this->pass);
+				$conn = new PDO("$this->dbType:host=$this->server;port=3306;dbname=$this->bancoDados", $this->user, $this->pass);
 				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				return $conn;
 			}
