@@ -17,6 +17,7 @@
   <link rel="stylesheet" type="text/css" href="css/app.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap-grid-system.min.css">
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/css/chartist.css">
   <!-- Add to home screen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -53,6 +54,7 @@
   </main>
   <!-- JS scrips -->
   <script src="js/jquery.js"></script>
+  <script src="js/chartist.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

@@ -215,7 +215,7 @@
 			//Owner attends his own vip code
 			$this->setStatus("ownerAttended");
 			
-			$sql = "update tbVipCode set status = '{$this->status}' where vipCode = '{$this->vipCode->getVipCode()}'";
+			$sql = "update tbVipCode set status = '{$this->status}', ownerAttededDate = '" . date('Y-m-d H:i:s') . "' where vipCode = '{$this->vipCode->getVipCode()}'";
 			
 			try{
 				$connection = new Conexao();

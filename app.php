@@ -16,10 +16,11 @@
   <link rel="stylesheet" type="text/css" href="css/app.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap-grid-system.min.css">
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/chartist.css">
   <!-- Add to home screen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Weather PWA">
+  <meta name="apple-mobile-web-app-title" content="VIPCode">
   <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
 </head>
 <body>
@@ -37,7 +38,7 @@
    
   </header> <!-- header -->
 
-  <!--  -->
+  <!-- menuTableContent -->
   <div class="" id="menuTableContent">
 	<br />
 	<br />
@@ -51,13 +52,20 @@
 	  	<li><a href="#">Menu #6</a></li>
 	  	<li><a href="#">Menu #7</a></li>
   	</ul>
-  </div>
+  </div> <!-- End menuTableContent -->
 
   <main class="main container-fluid">
-	 <br />
-	 <br />
-	 <br />
-	 <br />
+	<br />
+	<br />
+	 
+	<!-- Debug -->
+	<?php 
+	 //var_dump($_SESSION);
+	?>
+	 
+	<br />
+	<br />
+	<!-- End dashborad-card -->
     <div class="card" id="dashborad-card">
 	    <div id="dashBoardIconContainer">
 	    	<div id="" class="row">
@@ -105,6 +113,7 @@
 	    </div><!-- End dashborad-card -->
     </div>
 	
+	<!-- successNotificationCard -->
 	<div class="card notificationCard" id="successNotificationCard">
 		{UserName}, Parab&eacute;ns!
 		<br />
@@ -162,10 +171,9 @@
 	  <!-- Recomend vip Code to friends -->
 	  <div class="card recomendVipCodeToFriendsCard" id="recomendVipCodeToFriendsCard">
 		<button id="recomendVipCodeToFriendsCardCloseCard" class="closeCard">X</button> 
+		<br />
 	  	<form action="index.php" method="post" accept-charset="utf-8">
-		  	<span class="formTitle">Recomendar amigos</span>
-		  	<br />
-		  	<br />
+		  	<input id="vipCodeToRecomend" type="hidden" name="vipCodeToRecomend" value="">
 		  	<div class="textInputInvisible">
 				<label for="attendeeName">Nome: </label><input id="attendeeName" type="text" name="attendeeName" placeholder="Ex. Paulo Júnior" value="">
 			</div>
@@ -219,6 +227,58 @@
 	  		</div>
 	  	</div>
 	  </div><!-- End standardReportCard -->
+	  
+	  <!-- basicReportCard -->
+	  <div class="" id="basicReportCard">
+	  	<div class="mainGraph row" id="mainGraph">
+	  		<div class="col-xs-12" id="mainChart">
+	  			
+	  		</div>
+	  		<div class="col-xs-12" id="auxChart">
+	  			
+	  		</div>
+	  	</div>
+	  </div><!-- End basicReportCard -->
+	  
+	  <!-- Form load report -->
+	  <div class="card" id="formLoad">
+	  	<form action="" method="post" accept-charset="utf-8">
+	  		<div class="textInputInvisible">
+	  			<label for="fromDate">De:</label><input id="fromDate" type="date" name="fromDate" value="">
+	  		</div>
+	  		<div class="textInputInvisible">
+	  			<label for="toDate">Para:</label><input id="toDate" type="date" name="toDate" value="">
+	  		</div>
+	  		
+	  		<br />
+			<input type="submit" id="generateVipCodeReport" class="btn btnBase" name="generateVipCodeReport" value="Gerar relat&oacute;rio" />
+	  	</form>
+	  </div><!-- End Form load report -->
+	  
+	  <!-- report singleKPIReportCard -->
+	  <div id="reportContainer" class="container-fluid">
+		  <div class="row">
+		  	<!-- singleKPIReportCard -->
+				<div class="singleKPIReportCard col-xs-4">
+					<span>VIPCode's emitidos</span>
+					<br />
+					<label id="totalGeneratedVipCode"></label>
+				</div>
+				<div class="singleKPIReportCard col-xs-4">
+					<span>VIPCode's retornados</span>
+					<br />
+					<label id="totalNumberOfAttendees"></label>
+				</div>
+				<div class="singleKPIReportCard col-xs-4">
+					<span>Taxa de retorno global  </span>
+					<br />
+					<label id="vipCodeReturnRate"></label>
+				</div>
+			  </div><!-- End singleKPIReportCard -->
+		  </div>
+		  
+		  	
+	  </div><!-- End report container -->
 	  
 	  <!-- validate vipcode card -->
 	  <div class="card validateVipCodeCard" id="validateVipCodeCard">
@@ -296,10 +356,36 @@
 			<input type="submit" class="btn btnBase" name="ShareVipCodeForm" value="Gravar novo estabelecimento" />
 
 	  </div> <!-- End newEnterpriseCard -->
+	  
+	  <!-- configurationCard -->
+	  <div class="card configurationCard" id="configurationCard">
+	  	<button id="configurationCardCloseCard" class="closeCard">X</button> 
+	  	<form action="" method="post" accept-charset="utf-8">
+		  	<span class="formTitle">Configura&ccedil;&otilde;es do VIPCode</span>
+		  	
+		  	<br />
+		  	<br />
+		  	<hr />
+		  	
+		  	<div class="textInputInvisible">
+				<label for="minDiscount">Desconto minimo (%): </label><input id="minDiscount" type="text" name="minDiscount" placeholder="8" value="">
+				<label for="maxDiscount">Desconto m&aacute;ximo (%): </label><input id="maxDiscount" type="text" name="maxDiscount" placeholder="15" value="">
+				<div class="clearFix"></div>
+				<label for="numberOfIndicationsForMaxDiscount">N&uacute;mero de indica&ccedil;&otilde;es para ganhar o Desconto m&aacute;ximo (%): </label><input id="numberOfIndicationsForMaxDiscount" type="number" name="numberOfIndicationsForMaxDiscount" placeholder="5" value="">
+				
+				
+			</div>
+			<br />
+			<input type="submit" class="btn btnBase" id="saveVipCodeConfiguration" name="saveVipCodeConfiguration" value="Gravar configura&ccedil;&otilde;es" />
+	  	</form>
+
+	  </div><!-- End configurationCard -->
+	  
  
   </main>
   <!-- JS scrips -->
   <script src="js/jquery.js"></script>
+  <script src="js/chartist.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

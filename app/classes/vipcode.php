@@ -86,11 +86,12 @@
 		}
 		
 		public function setMinDiscount($minDiscount) {
-			$this->minDiscount = $minDiscount;
+			$this->minDiscount = number_format($minDiscount - ($minDiscount * 0.02), 2, ',', '.');
+			
 		}
 		
 		public function setMaxDiscount($maxDiscount) {
-			$this->maxDiscount = $maxDiscount;
+			$this->maxDiscount = number_format($maxDiscount - ($maxDiscount * 0.02), 2, ',', '.');
 		}
 				
 		public function setCredit($credit) {
@@ -140,7 +141,7 @@
 			$this->setMinDiscount($minDiscount);
 			$this->setMaxDiscount($maxDiscount);
 			$this->setCredit($minDiscount);
-			$this->setValidityPeriod($validityInDays);
+			$this->setValidTill($validityInDays);
 			$this->setStatus($status);
 			
 			$sql = "insert into tbVipCode(vipCode, 
@@ -421,8 +422,195 @@
 
 		} 
 		
+		/*
+			Helper: Order date
+			orderDates: fisrt date & last date
+		*/
+		
+		private function orderDates(string $firstDate, string $lastDate) {
+			//check if dates are empty
+			if(($firstDate == '') or ($lastDate == '')) {
+				$lastDate = date('Y-m-d');
+				$firstDate = date('Y-m-d', strtotime($lastDate . " -30 days"));
+				//$lastDate = date('Y-m' . $lastDate);
+				
+
+			}
+			else if($firstDate > $lastDate) {
+				$tmp = $firstDate;
+				$firstDate = $lastDate;
+				$lastDate = $tmp;
+			}
+		}
 		
 		
+		/*
+			getNumberOfCreatedVipCodes
+		*/
+		public function getNumberOfCreatedVipCodes($firstDate = '', $lastDate = '') {
+			$this->orderDates($firstDate, $lastDate);
+			
+			//set SQL
+			$sql = "select count(vipcode) as numberOfVipCodes from tbVipCode 
+						where creationtDate between '{$firstDate}' and '{$lastDate}' and enterpriseId = {$this->enterprise->getId()};";
+						
+			$numberOfCreatedVipCodes = '';
+			try {
+				$connection = new Conexao();
+				$connection->setSQL($sql);
+				$fetch = $connection->consultar();
+				foreach($fetch as $number) {
+					$numberOfCreatedVipCodes = $number->numberOfVipCodes;
+				}
+				
+				return (int) $numberOfCreatedVipCodes;
+			}
+			catch(Exception $error) {
+				//write the logs in the error logs
+				$error->getTrace();
+			}	
+		}
+		
+		
+		/*
+			getNumberOfReturnedVipCodes
+		*/
+		public function getNumberOfReturnedVipCodes($firstDate = '', $lastDate = '') {
+			$this->orderDates($firstDate, $lastDate);
+			
+			//set SQL
+			$sql = "select count(vipCode) as attendeedVipcodes from tbVipCodeAttendee where creationTime between '{$firstDate}' and '{$lastDate}';";
+						
+			$numberOfCreatedVipCodes = '';
+			try {
+				$connection = new Conexao();
+				$connection->setSQL($sql);
+				$fetch = $connection->consultar();
+				foreach($fetch as $number) {
+					$numberOfCreatedVipCodes = $number->attendeedVipcodes;
+				}
+				
+				return (int) $numberOfCreatedVipCodes;
+			}
+			catch(Exception $error) {
+				//write the logs in the error logs
+				$error->getTrace();
+			}	
+		}
+			/*
+				getCreatedVipCodesByDate
+			*/
+			public function getCreatedVipCodesByDate($firstDate = '', $lastDate = '') {
+				
+				// Order dates
+				$this->orderDates($firstDate, $lastDate);
+				
+				//set the sql
+				$sql = "select date(creationtDate) as vipcodedate, count(vipcode) as uniquevipcode from tbVipCode 
+								where creationtDate between '{$firstDate}' and '{$lastDate}' and enterpriseId = {$this->enterprise->getId()} group by vipcodedate;";
+				
+				//prepare the fetch query
+				$fetch = '';
+							
+				//execute the query
+				try {
+					
+					$connection = new Conexao();
+					$connection->setSQL($sql);
+					$fetch = $connection->consultar();
+					
+					//collect return data
+					$data = array();
+					
+					foreach($fetch as $value) {
+						
+						//get the number of attendees per vipcode
+						$data[$value->vipcodedate] = $value->uniquevipcode;
+						
+					}
+					
+					return $data;	
+					
+				}
+				catch(Exception $error) {
+					
+					//write the logs in the error logs
+					$error->getTrace();
+					
+				}	
+				
+			}
+		
+			
+			/*
+				getVipCodeAttendeesByDate
+			*/
+			public function getVipCodeAttendeesByDate($firstDate = '', $lastDate = '') {
+				
+				// Order dates
+				$this->orderDates($firstDate, $lastDate);
+				
+				//set the sql
+				$sql = "select date(creationTime) as vipcodedate, count(vipCode) as vipcode from tbVipCodeAttendee 
+								where creationTime between '{$firstDate}' and '{$lastDate}' group by vipcodedate;";
+				
+				//prepare the fetch query
+				$fetch = '';
+							
+				//execute the query
+				try {
+					
+					$connection = new Conexao();
+					$connection->setSQL($sql);
+					$fetch = $connection->consultar();
+					
+					//collect return data
+					$data = array();
+					
+					foreach($fetch as $value) {
+						
+						//get the number of attendees per vipcode
+						$data[$value->vipcodedate] = $value->vipcode;
+						
+					}
+					
+					return $data;	
+					
+				}
+				catch(Exception $error) {
+					
+					//write the logs in the error logs
+					$error->getTrace();
+					
+				}	
+				
+			}
+			
+			/*
+				get return rate for a vipcode
+			*/
+			public function getReturnRateForVipCode($vipCode) {
+				
+				//get The vip code
+				$this->setVipCode($vipCode);
+				
+				//sql
+				$sql = "select count(vipcode) as attendees from tbVipCodeAttendee where vipcode = '{$this->getVipCode()}';";
+				
+				$connection = new Conexao();
+				$connection->setSQL($sql);
+				$fetch = $connection->consultar();
+				
+				$attendees = '';
+				
+				//read the returned object
+				foreach($fetch as $value) {
+					$attendees = $value->attendees;
+				}
+				
+				return (int) $attendees;	
+			}
+
 		
 		
 		

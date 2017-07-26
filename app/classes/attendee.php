@@ -162,7 +162,7 @@
 			//update tbVipCode set status = '{$this->status}';
 			$this->setStatus("attended");
 			
-			$sql = "update tbVipCodeAttendee set status = '{$this->status}' where attendeeTelephone = '{$this->attendeeTelephone}'";
+			$sql = "update tbVipCodeAttendee set status = '{$this->status}', attendedDate = '" . date('Y-m-d H:i:s') . "' where attendeeTelephone = '{$this->attendeeTelephone}'";
 			
 			try{
 				$connection = new Conexao();

@@ -35,7 +35,7 @@
 	}
 	else {
 		//create the new vipCode
-		$vipcode->setVipCode(($vipcode->createNewVipCode(10, 25, 30)));
+		$vipcode->setVipCode(($vipcode->createNewVipCode($_SESSION['minDiscount'], $_SESSION['maxDiscount'], 30)));
 		$vipcode->retrieveVipCode($vipcode->getVipCode());
 		
 		//Send a SMS to vipCode owner
@@ -72,7 +72,9 @@
 				'email' => $owner->getEmail(),
 				'address' => $owner->getAddress(),
 				'returned' => $owner->getReturned(),
-				'smsResponse' => $smsResponse
+				'smsResponse' => $smsResponse,
+				'numberOfIndicationsForMaxDiscount' => $_SESSION['numberOfIndicationsForMaxDiscount'],
+				'enterpriseName' => $_SESSION['enterpriseName']
 			
 	);
 	

@@ -20,6 +20,9 @@
 		private $managerName;
 		private $managerMobilePhone;
 		private $managerEmail;
+		private $minDiscount;
+		private $maxDiscount;
+		private $numberOfIndicationsForMaxDiscount;
 		private $status;
 		private $creationDate;
 		
@@ -79,6 +82,18 @@
 		
 		public function getManagerEmail() {
 			return $this->managerEmail;
+		}
+		
+		public function getMinDiscount() {
+			return $this->minDiscount;
+		}
+		
+		public function getMaxDiscount() {
+			return $this->maxDiscount;
+		}
+		
+		public function getNumberOfIndicationsForMaxDiscount() {
+			return $this->numberOfIndicationsForMaxDiscount;
 		}
 		
 		public function getStatus() {
@@ -142,6 +157,18 @@
 			$this->email = $email;
 		}
 		
+		public function setMinDiscount($minDiscount) {
+			$this->minDiscount = $minDiscount;
+		}
+		
+		public function setMaxDiscount($maxDiscount) {
+			$this->maxDiscount = $maxDiscount;
+		}
+		
+		public function setNumberOfIndicationsForMaxDiscount($numberOfIndicationsForMaxDiscount) {
+			$this->numberOfIndicationsForMaxDiscount = $numberOfIndicationsForMaxDiscount;
+		}
+		
 		public function setStatus($status) {
 			$this->status = $status;
 		}
@@ -200,6 +227,8 @@
 			}
 		}
 		
+		
+		
 		//retrieve enterprise Information
 		public function retrieveEnterpriseInformation($id) {
 			$this->setId($id);
@@ -217,6 +246,9 @@
 								managerName, 
 								managerMobilePhone, 
 								managerEmail, 
+								minDiscount,
+								maxDiscount,
+								numberOfIndicationsForMaxDiscount,
 								enterpriseLegalId, 
 								creationDate,
 								isActive 
@@ -240,6 +272,9 @@
 					$this->setManagerName($value->managerName);
 					$this->setManagerMobilePhone($value->managerMobilePhone);
 					$this->setManagerEmail($value->managerEmail);
+					$this->setMinDiscount($value->minDiscount);
+					$this->setMaxDiscount($value->maxDiscount);
+					$this->setNumberOfIndicationsForMaxDiscount($value->numberOfIndicationsForMaxDiscount);
 					$this->setEnterpriseLegalId($value->enterpriseLegalId);
 					$this->setCreationDate($value->creationDate);
 					$this->setStatus($value->isActive);
@@ -252,6 +287,31 @@
 		}
 		//updateEnterpriseInformation
 		public function updateEnterpriseInformation() {
+			
+		}
+		
+		//Update Enterprise vipCode configuration
+		public function updateEnterpriseVipcodeConfiguration() {
+			$sql = "update tbEnterprise set 
+											minDiscount = {$this->minDiscount}, 
+											maxDiscount = {$this->maxDiscount}, 
+											numberOfIndicationsForMaxDiscount = {$this->numberOfIndicationsForMaxDiscount} 
+											
+											where name = '{$this->name}';";
+			try {
+				$connection = new Conexao();
+				$connection->setSQL($sql);
+				if($connection->executar() == null) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			catch(Exception $error) {
+				//write the error in the a pplication error log
+				$error->getTrace();
+			}
 			
 		}
 		

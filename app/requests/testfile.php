@@ -10,25 +10,41 @@
 		require_once PATH.'helpers/notifyer.php';
 		
 	
-		$enterprise = new Enterprise("DianaSpa");
-		$enterprise->setId(2);
+		$enterprise = new Enterprise("Administrador");
+		$enterprise->setMinDiscount(11);
+		$enterprise->setMaxDiscount(22);
+		$enterprise->setNumberOfIndicationsForMaxDiscount(7);
 		
-		$owner = new Owner('Sox', '923435465', 'so@gma.com');
+		//var_dump();
 		
-		$user = new User($enterprise);
+		print $enterprise->getMinDiscount() . PHP_EOL;
+		print $enterprise->getMaxDiscount() . PHP_EOL;
+		print $enterprise->getNumberOfIndicationsForMaxDiscount() . PHP_EOL;
+		print $enterprise->getName() . PHP_EOL;
 		
+		var_dump($enterprise->updateEnterpriseVipcodeConfiguration());
+		
+		//$enterprise->setId(2);
+		
+		//$owner = new Owner('Sox', '923435465', 'so@gma.com');
+		
+		//$user = new User($enterprise);
+		
+/*
 		$user->setName("Silvio Gomes");
 		$user->setMobilePhone("skjkjkj2899382");
 		$user->setEmail("silviogomes@sgenial.co");
 		$user->setPassword("654321");
 		$user->setCategory("basic");
+*/
 		
-		$vipcode = new Vipcode($enterprise, $owner);
+		//$vipcode = new Vipcode($enterprise, $owner);
 		
-		$vipcode->setVipCode('DeVoltaAoRoot#14990150925508');
+		//$vipcode->setVipCode('DeVoltaAoRoot#14990150925508');
 		
 		//var_dump($vipcode->addCreditToVipCode());
 		
+/*
 		$numberOfAttendees = 5;
 		$credit = 10;
 		$addicionalDiscount = 15;
@@ -38,6 +54,7 @@
 					
 				}
 		print $credit;
+*/
 	
 	//$user->createNewUser();
 	//var_dump($user->deativateUser());

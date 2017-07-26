@@ -1,9 +1,19 @@
 //To do 30.Junho.2017
 
 		
+	
+	- Redesenhar o vipCode
+	- Criar metodos dos KPIs	
+		- taxa de retorno individual para cada vipCode
+			selecciona vipcode
+			verifica quantos attendees que retornaram o vipcode teve
+			multiplica o vipCode pelo numero de attendees que voltaram e volta a multiplicar por cem.
+			
+		- Taxa de retorno global para um grupo de vipcodes
+			soma todas as taxas de retornos de um grupo de vipCodes e divide pelo numero de taxas de retornos de vipcodes
+			
+	- Integrar metodos dos KPIs a interface de reports
 	- Implementar API de SMS
-	- Concluir o retorno do cartão de falha após a geração de código vip.
-	- Concluir o menu configuracoes de vip code
 	- Concluir o burger menu
 	- Aplicar cliterios de seguranca nos campos dos formularios.
 		
@@ -13,6 +23,9 @@
 	
 	
 	Feitas
+	- Concluir o menu configuracoes de vip code - Feita
+	- metodo do KPI VipCodes Emitidos - Feito
+	- Implementar os graficos dos reports.
 	- Concluir botao sair - matar a sessao / Done :
 	- Concluir o retorno do cartão de sucesso após a geração de código vip. 
 	- finish the validate vipCode process
@@ -40,7 +53,7 @@
 	
 	
 	//Ideias for next versions
-	
+	- validar vipcode apartir do nome e telephone 
 	- Notify vipCode owner when an attendee attends his vipcode.
 	- Melhorar a coleta de dados dos clientes 
 		- coletar primeiro e ultimo nome

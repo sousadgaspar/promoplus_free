@@ -12,17 +12,26 @@
 
 	$enterprise = new Enterprise("root");
 	//$enterprise->createNewEnterprise();
+	$enterprise->retrieveEnterpriseInformation(2);
+	
+	//var_dump($enterprise);
 	
 	$user = new User($enterprise);
 	
-	$user->setName("Sousa Gaspar");
-	$user->setMobilePhone("923433423");
-	$user->setEmail("sousagaspar@sgenial.co");
-	$user->setPassword("654321");
-	$user->setCategory("root");
-	$user->setEnterpriseId(6);
+	$owner = new Owner("Sousa", '922300521');
+	$vipCode = new VipCode($enterprise, $owner);
 	
-	$user->createNewUser();
+	//vipCode
+	$vipcode = new VipCode($enterprise, $owner);
+	
+	//print $vipcode->getReturnRateForVipCode('DeVoltaAoMoments#14983080928084');
+	
+	var_dump($vipcode->getVipCodeAttendeesByDate('2017-07-01', '2017-07-30'));
+	var_dump($vipcode->getCreatedVipCodesByDate('2017-07-01', '2017-07-30'));
+	
+	
+	
+	//$user->createNewUser();
 
 	
 	//var_dump($user->deativateUser());
@@ -31,11 +40,26 @@
 	
 	//print dirname(__DIR__);
 
-	//$conn = new Conexao();
+/*
+	$conn = new Conexao();
 	
-	//var_dump($conn->conectar());
+	$conn->conectar();
+*/
+// 	
+// 
+/*
+	$conn->setSQL("insert into tbUser(name, mobilePhone, email, password, category, enterpriseId) values('Sousa Gaspar', +244922300521, '', '{$user->getPassword()}', 'root', 2)");
 	
-	//$conn->setSQL("insert into tbUser(name, mobilePhone, email, password, category, enterpriseId) values('Sousa Gaspar', +244922300521, 'sousadgaspar@gmail.com', 654321, 'root', 2)");
+*/
+/*
+	$conn->setSQL('select * from tbUser;');
+	$res = $conn->consultar();
+	
+	foreach($res as $value) {
+		print $value->name;
+	}
+	
+*/
 	
 	//$conn->executar();
 

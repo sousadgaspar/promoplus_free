@@ -271,6 +271,9 @@
 			$_SESSION['category'] = $this->category;
 			$_SESSION['enterpriseId'] = $this->getEnterpriseId();
 			$_SESSION['enterpriseName'] = $this->enterprise->getName();
+			$_SESSION['minDiscount'] = $this->enterprise->getMinDiscount();
+			$_SESSION['maxDiscount'] = $this->enterprise->getMaxDiscount();
+			$_SESSION['numberOfIndicationsForMaxDiscount'] = $this->enterprise->getNumberOfIndicationsForMaxDiscount();
 			$_SESSION['logged'] = true;
 		}
 		
