@@ -30,6 +30,7 @@ $(document).ready(function(){
 	var singleKPIReportCard = $("#singleKPIReportCard");
 	var reportContainer = $("#reportContainer");
 	
+	
 	/*
 		DashBoard Actions
 	*/
@@ -47,6 +48,8 @@ $(document).ready(function(){
 	var validateVipCodeCardCloseCard = $("#validateVipCodeCardCloseCard");
 	var newEnterpriseCardCloseCard = $("#newEnterpriseCardCloseCard");
 	var configurationCardCloseCard = $("#configurationCardCloseCard");
+	var basicReportCardCloseCard = $('#basicReportCardCloseCard');
+	var formLoadCloseCard = $("#formLoadCloseCard");
 	
 	
 	
@@ -128,11 +131,26 @@ $(document).ready(function(){
 		dashBoard.show();
 	});
 	
-	
+	basicReportCardCloseCard.on("click", function(event) {
+		basicReportCard.hide();
+		formLoad.hide();
+		menuTableContent.hide();
+		failNotificationCard.hide();
+		$('#recomendVipCodeToFriendsCard').hide();
+		successNotificationCard.hide();
+		singleKPIReportCard.hide();
+		reportContainer.hide();
+		dashBoard.show();
+	});
 	
 	newEnterpriseCardCloseCard.on("click", function( event ){
 		menuTableContent.hide();
 		$('#newEnterpriseCard').hide();
+	});
+	
+	formLoadCloseCard.on("click", function(event) {
+		formLoad.hide();
+		dashBoard.show();
 	});
 	
 	
@@ -449,6 +467,7 @@ $(document).ready(function(){
 					  low: 0
 					});
 				}
+				//basicReportCard.prepend("<button id='basicReportCardCloseCard' class='closeCard'>X</button>");
 				basicReportCard.html(loadMainGraphReportData).css("padding", "0").append(reportContainer).show();
 				basicReportCard.html(loadAuxGraphReportData).append(reportContainer).show();
 				reportContainer.show();

@@ -230,6 +230,7 @@
 	  
 	  <!-- basicReportCard -->
 	  <div class="" id="basicReportCard">
+		<button id="basicReportCardCloseCard" class="closeCard">X</button> 
 	  	<div class="mainGraph row" id="mainGraph">
 	  		<div class="col-xs-12" id="mainChart">
 	  			
@@ -243,6 +244,10 @@
 	  <!-- Form load report -->
 	  <div class="card" id="formLoad">
 	  	<form action="" method="post" accept-charset="utf-8">
+		  	<button id="formLoadCloseCard" class="closeCard">X</button> 
+		  	<br />
+
+		  	<label>Selecione um intervalo para o relat&oacute;rio</label>
 	  		<div class="textInputInvisible">
 	  			<label for="fromDate">De:</label><input id="fromDate" type="date" name="fromDate" value="">
 	  		</div>
