@@ -1,9 +1,27 @@
 //To do 30.Junho.2017
 
-		
+	O que a aplicacao falta para ser vendida?
 	
-	- Redesenhar o vipCode
-	- Criar metodos dos KPIs	
+	- O vipcode deve ser redesenhado ao ponto de ser facil de usar
+	- a aplicacao deve gerar estatisticas para o dono do estabelecimento controlar os movimentos
+	- a aplicacao deve enviar SMS para os clientes usando o sender ID codigoVIP
+	- A apresentacao de vendas deve estar pronta
+		- apresentacao do produto
+		- Contrato
+	
+	- Criar o modulo factura
+	- Implementar API de SMS
+	- Concluir o burger menu
+	- Aplicar cliterios de seguranca nos campos dos formularios.
+		
+		
+		Codigo VIP: voltoAoZoodaBar#177
+	
+	
+	Feitas
+	- Redesenhar o vipCode - 27.07.2017
+	- Integrar metodos dos KPIs a interface de reports
+	- Criar metodos dos KPIs	- Feita
 		- taxa de retorno individual para cada vipCode
 			selecciona vipcode
 			verifica quantos attendees que retornaram o vipcode teve
@@ -11,18 +29,6 @@
 			
 		- Taxa de retorno global para um grupo de vipcodes
 			soma todas as taxas de retornos de um grupo de vipCodes e divide pelo numero de taxas de retornos de vipcodes
-			
-	- Integrar metodos dos KPIs a interface de reports
-	- Implementar API de SMS
-	- Concluir o burger menu
-	- Aplicar cliterios de seguranca nos campos dos formularios.
-		
-		
-		
-	
-	
-	
-	Feitas
 	- Concluir o menu configuracoes de vip code - Feita
 	- metodo do KPI VipCodes Emitidos - Feito
 	- Implementar os graficos dos reports.
@@ -70,5 +76,14 @@
 	//Ideia
 	Criar uma loja virtual para a venda dos relógios da sistec
 		solicitar a sistec um serviço que mostra os relógios disponível com preço, referencia, photo, descricao.
+		
+		
+		
+		
+		adcdefghijklmnopqrstuv
+		
+		bulk recebe a
+		bult ja tem 4 letras?
+			Y: trust recebe 
 			
 	

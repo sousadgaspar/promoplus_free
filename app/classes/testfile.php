@@ -26,10 +26,24 @@
 	
 	//print $vipcode->getReturnRateForVipCode('DeVoltaAoMoments#14983080928084');
 	
-	var_dump($vipcode->getVipCodeAttendeesByDate('2017-07-01', '2017-07-30'));
-	var_dump($vipcode->getCreatedVipCodesByDate('2017-07-01', '2017-07-30'));
+	//var_dump($vipcode->getVipCodeAttendeesByDate('2017-07-01', '2017-07-30'));
+	//var_dump($vipcode->getCreatedVipCodesByDate('2017-07-01', '2017-07-30'));
 	
+	//print date('ymdhi') .PHP_EOL;
+	$code = round(microtime(true) * 1000) .PHP_EOL;
+	$quarters = array();
 	
+	$codeExploded = str_split($code);
+	
+	for($i=0; $i<count($codeExploded); $i++) {
+		
+		
+		$quarters[] = $codeExploded[$i];
+	}
+	
+	//The vipcode ii formed by y - Year 2 digits, z - day of the year, Hi - Hour and minutes, s - seconds
+	print date('yz-Hi-s').PHP_EOL;
+	print date('U');
 	
 	//$user->createNewUser();
 

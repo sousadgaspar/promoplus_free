@@ -14,6 +14,7 @@
 	require_once CLASSESPATH . '/owner.php';
 	require_once CLASSESPATH . '/vipcode.php';
 	
+	
 	$enterprise = new Enterprise($_SESSION['enterpriseName']);
 	$enterprise->setId($_SESSION['enterpriseId']);
 	
@@ -45,9 +46,11 @@
 		$enterpriseName = @$_SESSION[enterpriseName];
 	
 		
-		$message  = "VIPCode: {$vipcode->getVipCode()} Quando voltar ao {$enterpriseName} recebera {$vipcode->getMinDiscount()}% de desconto. Se partilhar esse VIPCode com os seus amigos o seu desconto pode aumentar ate {$vipcode->getMaxDiscount()}, eles tambem recebem {$vipcode->getMinDiscount()}% de desconto. Reencaminhe essa SMS para os seu amigos!";
+		$message  = "VIPCode:\n{$vipcode->getVipCode()}\n\nQuando voltar ao {$enterpriseName} receberás um desconto de {$vipcode->getMinDiscount()}%. Partilhe o seu código VIP com 5 amigos desconto de {$vipcode->getMaxDiscount()}% se eles virem ao {$enterpriseName}. Eles também ganham {$vipcode->getMinDiscount()}% de desconto.";
+
 		
-		$smsResponse = $notifiyer->sendMessageToNumber($owner->getTelephone(), $message, $deviceId);
+		//Message to share with friends
+		$message = "[Para enviar aos amigos]\n\n Oi,\n Ganhei {$vipcode->getMinDiscount()}% de desconto no {$enterpriseName}, quando lá fores também ganhas {$vipcode->getMinDiscount()}% de desconto apresentando esse código VIP:\n {$vipcode->getVipCode()}\n\nQualquer dúvida ligue-me\nForte Abraço\n '{$owner->getName()}'";
 		
 	}
 	

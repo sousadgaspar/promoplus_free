@@ -265,7 +265,7 @@ $(document).ready(function(){
                 }
                 else {
 	                //debug
-	                //alert(data);
+	                alert(data);
 	                message = ownerName +", Parab&eacute;ns!<br />";
 	                message += "<img src='../img/seccess-icon.png' /> <br />"; 
 	                message += "O seu VIPCode &eacute: <br />";
@@ -342,9 +342,9 @@ $(document).ready(function(){
 					
 				}//check if is Owner 
 				else if(data.ownerAttended) {
-					message = data.ownerName + ', Benvindo ao ' + data.enterpriseName + '<br />';
+					message = data.ownerName + ', Bem vindo ao ' + data.enterpriseName + '<br />';
 					message += "<img src='../img/seccess-icon.png' /> <br />";
-					message += 'Vo&ccedil;&ecirc; merece um desconto de ' + data.credit + '%';
+					message += 'Voc&ecirc; merece um desconto de ' + data.credit + '%';
 					
 					//show success notification card
 					successNotificationCard.html(message);

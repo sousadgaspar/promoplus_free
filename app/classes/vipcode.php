@@ -86,16 +86,16 @@
 		}
 		
 		public function setMinDiscount($minDiscount) {
-			$this->minDiscount = number_format($minDiscount - ($minDiscount * 0.02), 2, ',', '.');
+			$this->minDiscount = number_format($minDiscount - ($minDiscount * 0.2), 1, ',', '.');
 			
 		}
 		
 		public function setMaxDiscount($maxDiscount) {
-			$this->maxDiscount = number_format($maxDiscount - ($maxDiscount * 0.02), 2, ',', '.');
+			$this->maxDiscount = number_format($maxDiscount - ($maxDiscount * 0.2), 1, ',', '.');
 		}
 				
 		public function setCredit($credit) {
-			$this->credit = $credit;
+			$this->credit = number_format($credit - ($credit * 0.2), 1, ',', '.');
 		}
 		
 		public function setValidTill($validTill) {
@@ -129,9 +129,13 @@
 		
 		//form vipCode - generate a VIP CODE for being recoreded
 		private function formVipCode() {
-			$this->vipCodeUniqueId = explode('.', microtime(true))[0] . explode('.', microtime(true))[1];
-			$this->vipCode = "DeVoltaAo" . ucfirst($this->enterprise->getName()) . "#". $this->vipCodeUniqueId;
+			
+			//The vipcode is formed by y - Year 2 digits, z - day of the year, Hi - Hour and minutes, s - seconds
+			$this->vipCodeUniqueId = date('yz-Hi-s');
+			//$this->vipCodeUniqueId = explode('.', microtime(true))[0] . explode('.', microtime(true))[1];
+			$this->vipCode = "voltoAo" . ucfirst($this->enterprise->getName()) . "#". $this->vipCodeUniqueId;
 			return $this->vipCode;
+			
 		}
 		
 		//New VipCode

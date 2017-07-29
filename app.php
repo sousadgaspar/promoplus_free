@@ -247,7 +247,7 @@
 		  	<button id="formLoadCloseCard" class="closeCard">X</button> 
 		  	<br />
 
-		  	<label>Selecione um intervalo para o relat&oacute;rio</label>
+		  	<label class="formTitle">Selecione um intervalo para o relat&oacute;rio</label>
 	  		<div class="textInputInvisible">
 	  			<label for="fromDate">De:</label><input id="fromDate" type="date" name="fromDate" value="">
 	  		</div>
@@ -297,7 +297,7 @@
 				<input 	id="vipcode" 
 						type="text" 
 						name="vipCode" 
-						value="BackTo<?=ucfirst(strtolower($_SESSION['enterpriseName']))?>#" 
+						value="voltoAo<?=ucfirst(strtolower($_SESSION['enterpriseName']))?>#" 
 						placeholder="Ex. 87626554324345" value="">
 			</div>
 			
