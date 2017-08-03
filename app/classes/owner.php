@@ -1,16 +1,9 @@
-<?php
+<?php namespace SGENIAL\VIPCODE;
 	
 	/*
 		Class: Owner
 	*/
 	
-	
-	/*
-		requires
-	*/
-	require_once 'connection.php';
-	require_once 'helpers/notifyer.php';
-	require_once 'attendee.php';
 	
 	class Owner{
 		

@@ -1,0 +1,6 @@
+{
+	"autoload": {
+		"classmap": ["app/classes", "app/classes/helpers"]
+	}
+	
+}

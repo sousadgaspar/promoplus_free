@@ -1,17 +1,9 @@
-<?php
+<?php namespace SGENIAL\VIPCODE;
 	
 	/*
 		Class: VipCode
 	*/
 	
-	
-	/*
-		requires
-	*/
-	require_once 'connection.php';
-	require_once 'helpers/notifyer.php';
-	require_once 'enterprise.php';
-	require_once 'attendee.php';
 	class VipCode{
 		
 		//constructor

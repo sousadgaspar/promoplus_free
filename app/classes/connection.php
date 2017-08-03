@@ -1,9 +1,10 @@
-<?php
+<?php namespace SGENIAL\VIPCODE\DATABASE;
 	/*
 		Classe: Conexao.
 		propriedades: server, bancoDados, user, pass.
 		Visibilidade: private para todas.
 	*/
+	
 	
 	class Conexao{
 		

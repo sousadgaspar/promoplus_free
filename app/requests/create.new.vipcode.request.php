@@ -4,15 +4,8 @@
 	header('Content-type: application/json');
 	session_start();
 	define('APPPATH', dirname(__DIR__));
-	define('CLASSESPATH', APPPATH . "/classes");
 	
-	//helpers
-	require_once CLASSESPATH.'/helpers/smsGateway.php';
-	
-	//business classes
-	require_once CLASSESPATH . '/enterprise.php';
-	require_once CLASSESPATH . '/owner.php';
-	require_once CLASSESPATH . '/vipcode.php';
+	require_once APPPATH.'/vendor/autoload.php';
 	
 	
 	$enterprise = new Enterprise($_SESSION['enterpriseName']);

@@ -1,13 +1,8 @@
 <?php
 	session_start();
-	define('PATH', dirname(__DIR__).'/classes/');
+	define('APPPATH', dirname(__DIR__));
 			
-		require_once PATH.'enterprise.php';
-		require_once PATH.'vipcode.php';
-		require_once PATH.'attendee.php';
-		require_once PATH.'owner.php';
-		require_once PATH.'user.php';
-		require_once PATH.'helpers/notifyer.php';
+		require_once APPPATH.'/vendor/autoload.php';
 		
 	
 		$enterprise = new Enterprise("Administrador");

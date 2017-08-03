@@ -2,7 +2,8 @@
 	
 	session_start();
 	define('APPPATH', dirname(__DIR__));
-	define('CLASSESPATH', APPPATH . "/classes");
+	
+	require_once APPPATH.'/vendor/autoload.php';
 	
 	require_once(CLASSESPATH . "/enterprise.php");
 	require_once(CLASSESPATH . "/user.php");

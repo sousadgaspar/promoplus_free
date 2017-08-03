@@ -1,8 +1,5 @@
-<?php
+<?php	namespace SGENIAL\VIPCODE;
 	
-	//requires
-	require_once 'connection.php';
-	require_once 'Enclib/Encript.class.php';
 	
 	/*
 		Class: User

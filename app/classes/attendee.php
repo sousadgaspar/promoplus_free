@@ -1,14 +1,15 @@
-<?php
+<?php namespace SGENIAL\VIPCODE;
 	
 	/*
 		
 		Atendee Class
 	*/
+
+	
 	
 	/*
 		requires
-	*/
-	require_once 'connection.php';
+	*/ 
 	
 	class Attendee{
 		//Preperties

@@ -309,6 +309,9 @@
 		  	<div class="textInputInvisible">
 				<label for="telephone">Telef: </label><input id="telephone" type="text" name="telephone" placeholder="Ex. 923432XXX" value="">
 			</div>
+			<div class="textInputInvisible">
+				<label for="InvoiceValue">Valor da factura: </label><input id="InvoiceValue" type="text" name="InvoiceValue" placeholder="" value="">
+			</div>
 			<br />
 			<button class="btn btnBase" id="validateVipCode" name="ShareVipCodeForm">Validar VipCode</button>
 		  	
@@ -374,12 +377,21 @@
 		  	
 		  	<div class="textInputInvisible">
 				<label for="minDiscount">Desconto minimo (%): </label><input id="minDiscount" type="text" name="minDiscount" placeholder="8" value="">
-				<label for="maxDiscount">Desconto m&aacute;ximo (%): </label><input id="maxDiscount" type="text" name="maxDiscount" placeholder="15" value="">
-				<div class="clearFix"></div>
-				<label for="numberOfIndicationsForMaxDiscount">N&uacute;mero de indica&ccedil;&otilde;es para ganhar o Desconto m&aacute;ximo (%): </label><input id="numberOfIndicationsForMaxDiscount" type="number" name="numberOfIndicationsForMaxDiscount" placeholder="5" value="">
-				
-				
 			</div>
+			<div class="textInputInvisible">
+				<label for="maxDiscount">Desconto m&aacute;ximo (%): </label><input id="maxDiscount" type="text" name="maxDiscount" placeholder="15" value="">
+			</div>
+				<div class="clearFix"></div>
+			<div class="textInputInvisible">
+				<label for="numberOfIndicationsForMaxDiscount">N&uacute;mero de indica&ccedil;&otilde;es para o cliente ganhar o Desconto m&aacute;ximo (%): </label><input id="numberOfIndicationsForMaxDiscount" type="number" name="numberOfIndicationsForMaxDiscount" placeholder="5" value="">
+			</div>
+			<div class="textInputInvisible">
+				<label for="numberOfDaysForVipCodeExpire">Nº de dias para o VIPCode expirar: </label><input id="numberOfDaysForVipCodeExpire" type="text" name="numberOfDaysForVipCodeExpire" placeholder="30" value="">
+			</div>
+
+				
+				
+			
 			<br />
 			<input type="submit" class="btn btnBase" id="saveVipCodeConfiguration" name="saveVipCodeConfiguration" value="Gravar configura&ccedil;&otilde;es" />
 	  	</form>

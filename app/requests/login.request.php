@@ -1,7 +1,8 @@
 <?
 	session_start();
 	define('APPPATH', dirname(__DIR__));
-	define('CLASSESPATH', APPPATH . "/classes");
+	
+	require_once APPPATH.'/vendor/autoload.php';
 	
 	//test credencials
 	//$_POST['email'] = 'silviogomes@sgenial.co';

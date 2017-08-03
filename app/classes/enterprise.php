@@ -1,9 +1,8 @@
-<?php
+<?php namespace SGENIAL\VIPCODE;
 	
 	/*
 		Enterprise class
 	*/
-	require_once 'connection.php';
 	
 	class Enterprise{
 		//Properties

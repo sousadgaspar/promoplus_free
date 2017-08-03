@@ -4,13 +4,8 @@
 	header('Content-type: application/json');
 	session_start();
 	define('APPPATH', dirname(__DIR__));
-	define('CLASSESPATH', APPPATH . "/classes");
-
-	//requires 
-	require_once CLASSESPATH . '/vipcode.php';
-	require_once CLASSESPATH . '/owner.php';
-	require_once CLASSESPATH . '/attendee.php';
-	require_once CLASSESPATH . '/enterprise.php';
+	
+	require_once APPPATH.'/vendor/autoload.php';
 	
 	$enterprise = new Enterprise($_SESSION['enterpriseName']);
 	$owner = new Owner($_POST['name'], $_POST['telephone']);
