@@ -5,7 +5,12 @@
 	session_start();
 	define('APPPATH', dirname(__DIR__));
 	
-	require_once APPPATH.'/vendor/autoload.php';
+	require_once '../../vendor/autoload.php';
+	
+	use SGENIAL\VIPCODE\Enterprise;
+	use SGENIAL\VIPCODE\Owner;
+	use SGENIAL\VIPCODE\VipCode;
+	use SGENIAL\VIPCODE\Attendee;
 	
 	$enterprise = new Enterprise($_SESSION['enterpriseName']);
 	$owner = new Owner($_POST['name'], $_POST['telephone']);

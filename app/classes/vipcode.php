@@ -3,6 +3,7 @@
 	/*
 		Class: VipCode
 	*/
+	use Conexao;
 	
 	class VipCode{
 		
@@ -452,6 +453,7 @@
 						
 			$numberOfCreatedVipCodes = '';
 			try {
+				
 				$connection = new Conexao();
 				$connection->setSQL($sql);
 				$fetch = $connection->consultar();

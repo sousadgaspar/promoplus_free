@@ -3,10 +3,13 @@
 	header('Expires: ' . gmdate('r', 0));
 	header('Content-type: application/json');
 	session_start();
-	define('APPPATH', dirname(__DIR__));
 	
-	require_once APPPATH.'/vendor/autoload.php';
+	require_once '../../vendor/autoload.php';
 	
+	use SGENIAL\VIPCODE\Enterprise;
+	use SGENIAL\VIPCODE\Owner;
+	use SGENIAL\VIPCODE\VipCode;
+	use Plivo\RestAPI;
 	
 	$enterprise = new Enterprise($_SESSION['enterpriseName']);
 	$enterprise->setId($_SESSION['enterpriseId']);
@@ -14,7 +17,6 @@
 	$owner = new Owner($_POST['name'], $_POST['telephone'], $_POST['email']);
 	//flag for js request handler
 	$ownerHasAnOpenVipCode = '';
-	$smsResponse = '';
 	
 	$vipcode = new Vipcode($enterprise, $owner);
 
@@ -32,19 +34,35 @@
 		$vipcode->setVipCode(($vipcode->createNewVipCode($_SESSION['minDiscount'], $_SESSION['maxDiscount'], 30)));
 		$vipcode->retrieveVipCode($vipcode->getVipCode());
 		
-		//Send a SMS to vipCode owner
-		$notifiyer = new SmsGateway('sousadgaspar@gmail.com', '10senhapadrao20');
 		
-		$deviceId = '51532';
-		$enterpriseName = @$_SESSION[enterpriseName];
+		//PLIVO API
+		$auth_id = "MAM2U5NGY2NTVHMMEXOD";
+		$auth_token = "ODViZjhkZWZmYWYyNWMwYzI1M2MwZmFkNGFkMTA5";
+		$p = new RestAPI($auth_id, $auth_token);
 	
 		
-		$message  = "VIPCode:\n{$vipcode->getVipCode()}\n\nQuando voltar ao {$enterpriseName} receberás um desconto de {$vipcode->getMinDiscount()}%. Partilhe o seu código VIP com 5 amigos desconto de {$vipcode->getMaxDiscount()}% se eles virem ao {$enterpriseName}. Eles também ganham {$vipcode->getMinDiscount()}% de desconto.";
+		$message1  = "VIPCode:\n{$vipcode->getVipCode()}\n\nQuando voltar ao '{$enterprise->getName()}' receberás um desconto de {$vipcode->getMinDiscount()}%. Partilhe o seu código VIP com 5 amigos desconto de {$vipcode->getMaxDiscount()}% se eles virem ao '{$enterprise->getName()}'. Eles também ganham {$vipcode->getMinDiscount()}% de desconto.";
 
 		
 		//Message to share with friends
-		$message = "[Para enviar aos amigos]\n\n Oi,\n Ganhei {$vipcode->getMinDiscount()}% de desconto no {$enterpriseName}, quando lá fores também ganhas {$vipcode->getMinDiscount()}% de desconto apresentando esse código VIP:\n {$vipcode->getVipCode()}\n\nQualquer dúvida ligue-me\nForte Abraço\n '{$owner->getName()}'";
+		$message2 = "[Para enviar aos amigos]\n\n Oi,\n Ganhei {$vipcode->getMinDiscount()}% de desconto no '{$enterprise->getName()}', quando lá fores também ganhas {$vipcode->getMinDiscount()}% de desconto apresentando esse código VIP:\n {$vipcode->getVipCode()}\n\nQualquer dúvida ligue-me\nForte Abraço\n '{$owner->getName()}'";
 		
+		$response1 = '';
+		$response2 = '';	
+			
+		$params1 = array(
+		    'src' => 'VIPCode',
+		    'dst' => $_POST['telephone'],
+		    'text' => $message1
+		);
+		$response1 = $p->send_message($params1);
+		
+		$params2 = array(
+		    'src' => 'VIPCode',
+		    'dst' => $_POST['telephone'],
+		    'text' => $message2
+		);
+		$response2 = $p->send_message($params2);
 	}
 	
 	
@@ -68,7 +86,8 @@
 				'email' => $owner->getEmail(),
 				'address' => $owner->getAddress(),
 				'returned' => $owner->getReturned(),
-				'smsResponse' => $smsResponse,
+				'smsresponse1' => @$response1,
+				'smsresponse2' => @$response2,
 				'numberOfIndicationsForMaxDiscount' => $_SESSION['numberOfIndicationsForMaxDiscount'],
 				'enterpriseName' => $_SESSION['enterpriseName']
 			

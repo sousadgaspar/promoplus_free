@@ -3,6 +3,7 @@
 	/*
 		Enterprise class
 	*/
+	use Conexao;
 	
 	class Enterprise{
 		//Properties

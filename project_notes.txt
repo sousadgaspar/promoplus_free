@@ -2,23 +2,30 @@
 
 	O que a aplicacao falta para ser vendida?
 	
-	- O vipcode deve ser redesenhado ao ponto de ser facil de usar
-	- a aplicacao deve gerar estatisticas para o dono do estabelecimento controlar os movimentos
-	- a aplicacao deve enviar SMS para os clientes usando o sender ID codigoVIP
+
 	- A apresentacao de vendas deve estar pronta
 		- apresentacao do produto
 		- Contrato
 	
+	- Testar o cenario em que um cliente ja validou o seu vipcode e volta novamente com o mesmo
+		- O VIPCode nao e validado, porem nao acontece nada
+		- Criar uma mensagem de retorno neste para este cenario
 	- Criar o modulo factura
-	- Implementar API de SMS
+
 	- Concluir o burger menu
 	- Aplicar cliterios de seguranca nos campos dos formularios.
+	- Revisar todos os cenarios de teste
 		
 		
 		Codigo VIP: voltoAoZoodaBar#177
 	
 	
 	Feitas
+	- Implementar API de SMS
+	- O vipcode deve ser redesenhado ao ponto de ser facil de usar
+		
+	- a aplicacao deve gerar estatisticas para o dono do estabelecimento controlar os movimentos
+	- a aplicacao deve enviar SMS para os clientes usando o sender ID codigoVIP
 	- Redesenhar o vipCode - 27.07.2017
 	- Integrar metodos dos KPIs a interface de reports
 	- Criar metodos dos KPIs	- Feita
@@ -85,5 +92,19 @@
 		bulk recebe a
 		bult ja tem 4 letras?
 			Y: trust recebe 
+			
+			
+			
+			
+			
+			Benvindo ao Kintana. Você tem 10% de desconto pelo VIPCode VIPCode: voltoAoKintana#172017-1821-38 Peça um novo VIPCode para receber desconto na próxima compra no Kintana.
+			
+			
+			
+			"psr-4": {
+				"SGENIAL\\VIPCODE\\": "app/classes",
+				"": "helper",
+				"": "helper/connection.php"
+			}
 			
 	

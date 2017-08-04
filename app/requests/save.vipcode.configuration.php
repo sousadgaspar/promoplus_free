@@ -3,10 +3,10 @@
 	header('Expires: ' . gmdate('r', 0));
 	header('Content-type: application/json');
 	session_start();
-	define('APPPATH', dirname(__DIR__));
 	
-	require_once APPPATH.'/vendor/autoload.php';
+	require_once '../../vendor/autoload.php';
 	
+	use SGENIAL\VIPCODE\Enterprise;
 	
 	//collect VipCode configuration information from POST request
 	

@@ -3,7 +3,7 @@
 	/*
 		Class: Owner
 	*/
-	
+	use Conexao;
 	
 	class Owner{
 		

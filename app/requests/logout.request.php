@@ -1,12 +1,11 @@
 <?php
 	
 	session_start();
-	define('APPPATH', dirname(__DIR__));
 	
-	require_once APPPATH.'/vendor/autoload.php';
+	require_once '../../vendor/autoload.php';
 	
-	require_once(CLASSESPATH . "/enterprise.php");
-	require_once(CLASSESPATH . "/user.php");
+	use SGENIAL\VIPCODE\Enterprise;
+	use SGENIAL\VIPCODE\User;
 	
 	$enterprise = new Enterprise();
 	$user = new User($enterprise);

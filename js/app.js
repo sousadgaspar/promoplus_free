@@ -235,7 +235,7 @@ $(document).ready(function(){
             },
             success: function (data) {
                 //debug
-                //alert(data);
+                alert(data);
                 
                 ownerName = data['name'];
                 var vipCode = data['vipcode'];
@@ -265,7 +265,10 @@ $(document).ready(function(){
                 }
                 else {
 	                //debug
-	                alert(data);
+	                console.log(data);
+	                console.log(data.smsresponse1);
+	                console.log(data.smsresponse2);
+	                
 	                message = ownerName +", Parab&eacute;ns!<br />";
 	                message += "<img src='../img/seccess-icon.png' /> <br />"; 
 	                message += "O seu VIPCode &eacute: <br />";

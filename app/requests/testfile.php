@@ -1,9 +1,11 @@
 <?php
 	session_start();
-	define('APPPATH', dirname(__DIR__));
-			
-		require_once APPPATH.'/vendor/autoload.php';
 		
+		require('../../vendor/autoload.php');	
+		
+		//use SGENIAL\VIPCODE\HELPER;
+		
+		use SGENIAL\VIPCODE\Enterprise;
 	
 		$enterprise = new Enterprise("Administrador");
 		$enterprise->setMinDiscount(11);

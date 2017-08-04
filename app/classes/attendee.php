@@ -10,6 +10,7 @@
 	/*
 		requires
 	*/ 
+	use Conexao;
 	
 	class Attendee{
 		//Preperties

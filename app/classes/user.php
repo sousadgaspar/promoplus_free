@@ -1,6 +1,6 @@
 <?php	namespace SGENIAL\VIPCODE;
 	
-	
+	use Conexao;
 	/*
 		Class: User
 	*/

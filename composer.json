@@ -1,6 +1,13 @@
 {
-	"autoload": {
-		"classmap": ["app/classes", "app/classes/helpers"]
-	}
 	
+	"autoload": {
+		"classmap": [
+						"app/classes", 
+						"app/classes/helpers", 
+						"app/classes/helpers/connection.php"
+					]
+	},
+	"require": {
+		"plivo/plivo-php": "^1.1"
+	}
 }
