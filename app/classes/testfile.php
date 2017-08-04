@@ -1,14 +1,14 @@
 <?php
 	session_start();
 	
-	require_once 'connection.php';
-	require_once 'enterprise.php';
-	require_once 'vipcode.php';
-	require_once 'attendee.php';
-	require_once 'owner.php';
-	require_once 'user.php';
-	require_once 'helpers/notifyer.php';
-	
+	require('../../vendor/autoload.php');	
+		
+		//use SGENIAL\VIPCODE\HELPER;
+		
+		use SGENIAL\VIPCODE\VipCode;
+		use SGENIAL\VIPCODE\Enterprise;
+		use SGENIAL\VIPCODE\User;
+		use SGENIAL\VIPCODE\Owner;
 
 	$enterprise = new Enterprise("root");
 	//$enterprise->createNewEnterprise();
@@ -20,6 +20,11 @@
 	
 	$owner = new Owner("Sousa", '922300521');
 	$vipCode = new VipCode($enterprise, $owner);
+	
+	$vipCode->saveInvoiceValue(8900, "voltoAoRoot#17215-0234-33");
+	
+	
+/*
 	
 	//vipCode
 	$vipcode = new VipCode($enterprise, $owner);
@@ -44,6 +49,7 @@
 	//The vipcode ii formed by y - Year 2 digits, z - day of the year, Hi - Hour and minutes, s - seconds
 	print date('yz-Hi-s').PHP_EOL;
 	print date('U');
+*/
 	
 	//$user->createNewUser();
 

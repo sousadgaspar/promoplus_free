@@ -29,6 +29,7 @@
 		private $isPublic;
 		private $enterprise;
 		private $owner;
+		private $invoiceValue;
 		
 		
 		//getters
@@ -68,6 +69,9 @@
 			return $this->isPublic;
 		}
 		
+		public function getInvoiceValue() {
+			return $this->invoiceValue;
+		}
 		
 		//Setters
 		public function setId($id) {
@@ -111,6 +115,10 @@
 		
 		public function setVipCodeVisibility($isPublic) {
 			$this->isPublic = $isPublic;
+		}
+		
+		public function setInvoiceValue($invoiceValue) {
+			$this->invoiceValue = $invoiceValue;
 		}
 		
 
@@ -608,6 +616,29 @@
 				
 				return (int) $attendees;	
 			}
+			
+			/*
+				Save the invoiceValue
+			*/
+			public function saveInvoiceValue($invoiceValue, $vipCode) {
+				$this->setInvoiceValue($invoiceValue);
+				$this->setVipCode($vipCode);
+				
+				
+				$sql = "update tbVipCode set invoiceValue={$this->getInvoiceValue()} where vipCode='{$this->getVipCode()}';";
+				$connection = new Conexao();
+				try{
+					$connection->setSQL($sql);
+					$connection->executar();
+					
+				}
+				catch(Exception $error) {
+					//write the logs in the application log file
+					$error->getTrace();
+				}
+
+			}
+			
 
 		
 		
