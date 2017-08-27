@@ -18,15 +18,15 @@
 		//funcao contrutora
 		public function __construct(){
 			//Local connection
-			
 /*
-			$this->server = '185.27.134.10';
-			$this->bancoDados = 'rfgd_20348330_vipcode';
+			
+			$this->server = 'sql211.rf.gd';
+			$this->bancoDados = 'rfgd_20348330_vipcode2';
 			$this->user = 'rfgd_20348330';
 			$this->pass = '10senhapadrao20';
 			$this->dbType = 'mysql';
-*/
 			
+*/
 			$this->server = 'localhost';
 			$this->bancoDados = 'dbVipCode';
 			$this->user = 'root';

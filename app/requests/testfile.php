@@ -6,6 +6,8 @@
 		//use SGENIAL\VIPCODE\HELPER;
 		
 		use SGENIAL\VIPCODE\Enterprise;
+		use SGENIAL\VIPCODE\Owner;
+		use SGENIAL\VIPCODE\VipCode;
 	
 		$enterprise = new Enterprise("Administrador");
 		$enterprise->setMinDiscount(11);
@@ -19,11 +21,11 @@
 		print $enterprise->getNumberOfIndicationsForMaxDiscount() . PHP_EOL;
 		print $enterprise->getName() . PHP_EOL;
 		
-		var_dump($enterprise->updateEnterpriseVipcodeConfiguration());
+		//var_dump($enterprise->updateEnterpriseVipcodeConfiguration());
 		
 		//$enterprise->setId(2);
 		
-		//$owner = new Owner('Sox', '923435465', 'so@gma.com');
+		$owner = new Owner('Sox', '923435465', 'so@gma.com');
 		
 		//$user = new User($enterprise);
 		
@@ -35,7 +37,18 @@
 		$user->setCategory("basic");
 */
 		
-		//$vipcode = new Vipcode($enterprise, $owner);
+		$vipcode = new Vipcode($enterprise, $owner);
+		$vipcode->setInvoiceValue(8000);
+		$vipcode->setMinDiscount($enterprise->getMinDiscount());
+		$vipcode->setMaxDiscount($enterprise->getMaxDiscount());
+		
+		var_dump($vipcode->getMinDiscount()) . PHP_EOL;
+		print $vipcode->getInvoiceValue() . PHP_EOL;
+		
+		
+		$discountInBucks = ($vipcode->getMinDiscount() * $vipcode->getInvoiceValue())/100;
+		
+		print $discountInBucks . PHP_EOL;
 		
 		//$vipcode->setVipCode('DeVoltaAoRoot#14990150925508');
 		

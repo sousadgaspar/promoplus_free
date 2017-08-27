@@ -17,7 +17,7 @@
   <link rel="stylesheet" type="text/css" href="css/app.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap-grid-system.min.css">
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="css/css/chartist.css">
+  <link rel="stylesheet" type="text/css" href="css/chartist.css">
   <!-- Add to home screen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -41,9 +41,11 @@
 	    <form action="" method="post" accept-charset="utf-8">
 	    	<div class="textInputInvisible">
 			  <label for="email">Email: </label><input id="userEmail" type="text" name="email" placeholder="Ex. paulo.junior@gmail.com" value="">
+			  <label id="alertUserEmail"></label>
 			</div>
 			<div class="textInputInvisible">
 			  <label for="password">Pass: </label><input id="userPassword" type="password" name="password" placeholder="*********************************" value="">
+			  <label id="alertUserPassword"></label>
 			</div>
 			<br />
 			<button id="btnRequestLogin" class="btn btnRose" name="login">Entrar</button>

@@ -14,6 +14,7 @@
 	$enterprise->setMinDiscount($_POST['newMinDiscount']);
 	$enterprise->setMaxDiscount($_POST['newMaxDiscount']);
 	$enterprise->setNumberOfIndicationsForMaxDiscount($_POST['newNumberOfIndicationsForMaxDiscount']);
+	$enterprise->setNumberOfDaysForVipCodeExpire($_POST['newNumberOfDaysForVipCodeExpire']);
 	
 	//prepare the array for result return
 	$result = array();
@@ -22,8 +23,10 @@
 		$_SESSION['minDiscount'] = $enterprise->getMinDiscount();
 		$_SESSION['maxDiscount'] = $enterprise->getMaxDiscount();
 		$_SESSION['numberOfIndicationsForMaxDiscount'] = $enterprise->getNumberOfIndicationsForMaxDiscount();
+		$_SESSION['numberOfDaysForVipCodeExpire'] = $enterprise->getNumberOfDaysForVipCodeExpire();
 	}
 	$result['isUpdated'] = $isUpdated;
+	$result['numberOfDaysForVipCodeExpire'] = $_SESSION['numberOfDaysForVipCodeExpire'];
 	
 	$json = json_encode($result);
 	

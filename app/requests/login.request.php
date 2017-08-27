@@ -1,4 +1,8 @@
 <?
+	session_cache_limiter('nocache');
+	header('Expires: ' . gmdate('r', 0));
+	header('Content-type: application/json');
+	session_start();
 	session_start();
 	
 	require_once '../../vendor/autoload.php';
@@ -20,6 +24,9 @@
 	$user->setEmail($_POST['email']);
 	$user->setPassword($_POST['password']);
 	
+	
+	//login result
+	$result = array();
 	//try to login
 	if($user->login()) {
 		
@@ -28,10 +35,18 @@
 		$user->getEnterpriseId();
 		$enterprise->retrieveEnterpriseInformation($user->getEnterpriseId());
 		$user->getSessionInformation();
+		
+		//flag the logged user
+		$logged = true;
+		
+		$result['logged'] = $logged;
 	}
 	else {
-		print 0;
+		$logged = false;
+		$result['logged'] = $logged;
 	}
+	
+	return json_encode($result);
 
 	
 	

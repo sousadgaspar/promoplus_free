@@ -13,6 +13,7 @@
 	
 	$enterprise = new Enterprise($_SESSION['enterpriseName']);
 	$enterprise->setId($_SESSION['enterpriseId']);
+	$enterprise->setNumberOfIndicationsForMaxDiscount($_SESSION['numberOfIndicationsForMaxDiscount']);
 	
 	$owner = new Owner($_POST['name'], $_POST['telephone'], $_POST['email']);
 	//flag for js request handler
@@ -31,7 +32,7 @@
 	}
 	else {
 		//create the new vipCode
-		$vipcode->setVipCode(($vipcode->createNewVipCode($_SESSION['minDiscount'], $_SESSION['maxDiscount'], 30)));
+		$vipcode->setVipCode(($vipcode->createNewVipCode($_SESSION['minDiscount'], $_SESSION['maxDiscount'], $_SESSION['numberOfDaysForVipCodeExpire'])));
 		$vipcode->retrieveVipCode($vipcode->getVipCode());
 		
 		

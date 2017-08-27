@@ -2,6 +2,8 @@
 	session_start();
 	if(($_SESSION['logged'] == false) && is_null($_SESSION['name']) && is_null($_SESSION['mobilePhone']) && is_null($_SESSION['enterpriseId'])) {
 		header("Location: /index.php");
+		
+		
 	}
 ?>
 
@@ -44,6 +46,9 @@
 	<br />
 	<br />
   	<ul>
+	  	<?php 
+		  	var_dump($_SESSION);
+	  	?>
 	  	<li><a href="#"><i class="fa fa-bug" aria-hidden="true"></i>Menu #1</a></li>
 	  	<li><a href="#">Menu #2</a></li>
 	  	<li><a href="#">Menu #3</a></li>
@@ -153,12 +158,15 @@
 		  <br />
 		  <div class="textInputInvisible">
 		  	<label for="vipCodeOwnerName">Nome: </label><input id="vipCodeOwnerName" type="text" name="vipCodeOwnerName" placeholder="Ex. Paulo Júnior" value="">
+		  	<label id="alertVipCodeOwnerName"></label>
 		  </div>
 		  <div class="textInputInvisible">
 		  	<label for="vipCodeOwnerTelephone">Telef: </label><input id="vipCodeTelephone" type="text" name="vipCodeTelephone" placeholder="Ex. 923432XXX" value="">
+		  	<label id="alertVipCodeOwnerTelephone"></label>
 		  </div>
 		  <div class="textInputInvisible">
 		  	<label for="vipCodeOwnerEmail">Email: </label><input id="vipCodeOwnerEmail" type="text" name="vipCodeOwnerEmail" placeholder="paulo.junior@sgenial.co" value="">
+		  	<label id="alertVipCodeOwnerEmail"></label>
 		  </div>
 		  <!--<input id="vipCodeOwnerAgreeWithPrivacyPolicy" type="checkbox" name="vipCodeOwnerAgreeWithPrivacyPolicy" checked="checked"><label for="vipCodeOwnerAgreeWithPrivacyPolicy">Concordo com os termos de privacidade. </label>-->
 		  <br />
@@ -176,15 +184,18 @@
 		  	<input id="vipCodeToRecomend" type="hidden" name="vipCodeToRecomend" value="">
 		  	<div class="textInputInvisible">
 				<label for="attendeeName">Nome: </label><input id="attendeeName" type="text" name="attendeeName" placeholder="Ex. Paulo Júnior" value="">
+				<label id="alertAttendeeName"></label>
 			</div>
 		  	<div class="textInputInvisible">
 				<label for="attendeeTelephone">Telef: </label><input id="attendeeTelephone" type="text" name="attendeeTelephone" placeholder="Ex. 923432XXX" value="">
+				<label id="alertAttendeeTelephone"></label>
 			</div>
 			
 			<hr />
 			
 			<div class="textInputInvisible">
 				<label for="attendeeName">Nome: </label><input id="attendeeName" type="text" name="attendeeName" placeholder="Ex. Paulo Júnior" value="">
+				<label id="alertAttendeeTelephone"></label>
 			</div>
 		  	<div class="textInputInvisible">
 				<label for="attendeeTelephone">Telef: </label><input id="attendeeTelephone" type="text" name="attendeeTelephone" placeholder="Ex. 923432XXX" value="">
@@ -250,9 +261,11 @@
 		  	<label class="formTitle">Selecione um intervalo para o relat&oacute;rio</label>
 	  		<div class="textInputInvisible">
 	  			<label for="fromDate">De:</label><input id="fromDate" type="date" name="fromDate" value="">
+	  			<label id="alertFromDate"></label>
 	  		</div>
 	  		<div class="textInputInvisible">
 	  			<label for="toDate">Para:</label><input id="toDate" type="date" name="toDate" value="">
+	  			<label id="alertToDate"></label>
 	  		</div>
 	  		
 	  		<br />
@@ -299,18 +312,22 @@
 						name="vipCode" 
 						value="voltoAo<?=ucfirst(strtolower($_SESSION['enterpriseName']))?>#" 
 						placeholder="Ex. 87626554324345" value="">
+				<label id="alertVipcode"></label>
 			</div>
 			
 			<hr />
 			
 			<div class="textInputInvisible">
 				<label for="name">Nome: </label><input id="name" type="text" name="name" placeholder="Ex. Paulo Júnior" value="">
+				<label id="alertName"></label>
 			</div>
 		  	<div class="textInputInvisible">
 				<label for="telephone">Telef: </label><input id="telephone" type="text" name="telephone" placeholder="Ex. 923432XXX" value="">
+				<label id="alertTelephone"></label>
 			</div>
 			<div class="textInputInvisible">
-				<label for="InvoiceValue">Valor da factura: </label><input id="InvoiceValue" type="text" name="InvoiceValue" placeholder="" value="">
+				<label for="invoiceValue">Valor da factura: </label><input id="invoiceValue" type="text" name="invoiceValue" placeholder="" value="">
+				<label id="alertInvoiceValue"></label>
 			</div>
 			<br />
 			<button class="btn btnBase" id="validateVipCode" name="ShareVipCodeForm">Validar VipCode</button>
@@ -327,24 +344,31 @@
 		  	<br />
 		  	<div class="textInputInvisible">
 				<label for="enterpriseName">Nome: </label><input id="enterpriseName" type="text" name="enterpriseName" placeholder="Ex. SGenial, SA" value="">
+				<label id="alertEnterpriseName"></label>
 			</div>
 			<div class="textInputInvisible">
 				<label for="enterpriseLegalNumber">NIF: </label><input id="enterpriseLegalNumber" type="text" name="enterpriseLegalNumber" placeholder="Ex. 88766122671" value="">
+				<label id="alertEnterpriseLegalNumber"></label>
 			</div>
 			<div class="textInputInvisible">
 				<label for="enterpriseAddress">Endere&ccedil;o: </label><input id="enterpriseAddress" type="text" name="enterpriseAddress" placeholder="Ex. Av. Combatentes. Rua X, Luanda, Angola" value="">
+				<label id="alertEnterpriseAddress"></label>
 			</div>
 			<div class="textInputInvisible">
 				<label for="enterpriseTelephone">Telef: </label><input id="enterpriseTelephone" type="text" name="enterpriseTelephone" placeholder="Ex. 923432XXX" value="">
+				<label id="alertEnterpriseAddress"></label>
 			</div>
 			<div class="textInputInvisible">
 				<label for="enterpriseTelephone">Telef: </label><input id="enterpriseTelephone" type="text" name="enterpriseTelephone" placeholder="Ex. 912432XXX" value="">
+				<label id="alertEnterpriseTelephone"></label>
 			</div>
 			<div class="textInputInvisible">
 				<label for="enterpriseEmail">Email: </label><input id="enterpriseEmail" type="text" name="enterpriseEmail" placeholder="Ex. falecom@sgenial.co" value="">
+				<label id="alertEnterpriseEmail"></label>
 			</div>
 			<div class="textInputInvisible">
 				<label for="enterpriseWebSite">WebSite: </label><input id="enterpriseWebSite" type="text" name="enterpriseWebSite" placeholder="Ex. www.sgenial.co" value="">
+				<label id="alertEnterpriseWebSite"></label>
 			</div>
 			
 			
@@ -352,12 +376,15 @@
 			
 			<div class="textInputInvisible">
 				<label for="enterpriseManagerName">Nome do gestor: </label><input id="enterpriseManagerName" type="text" name="enterpriseManagerName" placeholder="Paulo J&uacute;nior" value="">
+				<label id="alertEnterpriseManagerName"></label>
 			</div>
 			<div class="textInputInvisible">
 				<label for="enterpriseManagerTelephone">Telef: </label><input id="enterpriseManagerTelephone" type="text" name="enterpriseManagerTelephone" placeholder="Ex. 923432XXX" value="">
+				<label id="alertEnterpriseManagerTelephone"></label>
 			</div>
 			<div class="textInputInvisible">
 				<label for="enterpriseManagerEmail">Email: </label><input id="enterpriseManagerEmail" type="text" name="enterpriseManagerEmail" placeholder="Ex. paulo.junior@gmail.com" value="">
+				<label id="alertEnterpriseManagerEmail"></label>
 			</div>
 			
 			<br />
@@ -377,21 +404,22 @@
 		  	
 		  	<div class="textInputInvisible">
 				<label for="minDiscount">Desconto minimo (%): </label><input id="minDiscount" type="text" name="minDiscount" placeholder="8" value="">
+				<label id="alertMinDiscount"></label>
 			</div>
 			<div class="textInputInvisible">
 				<label for="maxDiscount">Desconto m&aacute;ximo (%): </label><input id="maxDiscount" type="text" name="maxDiscount" placeholder="15" value="">
+				<label id="alertMaxDiscount"></label>
 			</div>
 				<div class="clearFix"></div>
 			<div class="textInputInvisible">
 				<label for="numberOfIndicationsForMaxDiscount">N&uacute;mero de indica&ccedil;&otilde;es para o cliente ganhar o Desconto m&aacute;ximo (%): </label><input id="numberOfIndicationsForMaxDiscount" type="number" name="numberOfIndicationsForMaxDiscount" placeholder="5" value="">
+				<label id="alertNumberOfIndicationsForMaxDiscount"></label>
 			</div>
 			<div class="textInputInvisible">
 				<label for="numberOfDaysForVipCodeExpire">Nº de dias para o VIPCode expirar: </label><input id="numberOfDaysForVipCodeExpire" type="text" name="numberOfDaysForVipCodeExpire" placeholder="30" value="">
+				<label id="alertNumberOfDaysForVipCodeExpire"></label>
 			</div>
 
-				
-				
-			
 			<br />
 			<input type="submit" class="btn btnBase" id="saveVipCodeConfiguration" name="saveVipCodeConfiguration" value="Gravar configura&ccedil;&otilde;es" />
 	  	</form>

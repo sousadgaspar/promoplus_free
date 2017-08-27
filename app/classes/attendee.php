@@ -22,12 +22,17 @@
 		private $attendedDate;
 		private $creationTime;
 		private $status;
+		private $invoiceValue;
+		private $vipCodeTax;
+		private $vipCodeTaxRate = 2;
+		private $enterpriseId;
 		
 		
 		//costructor
-		public function __construct(string $name, string $telephone) {
-			$this->setAttendeeName($name);
-			$this->setAttendeeTelephone($telephone);
+		public function __construct(string $name, string $telephone, int $enterpriseId = 0) {
+			$this->setAttendeeName( $name );
+			$this->setAttendeeTelephone( $telephone );
+			$this->setEnterpriseId( $enterpriseId );
 		}
 		//gettes
 		public function getId() {
@@ -63,6 +68,18 @@
 			return $this->status;
 		}
 		
+		public function getInvoiceValue() {
+			return $this->invoiceValue;
+		}
+		
+		public function getVipCodeTax() {
+			return $this->vipCodeTax;
+		}
+		
+		public function getVipCodeTaxRate() {
+			return $this->vipCodeTaxRate;
+		}
+		
 		//Setters
 		public function setId($id) {
 			$this->id = $id;
@@ -96,6 +113,23 @@
 			$this->vipCode = $vipCode;
 		}
 		
+		public function setInvoiceValue( $invoiceValue ) {
+			$this->invoiceValue = $invoiceValue;
+		}
+		
+		public function setVipCodeTax() {
+			$this->vipCodeTax = $this->invoiceValue * ($this->vipCodeTaxRate/100);
+		}
+		
+		public function setVipCodeTaxRate( $vipCodeTaxRate ) {
+			$this->vipCodeTaxRate = $vipCodeTaxRate;
+		} 
+		
+		public function setEnterpriseId( $enterpriseId ) {
+			$this->enterpriseId = $enterpriseId;
+		}
+		
+		
 		//
 		//get attendee information
 		public function getAttendeeInformation(string $telephone) {
@@ -110,7 +144,7 @@
 							status 
 							
 							from tbVipcodeAttendee 
-								where attendeeTelephone = '{$this->getAttendeeTelephone()}';";
+								where attendeeTelephone = '{$this->getAttendeeTelephone()}' and status='valid' order by id desc limit 1;";
 			
 			try{
 				$connection = new Conexao();
@@ -144,11 +178,15 @@
 				$connection->setSQL("insert into tbVipCodeAttendee(	vipCode, 
 																attendeeName, 
 																attendeeTelephone, 
-																attendeeEmail) 
+																attendeeEmail,
+																enterpriseId
+																)
+																
 																values ('{$this->vipCode->getVipCode()}'
 																,'{$this->attendeeName}'
 																,'{$this->attendeeTelephone}'
 																,'{$this->attendeeEmail}'
+																,'{$this->enterpriseId}'
 																)");
 				$connection->executar();
 			} catch(Exception $error) {
@@ -267,6 +305,46 @@
 			
 			
 		}
+		
+		
+		
+		/*
+				Save the invoiceValue
+			*/
+			public function saveInvoiceValue() {	
+				$this->setVipCodeTax();		
+				$sql = "update tbVipCodeAttendee set invoiceValue={$this->invoiceValue},
+													 vipCodeTax={$this->vipCodeTax},
+													 vipCodeTaxRate={$this->vipCodeTaxRate}
+							where attendeeTelephone='{$this->getAttendeeTelephone()}' 
+								and creationTime='{$this->creationTime}';";
+				$connection = new Conexao();
+				try{
+					$connection->setSQL($sql);
+					$connection->executar();
+					
+				}
+				catch(Exception $error) {
+					//write the logs in the application log file
+					$error->getTrace();
+				}
+
+			}
+			
+			public function getTotalInvoiceValue( $fromDate, $toDate, $enterpriseId ) {
+				$sql = "select sum(vipCodeTax) as totalInvoiceValue 
+										from tbVipCodeAttendee where attendedDate between 
+											'{$fromDate}' and '$toDate' and enterpriseId=$enterpriseId;";
+				$connection = new Conexao();
+				try {
+					$connection->setSQL($sql);
+					$fetch = $connection->consultar();
+				}
+				catch(Exception $error) {
+					//write the logs in the application log file
+					$error->getTrace();
+				}
+			}
 	}
 	
 ?>

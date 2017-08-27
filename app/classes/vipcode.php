@@ -83,16 +83,16 @@
 		}
 		
 		public function setMinDiscount($minDiscount) {
-			$this->minDiscount = number_format($minDiscount - ($minDiscount * 0.2), 1, ',', '.');
+			$this->minDiscount = $minDiscount;
 			
 		}
 		
 		public function setMaxDiscount($maxDiscount) {
-			$this->maxDiscount = number_format($maxDiscount - ($maxDiscount * 0.2), 1, ',', '.');
+			$this->maxDiscount = $maxDiscount;
 		}
 				
 		public function setCredit($credit) {
-			$this->credit = number_format($credit - ($credit * 0.2), 1, ',', '.');
+			$this->credit = $credit;
 		}
 		
 		public function setValidTill($validTill) {
@@ -307,6 +307,7 @@
 				$error->getTrace();
 			}
 		}
+/*
 		
 		//addCredit
 		public function addCreditToVipCode() {
@@ -324,17 +325,11 @@
 				}
 				
 				//if both min and max discount are iqual it means that there's no discount regardless the number of refferral vip code owner brings to a place. 
-				if($this->minDiscount == $this->maxDiscount) {
+				if($this->minDiscount >= $this->maxDiscount) {
 					return $this->credit;
 				}
 				
-				//if owner envites 5 peoples, will get the 100% of the addicional discount.
-				for ($i = 0; $i < $numberOfAttendees; $i++) {
-					if($this->credit == $this->maxDiscount) {
-						break;
-					}
-					$this->credit += ($this->maxDiscount - $this->minDiscount) * 0.2;
-				}
+				$this->credit += (($this->maxDiscount - $this->minDiscount) / $this->enterprise->getNumberOfIndicationsForMaxDiscount());
 				
 				//persist the new credit to database
 				$sql = "update tbVipCode set credit = '{$this->credit}' where vipCode = '{$this->vipCode}'";
@@ -350,6 +345,45 @@
 				$error->getTrace();
 			}
 			
+		}
+	
+*/	
+
+		public function addCreditToVipCode() {
+
+			
+			if($this->credit >= $this->maxDiscount) {
+				$this->credit = $this->maxDiscount;
+			}
+			else {
+				$remain = $this->maxDiscount - $this->minDiscount;
+
+				if($this->credit > $this->maxDiscount) {
+					$this->credit = $this->maxDiscount;
+				}
+				else {
+					$this->credit += ($remain)/$this->enterprise->getNumberOfIndicationsForMaxDiscount();
+				}
+			}
+			
+			//persist the new credit to database
+			$sql = "update tbVipCode set credit = '{$this->credit}' where vipCode = '{$this->vipCode}'";
+			
+			try{	
+				
+				$connection = new Conexao();
+				$connection->setSQL($sql);
+				
+				if($connection->executar() == null) {
+					return true;
+					}
+			}
+			catch(Exception $error) {
+				//Write the error in the application log files
+				$error->getTrace();
+			}
+			
+
 		}
 		
 		
@@ -617,27 +651,7 @@
 				return (int) $attendees;	
 			}
 			
-			/*
-				Save the invoiceValue
-			*/
-			public function saveInvoiceValue($invoiceValue, $vipCode) {
-				$this->setInvoiceValue($invoiceValue);
-				$this->setVipCode($vipCode);
-				
-				
-				$sql = "update tbVipCode set invoiceValue={$this->getInvoiceValue()} where vipCode='{$this->getVipCode()}';";
-				$connection = new Conexao();
-				try{
-					$connection->setSQL($sql);
-					$connection->executar();
-					
-				}
-				catch(Exception $error) {
-					//write the logs in the application log file
-					$error->getTrace();
-				}
-
-			}
+			
 			
 
 		

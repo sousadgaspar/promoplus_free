@@ -25,6 +25,7 @@
 		private $numberOfIndicationsForMaxDiscount;
 		private $status;
 		private $creationDate;
+		private $numberOfDaysForVipCodeExpire;
 		
 		//constructor
 		public function __construct($enterpriseName = '') {
@@ -104,6 +105,10 @@
 			return $this->creationDate;
 		}
 		
+		public function getNumberOfDaysForVipCodeExpire() {
+			return $this->numberOfDaysForVipCodeExpire;
+		}
+		
 		//setters
 		public function setId($id) {
 			$this->id = $id;
@@ -175,6 +180,10 @@
 		
 		public function setCreationDate($date) {
 			$this->creationDate = $date;
+		}
+		
+		public function setNumberOfDaysForVipCodeExpire($numberOfDaysForVipCodeExpire) {
+			$this->numberOfDaysForVipCodeExpire = $numberOfDaysForVipCodeExpire;
 		}
 	
 		/*

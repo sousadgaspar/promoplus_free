@@ -13,11 +13,15 @@
 	use SGENIAL\VIPCODE\Attendee;
 	
 	$enterprise = new Enterprise($_SESSION['enterpriseName']);
+	$enterprise->setNumberOfDaysForVipCodeExpire($_SESSION['numberOfDaysForVipCodeExpire']);
+	$enterprise->setNumberOfIndicationsForMaxDiscount($_SESSION['numberOfIndicationsForMaxDiscount']);
 	$owner = new Owner($_POST['name'], $_POST['telephone']);
 	$vipcode = new Vipcode($enterprise, $owner);
 	
-	$attendee = new Attendee($_POST['name'], $_POST['telephone']);
+	$attendee = new Attendee($_POST['name'], $_POST['telephone'], $_SESSION['enterpriseId']);
+	$attendee->setInvoiceValue($_POST['invoiceValue']);
 	$vipcode->setVipCode($_POST['vipCode']);
+	
 	
 	$validity = $vipcode->isStillValid();
 	$isOwner = '';
@@ -29,36 +33,67 @@
 	//check if this vipCode is valid
 	if($validity == 'valid') {
 		
+		//get the vipCode ownerShip
 		$isOwner = $owner->isThisVipCodeMine($vipcode);
+		
+		//Retrieve vipcode information
+		$vipcode->retrieveVipCode($vipcode->getVipCode());
+		
+		
 		
 		//check if the vipcode is of owner
 		if($isOwner) {
 				$owner->setVipCode( $vipcode );
 				$ownerAttended = $owner->attend();
-				$vipcode->retrieveVipCode($vipcode->getVipCode());
+				
+				//owener register it self as attendee
+				$vipcode->enviteAttendee( $attendee );
+				
+				//Retrieve attendee information for being used in the save invoice method
+				$attendee->getAttendeeInformation($attendee->getAttendeeTelephone());
+				
+				//Owner as attendee - alter the status to attended
+				$attendee->attend();
+				
+				//register the invoice value in the vipCode registry
+				$attendee->saveInvoiceValue();	
+				
 		} 
 		else {
 				$attendee->setVipCode($vipcode);
 				$attendee->getAttendeeInformation($_POST['telephone']);
+				
+				
 				if($attendee->attended()) {
 					$attendeeAlreadyAttended = 'true';
 				}
 				else {	
-						$vipcode->retrieveVipCode($vipcode->getVipCode());
-						if($attendee->wasEnvited()) {
+							if($attendee->wasEnvited()) {
 							
-						//Attendee alter the status of his own vipcode
-						$attendee->attend();
-						
-						//vipCode add credit to awner 
-						$vipcode->addCreditToVipCode();
-						
-						//flag for js request handler 
-						$newAttendee = 'true';
+							//Retrieve attendee information for being used in the save invoice method
+							$attendee->getAttendeeInformation($attendee->getAttendeeTelephone());
+								
+							//Attendee alter the status of his own vipcode
+							$attendee->attend();
+
+							//register the invoice value in the vipCode registry
+							$attendee->saveInvoiceValue();
+							
+							//vipCode add credit to awner 
+							$vipcode->addCreditToVipCode();
+							
+							//flag for js request handler 
+							$newAttendee = 'true';
 						}
 						else {
 							//owener sends an invite to attendee
 							$vipcode->enviteAttendee( $attendee );
+							
+							//Retrieve attendee information for being used in the save invoice method
+							$attendee->getAttendeeInformation($attendee->getAttendeeTelephone());
+							
+							//register the invoice value in the vipCode registry
+							$attendee->saveInvoiceValue();
 							
 							//attendee accept the envite - alter the status to attended
 							$attendee->attend();
@@ -75,11 +110,20 @@
 		
 	}//End check if this vipCode is valid
 	
+	$discountInBucks = ''; // The discount value in kwanzas
+	//Set the discount in terms of real money
+	if( $isOwner ) {
+		$discountInBucks = ($vipcode->getCredit() * $vipcode->getInvoiceValue())/100;
+	}
+	else {
+		$discountInBucks = ($vipcode->getMinDiscount() * $vipcode->getInvoiceValue())/100;
+	}
+	
 	
 	//Data for JS request handler
-	$array = array(	'newAttendee'=>$newAttendee, 
-					'attendeeAlreadyAttended'=>$attendeeAlreadyAttended, 
-					'isOwner'=>$isOwner, 
+	$array = array(	'newAttendee' => $newAttendee, 
+					'attendeeAlreadyAttended' => $attendeeAlreadyAttended, 
+					'isOwner' => $isOwner, 
 					'ownerAttended' => $ownerAttended,
 					'ownerName' => $owner->getName(),
 					'ownerTelephone' => $owner->getTelephone(),
@@ -88,11 +132,15 @@
 					'minVipCodeDiscount' => $vipcode->getMinDiscount(),
 					'credit' => $vipcode->getCredit(),
 					'attendeeName' => $attendee->getAttendeeName(),
-					'validity'=>$validity,
-					'name'=>$_POST['name'], 
-					'vipcode'=>$_POST['vipCode'], 
-					'telephone'=>$_POST['telephone'], 
-					'enterpriseName'=>$_SESSION['enterpriseName']);
+					'validity'=> $validity,
+					'name' => $_POST['name'], 
+					'vipcode' => $_POST['vipCode'], 
+					'telephone' => $_POST['telephone'], 
+					'credit' => $vipcode->getCredit(),
+					'maxDiscount' => $vipcode->getMaxDiscount(),
+					'discountInBucks' => $discountInBucks,
+					'invoiceValue' => $attendee->getInvoiceValue(),
+					'enterpriseName' => $_SESSION['enterpriseName']);
 	$json = json_encode($array);
 	echo ($json);
 	

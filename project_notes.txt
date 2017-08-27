@@ -3,6 +3,11 @@
 	O que a aplicacao falta para ser vendida?
 	
 
+	
+	
+
+	- Criar o modulo factura
+	
 	- A apresentacao de vendas deve estar pronta
 		- apresentacao do produto
 		- Contrato
@@ -10,17 +15,20 @@
 	- Testar o cenario em que um cliente ja validou o seu vipcode e volta novamente com o mesmo
 		- O VIPCode nao e validado, porem nao acontece nada
 		- Criar uma mensagem de retorno neste para este cenario
-	- Criar o modulo factura
-
+	
 	- Concluir o burger menu
-	- Aplicar cliterios de seguranca nos campos dos formularios.
 	- Revisar todos os cenarios de teste
-		
+	- Corrigir o problema da gravacao do vipcode attendee
 		
 		Codigo VIP: voltoAoZoodaBar#177
 	
 	
 	Feitas
+	- Aplicar cliterios de seguranca nos campos dos formularios.
+	- Adicionar o numero maximo para o cliente ganhar o desconto minimo
+	- Adicionar numero de dias para o vipcode espirar
+	- Retornar o valor do desconto na mensagem de retorno - Feito
+	- Adicionar o valor da factura no acto da validacao do vipcode
 	- Implementar API de SMS
 	- O vipcode deve ser redesenhado ao ponto de ser facil de usar
 		

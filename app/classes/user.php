@@ -271,6 +271,7 @@
 			$_SESSION['minDiscount'] = $this->enterprise->getMinDiscount();
 			$_SESSION['maxDiscount'] = $this->enterprise->getMaxDiscount();
 			$_SESSION['numberOfIndicationsForMaxDiscount'] = $this->enterprise->getNumberOfIndicationsForMaxDiscount();
+			$_SESSION['numberOfDaysForVipCodeExpire'] = $this->enterprise->getNumberOfDaysForVipCodeExpire();
 			$_SESSION['logged'] = true;
 		}
 		

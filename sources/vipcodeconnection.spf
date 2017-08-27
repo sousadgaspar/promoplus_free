@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>dbVipCode</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>name</key>
+			<string>root@127.0.0.1</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8</string>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJX
+			TlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAF
+			gAdUdHlwZVRyb3dzXxAdU2VsZWN0aW9uRGV0YWlsVHlwZU5TSW5k
+			ZXhTZXTSFwsYGVxOU1JhbmdlQ291bnQQAIAG0hscHR5aJGNsYXNz
+			bmFtZVgkY2xhc3Nlc1pOU0luZGV4U2V0oh8gWk5TSW5kZXhTZXRY
+			TlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVk
+			QXJjaGl2ZXLRJidUZGF0YYABAAgAEQAaACMALQAyADcAQABGAE0A
+			VQBgAGcAagBsAG4AcQBzAHUAdwB8AIEAoQCmALMAtQC3ALwAxwDQ
+			ANsA3gDpAPIA9wEEAQcBGQEcASEAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {694, 450}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>select * from `tbVipCodeAttendee` order by id desc;
+select * from tbVipCode order by id desc;
+select * from tbVipCodeAttendee where vipcode='voltoAoRoot#17224-1440-18' order by id desc;
+
+select * from tbEnterprise;
+alter table tbVipCodeAttendee add column vipCodeTax int;
+alter table tbVipCodeAttendee add column vipCodeTaxRate int;
+alter table tbVipCodeAttendee drop column viCodeTax;
+alter table tbVipCodeAttendee add column `enterpriseId` int;
+
+select sum(vipCodeTax) as totalInvoiceValue from tbVipCodeAttendee where attendedDate between '2017-07-30' and '2017-08-30' and enterpriseId=2;
+
+
+</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>200</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select sum(vipCodeTax) as totalInvoiceValue from tbVipCodeAttendee where attendedDate between '2017-07-30' and '2017-08-30' and enterpriseId=2</string>
+		<string>select * from `tbVipCodeAttendee` order by id desc</string>
+		<string>select * from tbVipCode order by id desc</string>
+		<string>select * from tbVipCodeAttendee where vipcode='voltoAoRoot#17224-1440-18' order by id desc</string>
+		<string>select * from tbVipCode where vipcode='voltoAoRoot#17224-1440-18' order by id desc</string>
+		<string>select * from tbVipCode where vipCode ='voltoAoRoot#17225-2154-28'  order by id desc</string>
+		<string>select * from tbVipCode where vipCode ='voltoAoRoot#17224-1440-18'  order by id desc</string>
+		<string>select * from tbEnterprise</string>
+		<string>select * from tbVipCode order by id desc where vipCode ='voltoAoRoot#17224-1440-18'</string>
+		<string>select * from tbVipCode order by id desc where vipcode ='voltoAoRoot#17224-1440-18'</string>
+		<string>select sum(vipCodeTax) as totalInvoiceValue from tbVipCodeAttendee where attendedDate between '2017-07-30' and '2017-08-30' and interpriseId=2</string>
+		<string>select sum(vipCodeTax) as totalInvoiceValue from tbVipCodeAttendee where attendedDate between '2017-07-30' and '2017-08-30' where interpriseId=2</string>
+		<string>select sum(vipCodeTax) as totalInvoiceValue from tbVipCodeAttendee where attendedDate between '2017-07-30' and '2017-08-30'</string>
+		<string>select sum(vipCodeTax) from tbVipCodeAttendee where attendedDate between '2017-07-30' and '2017-08-30'</string>
+		<string>select * from tbVipCodeAttendee where attendedDate between '2017-07-30' and '2017-08-30'</string>
+		<string>alter table tbVipCodeAttendee add column `enterpriseId` int</string>
+		<string>select * from tbVipCode order by id</string>
+		<string>select * from tbVipCode</string>
+		<string>alter table tbVipCodeAttendee add column vipCodeTaxRate int</string>
+		<string>alter table tbVipCodeAttendee add column vipCodeTax int</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.5.5-10.1.16-MariaDB</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
