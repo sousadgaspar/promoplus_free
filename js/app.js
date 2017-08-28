@@ -311,11 +311,13 @@ $(document).ready(function(){
 					//fill validate vipcode fields
 					$('#vipcode').val(data.vipcode);
 					$('#name').val(data.name);
-					$('#telephone').val(data.telephone);
+					
+					//format telephone
+					var telephoneRegex = /9\d{8}/;
+					
+					$('#telephone').val(data.telephone.match(telephoneRegex));
 					
 					validateVipCodeCard.show();
-					
-					
                 }
                 else {
 		                //debug

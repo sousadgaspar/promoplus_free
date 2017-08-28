@@ -15,10 +15,10 @@
 	$enterprise = new Enterprise($_SESSION['enterpriseName']);
 	$enterprise->setNumberOfDaysForVipCodeExpire($_SESSION['numberOfDaysForVipCodeExpire']);
 	$enterprise->setNumberOfIndicationsForMaxDiscount($_SESSION['numberOfIndicationsForMaxDiscount']);
-	$owner = new Owner($_POST['name'], $_POST['telephone']);
+	$owner = new Owner($_POST['name'], "+244" . $_POST['telephone']);
 	$vipcode = new Vipcode($enterprise, $owner);
 	
-	$attendee = new Attendee($_POST['name'], $_POST['telephone'], $_SESSION['enterpriseId']);
+	$attendee = new Attendee($_POST['name'], "+244" . $_POST['telephone'], $_SESSION['enterpriseId']);
 	$attendee->setInvoiceValue($_POST['invoiceValue']);
 	$vipcode->setVipCode($_POST['vipCode']);
 	
@@ -61,7 +61,7 @@
 		} 
 		else {
 				$attendee->setVipCode($vipcode);
-				$attendee->getAttendeeInformation($_POST['telephone']);
+				$attendee->getAttendeeInformation("+244" . $_POST['telephone']);
 				
 				
 				if($attendee->attended()) {

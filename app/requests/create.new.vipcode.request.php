@@ -15,7 +15,7 @@
 	$enterprise->setId($_SESSION['enterpriseId']);
 	$enterprise->setNumberOfIndicationsForMaxDiscount($_SESSION['numberOfIndicationsForMaxDiscount']);
 	
-	$owner = new Owner($_POST['name'], $_POST['telephone'], $_POST['email']);
+	$owner = new Owner($_POST['name'], "+244" . $_POST['telephone'], $_POST['email']);
 	//flag for js request handler
 	$ownerHasAnOpenVipCode = '';
 	
@@ -52,7 +52,7 @@
 		$response2 = '';	
 			
 		$response1 = $client->messages->create(
-			$_POST['telephone'],
+			"+244" . $_POST['telephone'],
 			array(
 				'from' => 'VIPCode',
 				'body' => $message1
@@ -60,7 +60,7 @@
 		);
 		
 		$response2 = $client->messages->create(
-			$_POST['telephone'],
+			"+244" . $_POST['telephone'],
 			array(
 				'from' => 'VIPCode',
 				'body' => $message2
