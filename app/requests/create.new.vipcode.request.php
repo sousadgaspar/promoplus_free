@@ -9,7 +9,7 @@
 	use SGENIAL\VIPCODE\Enterprise;
 	use SGENIAL\VIPCODE\Owner;
 	use SGENIAL\VIPCODE\VipCode;
-	use Plivo\RestAPI;
+	use Twilio\Rest\Client;
 	
 	$enterprise = new Enterprise($_SESSION['enterpriseName']);
 	$enterprise->setId($_SESSION['enterpriseId']);
@@ -36,10 +36,10 @@
 		$vipcode->retrieveVipCode($vipcode->getVipCode());
 		
 		
-		//PLIVO API
-		$auth_id = "MAM2U5NGY2NTVHMMEXOD";
-		$auth_token = "ODViZjhkZWZmYWYyNWMwYzI1M2MwZmFkNGFkMTA5";
-		$p = new RestAPI($auth_id, $auth_token);
+		//Twilio API
+		$auth_id = "AC81969eb786c1e5a22f9101e64d90d032";
+		$auth_token = "7b384d81abdab5350c861ae31c306f13";
+		$client = new Client($auth_id, $auth_token);
 	
 		
 		$message1  = "VIPCode:\n{$vipcode->getVipCode()}\n\nQuando voltar ao '{$enterprise->getName()}' receberás um desconto de {$vipcode->getMinDiscount()}%. Partilhe o seu código VIP com 5 amigos desconto de {$vipcode->getMaxDiscount()}% se eles virem ao '{$enterprise->getName()}'. Eles também ganham {$vipcode->getMinDiscount()}% de desconto.";
@@ -51,19 +51,21 @@
 		$response1 = '';
 		$response2 = '';	
 			
-		$params1 = array(
-		    'src' => 'VIPCode',
-		    'dst' => $_POST['telephone'],
-		    'text' => $message1
+		$response1 = $client->messages->create(
+			$_POST['telephone'],
+			array(
+				'from' => 'VIPCode',
+				'body' => $message1
+			)
 		);
-		$response1 = $p->send_message($params1);
 		
-		$params2 = array(
-		    'src' => 'VIPCode',
-		    'dst' => $_POST['telephone'],
-		    'text' => $message2
+		$response2 = $client->messages->create(
+			$_POST['telephone'],
+			array(
+				'from' => 'VIPCode',
+				'body' => $message2
+			)
 		);
-		$response2 = $p->send_message($params2);
 	}
 	
 	

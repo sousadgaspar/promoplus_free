@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8db52ee7713e5b60bd0e6f13789e0976",
-    "content-hash": "8d577864c28b000969fca61d48f30976",
+    "hash": "10000655ec77acbb96028fc939a3d936",
+    "content-hash": "4ee2ac035dbb100eae556fd2760c8a6c",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -285,6 +285,52 @@
                 "response"
             ],
             "time": "2016-08-06 14:39:51"
+        },
+        {
+            "name": "twilio/sdk",
+            "version": "5.13.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twilio/twilio-php.git",
+                "reference": "0131e9dc346707a0c5b8975d44e8b5e2fe2665e2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/0131e9dc346707a0c5b8975d44e8b5e2fe2665e2",
+                "reference": "0131e9dc346707a0c5b8975d44e8b5e2fe2665e2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "apigen/apigen": "^4.1",
+                "phpunit/phpunit": "4.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twilio\\": "Twilio/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Twilio API Team",
+                    "email": "api@twilio.com"
+                }
+            ],
+            "description": "A PHP wrapper for Twilio's API",
+            "homepage": "http://github.com/twilio/twilio-php",
+            "keywords": [
+                "api",
+                "sms",
+                "twilio"
+            ],
+            "time": "2017-08-25 20:45:12"
         }
     ],
     "packages-dev": [],
