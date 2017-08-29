@@ -1,61 +1,44 @@
 
 html, body {
-	height: 100%;
+	//height: 100%;
+	
 }
 
 body {
 	margin: 0%;
-	display: flex;
+	min-height: 100%;
 	//overflow: hidden; 
 	background-color: #F6F6F6; 
 	font-family: AvenirNext-Regular, helvetica;
 	//overflow: hidden;
-}
-
-.main {
-	background-color: #F6F6F6;
-	flex: 1;
-	
+	//flex-direction: row;
 }
 
 .img {
 	//width: 100%;
 }
 
-.header {
-	/* MainHeader: */
-	position: fixed;
+.appHeader {
+	background-image: linear-gradient(-134deg, rgba(255,50,101,0.50) 22%, rgba(156,3,41,0.50) 100%);
 	z-index: 10000;
 	background: #FF3365;
-	background-image: linear-gradient(-134deg, rgba(255,50,101,0.50) 22%, rgba(156,3,41,0.50) 100%);
-	width: 100%;
-	padding: 4% 0%;
-	//text-align: center;
-	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
-	height: 56px;
+	padding: 2% 1%;
 	
-	.logo {
-		color: #FFFFFF;
-		font-size: 1.2em;
-		//border: solid 1px #FFFFFF;
-		border-radius: 16px;
-		//padding: 2%;
-		//width: 30%;
-		margin-left: 6%;
-		
+	#logo {
 		img {
-			width: 140%;
+			width: 110px;
 		}
-	}
-	
-	.menu {
 		
-		img {
-			width: 14%;
-			float: right;
-		}
 	}
 }
+
+
+.mainApp {
+	position: relative;
+	clear: both;
+	background-color: #F6F6F6;
+}
+
 
 #welcomeHomeScreen {
 	position: fixed;
@@ -70,7 +53,7 @@ body {
 	
 	#welcomeHomeLogo {
 		img {
-			width: 50%;
+			width: 40%;
 			margin: 0 auto;
 		}
 		
@@ -114,7 +97,9 @@ body {
 
 //dashBoardIcon
 #dashBoardIconContainer {
+	position: relative;
 	text-align: center;
+	font-size: 1em;
 	img {
 		width: 74%;
 		clear: both;
@@ -124,7 +109,7 @@ body {
 		font-family: AvenirNext-Regular, helvetica;
 		font-weight: 200;
 		color: #585858;
-		font-size: 0.9em;
+		font-size: 2em;
 		//color: #A5A5A5;
 	}
 	
@@ -144,7 +129,7 @@ body {
 */
 .card {
 	background-color: #FFFFFF;
-	//width: 74%;
+	width: 74%;
 	margin: 18%;
 	padding: 4% 8%;
 	border-radius: 8px;
@@ -426,6 +411,42 @@ body {
 .wrong {
 	border: 1px solid rgba(255,50,101,0.30);
 	color: rgba(255,50,101,0.30);
+}
+
+//footer
+footer {	
+	background-color: #a0a0a0;
+	color: #fff;
+	text-align: right;
+	padding: 2% 1%;
+}
+
+
+
+//medias
+@media screen and (max-width: 2000px) and (min-width: 920px) {
+    #dashborad-card {
+	    width: 40%;
+	    font-size: 0.56em;
+    }
+    
+    .card {
+	    width: 50%
+    }
+    
+    #welcomeHomeScreen {		
+		#welcomeHomeLogo {
+			img {
+				width: 10%;
+			}
+			
+			
+		}
+	}
+    
+    #login-card {
+	    width: 40%
+    }
 }
 
 

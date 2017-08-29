@@ -29,8 +29,8 @@
 */
 			$this->server = 'localhost';
 			$this->bancoDados = 'dbVipCode';
-			$this->user = 'dbVipCodeUser';
-			$this->pass = '10dbVipCode20$';
+			$this->user = 'root';
+			$this->pass = '10senhapadrao20$';
 			$this->dbType = 'mysql';
 /*
 
