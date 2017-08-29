@@ -109,7 +109,7 @@ body {
 		font-family: AvenirNext-Regular, helvetica;
 		font-weight: 200;
 		color: #585858;
-		font-size: 2em;
+		font-size: 1em;
 		//color: #A5A5A5;
 	}
 	
@@ -425,8 +425,12 @@ footer {
 
 //medias
 @media screen and (max-width: 2000px) and (min-width: 920px) {
+	#dashBoardIconContainer {
+		font-size: 2em;
+	}
+	
     #dashborad-card {
-	    width: 40%;
+	    width: 46%;
 	    font-size: 0.56em;
     }
     
@@ -439,14 +443,24 @@ footer {
 			img {
 				width: 10%;
 			}
-			
-			
 		}
 	}
     
     #login-card {
 	    width: 40%
     }
+}
+
+@media screen and (max-width: 920px) and (min-width: 716px) { 
+	#dashBoardIconContainer {
+		font-size: 1em;
+	}
+}
+
+@media screen and (max-width: 716px) and (min-width: 0px) { 
+	#dashBoardIconContainer {
+		font-size: 0.8em;
+	}
 }
 
 

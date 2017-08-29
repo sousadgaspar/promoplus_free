@@ -17,32 +17,22 @@
 		
 		//funcao contrutora
 		public function __construct(){
-			//Local connection
-/*
 			
-			$this->server = 'sql211.rf.gd';
-			$this->bancoDados = 'rfgd_20348330_vipcode2';
-			$this->user = 'rfgd_20348330';
-			$this->pass = '10senhapadrao20';
+			$this->server = 'localhost';
+			$this->bancoDados = 'dbVipCode';
+			$this->user = 'dbVipCodeUser';
+			$this->pass = '10dbVipCode20$';
 			$this->dbType = 'mysql';
 			
-*/
+/*
 			$this->server = 'localhost';
 			$this->bancoDados = 'dbVipCode';
 			$this->user = 'root';
 			$this->pass = '10senhapadrao20$';
 			$this->dbType = 'mysql';
-/*
-
-			//Remote connection
-			$this->server = 'sql10.freemysqlhosting.net';
-			$this->bancoDados = 'sql10183141';
-			$this->user = 'sql10183141';
-			$this->pass = 'h7wR9XysVz';
-			$this->dbType = 'mysql';
-						
-			
 */
+
+
 			}
 			
 		//retorna uma mensagem caso a propriedade nao exista
