@@ -1,0 +1,62 @@
+@extends ('template.master')
+
+@section ('content')
+
+
+	@include ('partials.failnotification')
+
+	@include ('partials.successnotification')
+
+
+	<!-- Create New VipCode -->
+	<div class="card" id="newCampaignCard">
+
+		<img class="icon" src="/image/settings.svg"> <span class="title">Configura&ccedil;&otilde;es</span>
+		
+
+		<div class="configurationOptions">
+			
+			@if((Auth::user()->role->name == 'Reseller') or (Auth::user()->role->name == 'Administrador'))
+
+				<div class="row">
+					<div class="col-md-12 rowOdd">
+						<a href="/company/create">
+							<img class="icon-small" src="/image/partnership.svg">
+						</a>
+						<span class="title-small"> 
+							<a href="/company/create">Novo parceiro</a>
+						</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12 rowEven">
+						<a href="/user/create">
+							<img class="icon-small" src="/image/addcompanyuser.svg">
+						</a>
+						<span class="title-small"> 
+							<a href="/user/create">Novo usu&aacute;rio</a>
+						</span>
+					</div>
+				</div>
+
+			@endIf
+
+			<div class="row">
+				<div class="col-md-12 rowOdd">
+					<a href="/subscription">
+						<img class="icon-small" src="/image/license.svg">
+					</a>
+					<a href="/subscription">
+						<span class="title-small">Subscri&ccedil;&atilde;o</span>
+					</a>
+				</div>
+			</div>
+
+		</div>
+		
+
+
+	</div><!-- End Create New VipCode -->
+
+@endSection

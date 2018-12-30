@@ -1,0 +1,442 @@
+body {
+  margin: 0%;
+  min-height: 100%;
+  background-color: #F6F6F6;
+  font-family: AvenirNext-Regular, helvetica;
+}
+.appHeader {
+  background-image: linear-gradient(-134deg, rgba(255, 50, 101, 0.5) 22%, rgba(156, 3, 41, 0.5) 100%);
+  z-index: 10000;
+  background: #FF3365;
+  padding: 2% 1%;
+}
+.appHeader #logo img {
+  width: 110px;
+}
+.mainApp {
+  position: relative;
+  clear: both;
+  background-color: #F6F6F6;
+}
+#welcomeHomeScreen {
+  position: fixed;
+  z-index: 10000;
+  background: #FF3365;
+  background-image: linear-gradient(-134deg, rgba(255, 50, 101, 0.5) 22%, rgba(156, 3, 41, 0.5) 100%);
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  text-align: center;
+}
+#welcomeHomeScreen #welcomeHomeLogo img {
+  width: 40%;
+  margin: 0 auto;
+}
+#menuTableContent {
+  position: fixed;
+  z-index: 9999;
+  display: none;
+  width: 70%;
+  height: 100%;
+  text-align: center;
+  background-color: #ffffff;
+}
+#menuTableContent ul {
+  padding: 0%;
+  margin: 0%;
+}
+#menuTableContent ul li {
+  margin: 4%;
+  padding: 2% 0%;
+}
+#menuTableContent ul li:first {
+  margin: 0%;
+}
+#dashBoardIconContainer {
+  position: relative;
+  text-align: center;
+  font-size: 1em;
+}
+#dashBoardIconContainer img {
+  width: 74%;
+  clear: both;
+}
+#dashBoardIconContainer label {
+  /* Novo código Vip: */
+  font-family: AvenirNext-Regular, helvetica;
+  font-weight: 200;
+  color: #585858;
+  font-size: 1em;
+}
+#dashBoardIconContainer #newVipCodeIcon,
+#dashBoardIconContainer #validateVipCodeIcon,
+#dashBoardIconContainer reportsVipCodeIcon,
+#dashBoardIconContainer configurationVipCodeIcon,
+#dashBoardIconContainer menuTable {
+  cursor: pointer;
+}
+/*
+	this class defines the card structure
+*/
+.card {
+  background-color: #FFFFFF;
+  width: 74%;
+  margin: 18%;
+  padding: 4% 8%;
+  border-radius: 8px;
+  margin: 4% auto;
+  border: solid 1px #EBEBEB;
+  overflow: hidden;
+  font-weight: 200;
+}
+.card .notificationCard {
+  text-align: center;
+}
+/*
+	this class define the style of close btn in cards
+*/
+.closeCard {
+  color: #FD96B0;
+  float: right;
+  border: none;
+  background: none;
+  font-size: 1.4em;
+  font-weight: 100;
+}
+.closeCard:focus {
+  outline: none;
+}
+/*
+	This class define the login card
+*/
+#login-card {
+  width: 80%;
+  background: none;
+  border: solid 1px #FFC1D1;
+}
+/*
+	this class define Success notification cards
+*/
+#successNotificationCard {
+  background: #E7FFEB;
+  border: 1px solid #88E696;
+  color: #585858;
+  animation-name: fadeInRight;
+  opacity: 0.95;
+  text-align: center;
+  padding: 1%;
+  border-radius: 8px;
+  position: fixed;
+  bottom: 4%;
+  right: 2%;
+  z-index: 10;
+  transition: all 0.5s;
+}
+#successNotificationCard img {
+  width: 8%;
+}
+#successNotificationCard ul {
+  padding: none;
+}
+#successNotificationCard ul li {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+/*
+	this class define Fail notification cards
+*/
+#failNotificationCard {
+  background: #FFE7E7;
+  border: 1px solid #E68888;
+  color: #585858;
+  animation-name: fadeInRight;
+  opacity: 0.95;
+  text-align: center;
+  padding: 1%;
+  border-radius: 8px;
+  position: fixed;
+  bottom: 4%;
+  right: 2%;
+  z-index: 10;
+  transition: all 0.5s;
+}
+#failNotificationCard img {
+  width: 8%;
+}
+#failNotificationCard ul {
+  padding: none;
+}
+#failNotificationCard ul li {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+.notificationBase {
+  animation-name: fadeInRight;
+  opacity: 0.95;
+  text-align: center;
+  padding: 1%;
+  border-radius: 8px;
+  position: fixed;
+  bottom: 4%;
+  right: 2%;
+  z-index: 10;
+  transition: all 0.5s;
+}
+.notificationBase img {
+  width: 8%;
+}
+.notificationBase ul {
+  padding: none;
+}
+.notificationBase ul li {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+#newVipCodeBtnCard {
+  display: none;
+  text-align: center;
+}
+#createNewVipCodeFormCard {
+  display: none;
+}
+#recomendVipCodeToFriendsCard {
+  display: none;
+}
+.notificationCard {
+  color: #585858;
+}
+.notificationCard img {
+  width: 20%;
+  margin: 4% 0%;
+}
+#standardReportCard {
+  display: none;
+}
+.standardReportCard {
+  padding: 0%;
+}
+.standardReportCard .standardReportCardHeader {
+  text-align: center;
+  padding: 4% 8%;
+  width: 100%;
+  background-color: #99FFA8;
+  color: #383838;
+}
+.standardReportCard #numberOfVipCodesIndications {
+  width: 138px;
+  border: solid 2px #92EFA0;
+  border-radius: 100px;
+  margin: 0 auto;
+}
+.standardReportCard #numberOfVipCodesIndications .number {
+  font-size: 4em;
+}
+.standardReportCard .standardReportCardBody {
+  text-align: center;
+  padding: 4% 8%;
+}
+#basicReportCard {
+  background-color: #FFFFFF;
+  width: 74%;
+  margin: 18%;
+  padding: 4% 8%;
+  border-radius: 8px;
+  margin: 4% auto;
+  border: solid 1px #EBEBEB;
+  overflow: hidden;
+  font-weight: 200;
+  display: none;
+  background: linear-gradient(-135deg, #414148 0%, #232329 100%);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+#basicReportCard .notificationCard {
+  text-align: center;
+}
+#formLoad {
+  display: none;
+}
+#reportContainer {
+  display: none;
+}
+#reportContainer span {
+  color: #ffffff;
+  font-size: 0.8em;
+}
+#reportContainer label {
+  color: #ffffff;
+  font-size: 2em;
+}
+#reportContainer .singleKPIReportCard {
+  height: 100%;
+  background: linear-gradient(-135deg, #414148 0%, #232329 100%);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+#newCampaignCard .icon {
+  width: 10%;
+}
+#newCampaignCard .title {
+  font-size: 1.8em;
+  margin-left: 2%;
+}
+#validateVipCodeCard {
+  display: none;
+}
+.validateVipCodeCard {
+  background: #D7E6F7;
+  border: 1px solid #8EBAEF;
+}
+#newEnterpriseCard {
+  display: none;
+}
+#configurationCard {
+  display: none;
+}
+.btnBase {
+  font-size: 1em;
+  color: #FFFFFF;
+  background: #4590E8;
+  border-radius: 8px;
+  border: none;
+  padding: 4% 8%;
+}
+.btnBase:focus {
+  background-color: #397AC6;
+  border: 4px solid #DDE9F8;
+  outline: none;
+}
+.btnRose {
+  font-size: 1em;
+  color: #FFFFFF;
+  background: #4590E8;
+  border-radius: 8px;
+  border: none;
+  padding: 4% 8%;
+  background: #E68888;
+}
+.btnRose:focus {
+  background-color: #397AC6;
+  border: 4px solid #DDE9F8;
+  outline: none;
+}
+.btnRose:focus {
+  background-color: #FFC1D1;
+  border: 4px solid #E68888;
+}
+.formTitle {
+  color: #A5A5A5;
+}
+.formTitle input[type='submit'] {
+  margin: 0 auto;
+}
+.textInputInvisible {
+  background: #FFFFFF;
+  border: 1px solid #A4C7F0;
+  border-radius: 8px;
+  padding: 2%;
+  margin: 6% 0%;
+  overflow: visible;
+}
+.textInputInvisible input[type='text'] {
+  border: none;
+  width: 80%;
+}
+.textInputInvisible input[type='text']:focus {
+  outline: none;
+}
+.textInputInvisible .formFieldBase {
+  border: none;
+  width: 100%;
+}
+.textInputInvisible .formFieldBase:focus {
+  outline: none;
+}
+.textInputInvisible input[type='password'] {
+  border: none;
+  width: 100%;
+}
+.textInputInvisible input[type='password']:focus {
+  outline: none;
+}
+.textInputInvisible input[type='number'] {
+  border: none;
+  width: 100%;
+}
+.textInputInvisible input[type='number']:focus {
+  outline: none;
+}
+.textInputInvisible textarea {
+  border: none;
+  width: 100%;
+}
+.textInputInvisible textarea:focus {
+  outline: none;
+}
+.textInputInvisible input[type='date'] {
+  border: none;
+  width: 100%;
+}
+.textInputInvisible input[type='date']:focus {
+  outline: none;
+}
+.textInputInvisible select {
+  border: none;
+  width: 100%;
+  font-weight: 100;
+}
+.textInputInvisible select:focus {
+  outline: none;
+}
+.wrong {
+  border: 1px solid rgba(255, 50, 101, 0.3);
+  color: rgba(255, 50, 101, 0.3);
+}
+footer {
+  background-color: #a0a0a0;
+  color: #fff;
+  text-align: right;
+  padding: 2% 1%;
+}
+@media screen and (max-width: 2000px) and (min-width: 920px) {
+  #dashBoardIconContainer {
+    font-size: 2em;
+  }
+  #dashborad-card {
+    width: 46%;
+    font-size: 0.56em;
+  }
+  .card {
+    width: 50%;
+  }
+  #welcomeHomeScreen #welcomeHomeLogo img {
+    width: 10%;
+  }
+  #login-card {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 716px) {
+  #dashBoardIconContainer {
+    font-size: 1em;
+  }
+}
+@media screen and (max-width: 716px) and (min-width: 0px) {
+  #dashBoardIconContainer {
+    font-size: 0.8em;
+  }
+}
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}

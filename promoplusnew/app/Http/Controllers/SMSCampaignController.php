@@ -1,0 +1,84 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\SMSCampaign;
+
+use App\DistributionList;
+
+
+
+class SMSCampaignController extends Controller
+{
+
+
+	public function __construct () {
+
+		$this->middleware('auth');
+
+	}
+    
+
+	public function index () {
+
+		return view ('campaign.sms.index');
+
+
+	}
+
+
+	public function create () {
+
+		return view ('campaign.sms.create');
+
+	}
+
+
+	public function store (Request $request) {
+
+		//valida se a empresa possui uma subscricao ativa
+
+		//se nao redireciona para a pagina de activacao de um plano
+
+		$this->validate($request, [
+
+			'from' => 'required',
+
+			'message' => 'required'
+
+		]);
+
+
+
+		$campaign = new SMSCampaign();
+
+		$campaign->from = $request->from;
+
+		$campaign->to = DistributionList::setTarget($request->toPreDefinedList, $request->toRowList);
+
+		$campaign->message = $request->message;
+
+
+		
+		try {
+
+			$campaign->send();
+
+			$request->session()->flash('message', 'Campanha enviada com sucesso! :)');
+
+			return redirect('campaign/sms/create');
+
+		} catch(Exception $e) {
+
+			return redirect('campaign/sms/create')->withErrors($e->getMessage());
+
+		}
+
+
+
+	}
+
+
+}
