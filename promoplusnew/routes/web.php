@@ -110,7 +110,7 @@ Route::post('/user/{user}/delete', 'UserControllre@destroy');
 //Subscription
 Route::get('/subscription', 'SubscriptionController@dashboard');
 
-Route::get('/subscription', 'SubscriptionController@create');
+Route::post('/subscription/create', 'SubscriptionController@create');
 
 
 

@@ -20,10 +20,21 @@
 
 	<!-- start app header -->
 	<header class="appHeader" id="appHeader">
-		<div id="logo">
-			<img src="/image/logo-vip-code-horizontal-white.png" />
+		
 
+		<nav class="mainMenu">
+			
 			<ul>
+
+				<li id="logo">
+					<a href="/dashboard">
+						
+						<img src="/image/promopluslogo.svg" />
+						<span>PromoPlus</span>
+
+					</a>
+					
+				</li>
 				
 				<li><a href="/dashboard">Dashboard</a></li>
 
@@ -37,7 +48,17 @@
 				@endif
 
 			</ul>
+
+		</nav>
+
+		<div class="loggedUser">
 			
+			@if(Auth::check()) 
+
+				<!-- {{Auth::user()->name}} | {{Auth::user()->company->name}} -->
+
+			@endif
+
 		</div>
 	</header><!-- End start app header -->
 
@@ -49,7 +70,7 @@
 	</main>
 	<!--Footer-->
 	<footer>
-		VIPCode. Um produto de <a href="http://www.sgenial.co" target="_blank">SGenial.co</a>
+		PromoPlus. Um produto de <a href="http://www.sgenial.co" target="_blank">SGenial.co</a>
 	</footer><!--End Footer-->
 
 	<!-- JS scrips -->

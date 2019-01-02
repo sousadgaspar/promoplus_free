@@ -14,6 +14,14 @@ class SMSCampaign extends Model
 	public $guarded = [];
 
 
+	//Generate campaign ID
+	public function generateCampaignId () {
+
+		return date('Ymdhis');
+
+	}
+
+
 
 	//Send a SMS campaign to a list
 

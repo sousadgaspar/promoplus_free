@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;
+
+
 class Subscription extends Model
 {
     
@@ -18,14 +21,45 @@ class Subscription extends Model
 	public function subscribe (Plan $plan) {
 
 
-		//recebe id da empresa
+		/*
 
-		//recebe os dados do plano
+			The subscription process goes like tath:
 
-		//regista a subscricao
+				User Choose a plan
+					-> User input the payment confirmation (image or pdf)
+						-> Plan activation is pendent
+							->Admin activate the plan
+								->The account is ready for use
+
+		*/
+
+
+		//It has to be a transaction
+
+		$this->company_id = \Auth::user()->company_id;
+
+		$this->plan_id = $plan->plan_id;
+
+		$this->start = new Carbon::now('Africa/Luanda');
+
+		$this->extendTheEndOfSubscription($plan->duration);
+
+		$this->is_active = false;
+
+
+		$this->save();
 
 		//adiciona os dados do novo plano na conta
 
+		//End Transaction
+
+
+	}
+
+
+	private function extendTheEndOfSubscription($planDuration) {
+
+		return $this->end = $this->start->addDays($planDuration);
 
 	}
 

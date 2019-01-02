@@ -5,13 +5,41 @@ body {
   font-family: AvenirNext-Regular, helvetica;
 }
 .appHeader {
-  background-image: linear-gradient(-134deg, rgba(255, 50, 101, 0.5) 22%, rgba(156, 3, 41, 0.5) 100%);
+  width: 300px;
   z-index: 10000;
-  background: #FF3365;
   padding: 2% 1%;
+  box-shadow: 2 3 8 rgba(0, 0, 0, 0.8);
+  background: #fdfbfb;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #fbfbfb, #ffffff);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #fbfbfb, #ffffff);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .appHeader #logo img {
-  width: 110px;
+  width: 50px;
+}
+.appHeader #logo span {
+  color: #090909;
+  font-size: 2em;
+}
+.appHeader #logo a:hover {
+  text-decoration: none;
+}
+.appHeader .loggedUser {
+  float: left;
+}
+.appHeader .mainMenu ul {
+  margin: 0px;
+  padding: 0px;
+}
+.appHeader .mainMenu ul li {
+  list-style-type: none;
+  margin: 2%;
+  float: left;
+}
+.appHeader .mainMenu ul li a {
+  display: block;
 }
 .mainApp {
   position: relative;
@@ -468,10 +496,13 @@ body {
   color: rgba(255, 50, 101, 0.3);
 }
 footer {
-  background-color: #a0a0a0;
-  color: #fff;
+  background-color: #fbfbfb;
+  color: #999999;
   text-align: right;
   padding: 2% 1%;
+}
+footer a {
+  color: #090909;
 }
 @media screen and (max-width: 2000px) and (min-width: 920px) {
   #dashBoardIconContainer {
