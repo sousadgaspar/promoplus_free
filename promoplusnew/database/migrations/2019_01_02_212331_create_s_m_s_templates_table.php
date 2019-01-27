@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAccountsTable extends Migration
+class CreateSMSTemplatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('s_m_s_templates', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('company_id');
-            $table->integer('subscription_id');
-            $table->integer('current_sms_balance')->default(0);
-            $table->integer('plan_id');
-            $table->datetime('validFrom');
-            $table->datetime('validTill');
+            $table->text('template');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('s_m_s_templates');
     }
 }

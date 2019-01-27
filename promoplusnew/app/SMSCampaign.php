@@ -22,10 +22,19 @@ class SMSCampaign extends Model
 	}
 
 
+	//numberOfSMS = ceil(message/160) * length(distributionList)
 
 	//Send a SMS campaign to a list
 
 	public function send () {
+
+		//calculate the total of sms to be sent
+
+		//check the amount of sms credit
+
+		//if as credit: send the sms 
+
+		//else return a messagem that the campaign did not finish due to the credit
 
 		$SMSClient = new Client(env('TWILIO_SID'), env('TWILIO_TOKEN'));
 

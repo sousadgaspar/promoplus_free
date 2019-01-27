@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubscriptionsTable extends Migration
+class CreateSubscriptionRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateSubscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscriptions', function (Blueprint $table) {
+        Schema::create('subscription_requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('subscription_request_id');
-            $table->integer('company_id');
-            $table->datetime('start');
-            $table->datetime('end');
             $table->integer('plan_id');
-            $table->boolean('is_active');
-            //$table->ps_stringwidth(psdoc, text);
+            $table->integer('company_id');
+            $table->string('status')->default('pending');
+            $table->string('paymentConfirmationDocument');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateSubscriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscriptions');
+        Schema::dropIfExists('subscription_requests');
     }
 }

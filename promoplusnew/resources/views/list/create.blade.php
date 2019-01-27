@@ -11,6 +11,32 @@
 @section ('content')
 
 
+<div class="whereYouAre">
+	<hr>
+		<div class="row">
+			
+			<div class="col-md-3">
+				<a href="/dashboard">
+					<img class="icon" src="/image/speedometer.svg">
+					<span>DashBoard</span>
+				</a>
+			</div>
+
+			<div class="col-md-3">
+				<a href="/list">
+					<img class="icon" src="/image/addlist.svg">
+					<span>Listas</span>
+				</a>
+			</div>
+
+			<div class="col-md-3">
+				<img class="icon" src="/image/managelists.svg">
+				<span>adicionar</span>
+			</div>
+
+		</div>
+	<hr>
+</div>
 
 
 

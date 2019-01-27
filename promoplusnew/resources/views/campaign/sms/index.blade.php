@@ -7,15 +7,25 @@
 @section ('content')
 
 
-<!-- <div class="siteMap">
-	<ul>
-		
-		<li><i class="fas fa-home"></i>In&iacute;cio</li>
-		<li>Campanha</li>
-		<li>SMS</li>
+<div class="whereYouAre">
+	<hr>
 
-	</ul>
-</div> -->
+		<div class="row">
+			<div class="col-md-3">
+				<a href="/dashboard">
+					<img class="icon" src="/image/speedometer.svg">
+					<span>DashBoard</span>
+				</a>
+			</div>
+
+			<div class="col-md-4">
+				<img class="icon" src="/image/sendcampaign.svg">
+				<span>Campanha por SMS</span>
+			</div>
+		</div>
+
+	<hr>
+</div>
 
 
 <div class="card" id="dashborad-card">
@@ -40,17 +50,17 @@
 			
 			<div id="validateVipCodeIcon" class="col-xs-6 col-md-6">
 
-				<a href="/templates/">
+				<a href="/sms/templates/">
 					<img src="/image/template.svg"/>
 				</a>
 				
 				<div class="clearfix"></div>
-				<a href="/templates/">
+				<a href="/sms/templates/">
 					
 				</a>
 				<label>
 
-					<a href="/templates/">
+					<a href="/sms/templates/">
 						Modelos
 					</a>
 

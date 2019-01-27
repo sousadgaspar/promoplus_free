@@ -18,9 +18,9 @@ class Company extends Model
 	}
 
 
-	public function subscription () {
+	public function account () {
 
-		
+		return $this->hasOne(Account::class);
 
 	}
 

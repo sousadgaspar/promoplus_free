@@ -43,6 +43,12 @@ Route::get('/campaign/sms/create', 'SMSCampaignController@create');
 Route::post('/campaign/sms/store', 'SMSCampaignController@store');
 
 
+//templates
+Route::get('/sms/templates', 'SMSTemplateController@index');
+
+Route::post('/sms/template/create', 'SMSTemplateController@store');
+
+
 
 //lists routes
 
@@ -111,6 +117,14 @@ Route::post('/user/{user}/delete', 'UserControllre@destroy');
 Route::get('/subscription', 'SubscriptionController@dashboard');
 
 Route::post('/subscription/create', 'SubscriptionController@create');
+
+Route::post('/subscription/request', 'SubscriptionController@sendSubscriptionRequest');
+
+Route::get('/subscription/validate', 'SubscriptionController@validatePanel');
+
+Route::post('/subscription/approve', 'SubscriptionController@approve');
+
+Route::post('/subscription/decline', 'SubscriptionController@decline');
 
 
 

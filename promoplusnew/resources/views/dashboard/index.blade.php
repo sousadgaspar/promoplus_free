@@ -2,7 +2,22 @@
 
 @section ('content')
 
+<div class="whereYouAre">
+	<hr>
+		<div class="row">
+			
+			<div class="col-md-4">
+				<img class="icon" src="/image/speedometer.svg">
+				<span>DashBoard</span>
+			</div>
+
+		</div>
+	<hr>
+</div>
+
 <div class="card" id="dashborad-card">
+
+
 	<div id="dashBoardIconContainer">
 		<div id="" class="row">
 			<!-- dashboard icons -->
@@ -41,18 +56,6 @@
 		
 		<div id="" class="row">
 			<!-- dashboard icons -->
-			<div id="reportsVipCodeIcon" class="col-xs-6 col-md-6">
-				<a href="/list">
-					<img src="/image/managelists.svg"/>
-				</a>
-				<div class="clearfix"></div>
-				<label>
-					<a href="/list">
-						Listas de distribuição
-					</a>
-				</label>
-			</div>
-			
 			<div id="configurationVipCodeIcon" class="col-xs-6 col-md-6">
 				<a href="/configuration">
 					<img src="/image/settings.svg"/>

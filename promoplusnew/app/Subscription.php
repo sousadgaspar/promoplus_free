@@ -9,6 +9,8 @@ use Carbon\Carbon;
 
 class Subscription extends Model
 {
+
+	public $guarded = [];
     
 
 	public function plan () {
@@ -40,7 +42,7 @@ class Subscription extends Model
 
 		$this->plan_id = $plan->plan_id;
 
-		$this->start = new Carbon::now('Africa/Luanda');
+		$this->start = Carbon::now('Africa/Luanda');
 
 		$this->extendTheEndOfSubscription($plan->duration);
 

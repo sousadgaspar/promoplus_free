@@ -7,6 +7,35 @@
 
 	@include ('partials.successnotification')
 
+	<div class="whereYouAre">
+		<hr>
+			<div class="row">
+				
+				<div class="col-md-3">
+					<a href="/dashboard">
+						<img class="icon" src="/image/speedometer.svg">
+						<span>DashBoard</span>
+					</a>
+				</div>
+
+				<div class="col-md-3">
+					<a href="/campaign/sms">
+						<img class="icon" src="/image/sendcampaign.svg">
+						<span>campanha por sms</span>
+					</a>
+				</div>
+
+				<div class="col-md-3">
+					<a href="/campaign/sms/create">
+						<img class="icon" src="/image/sendcampaign.svg">
+						<span>Nova</span>
+					</a>
+				</div>
+
+			</div>
+		<hr>
+	</div>
+
 
 	<!-- Create New VipCode -->
 	<div class="card" id="newCampaignCard">
@@ -33,15 +62,8 @@
 				
 				<label for="message">Mensagem: </label>
 				<br>
-				<textarea name="message">
-					
-					@if(isset($template))
-
-						{{ $template }}
-
-					@endIf
-
-				</textarea>
+			
+				<textarea name="message">@if(isset($_GET['template'])){{ $_GET['template'] }}@endIf</textarea>
 
 			</div>
 

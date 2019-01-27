@@ -15,6 +15,33 @@
 
 	@include ('partials.successnotification')
 
+	<div class="whereYouAre">
+		<hr>
+			<div class="row">
+				
+				<div class="col-md-3">
+					<a href="/dashboard">
+						<img class="icon" src="/image/speedometer.svg">
+						<span>DashBoard</span>
+					</a>
+				</div>
+
+				<div class="col-md-3">
+					<a href="/configuration">
+						<img class="icon" src="/image/settings.svg">
+						<span>Configurações</span>
+					</a>
+				</div>
+
+				<div class="col-md-3">
+					<img class="icon" src="/image/addcompanyuser.svg">
+					<span>Novo usu&aacute;rio</span>
+				</div>
+
+			</div>
+		<hr>
+	</div>
+
 
 	<div class="card" id="dashborad-card">
 		<div id="dashBoardIconContainer">

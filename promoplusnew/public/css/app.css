@@ -405,6 +405,45 @@ body {
   background-color: #FFC1D1;
   border: 4px solid #E68888;
 }
+.btnGreen {
+  font-size: 1em;
+  color: #FFFFFF;
+  background: #4590E8;
+  border-radius: 8px;
+  border: none;
+  padding: 4% 8%;
+  background: #02B25F;
+}
+.btnGreen:focus {
+  background-color: #397AC6;
+  border: 4px solid #DDE9F8;
+  outline: none;
+}
+.btnGreen:focus {
+  background-color: #03FF88;
+  border: 4px solid #02B25F;
+}
+.btnGray {
+  background: #fefefe;
+  border-radius: 8px;
+  border: none;
+  padding: 2% 4%;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.09);
+  font-size: 1em;
+}
+.btnGray:focus {
+  background-color: #FFC1D1;
+  border: 4px solid #E68888;
+  outline: none;
+}
+.uploadBTN {
+  margin: 4% 0%;
+}
+.templates {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 2% 4%;
+}
 .formTitle {
   color: #A5A5A5;
 }
@@ -479,6 +518,9 @@ body {
   margin: 0px;
   padding: 0px;
 }
+.planSingular img {
+  width: 40%;
+}
 .smsAmount {
   margin: 0px;
   padding: 0px;
@@ -490,6 +532,14 @@ body {
 .planDescription {
   font-size: 1em;
   color: #b5b5b5;
+}
+.whereYouAre {
+  width: 46%;
+  margin: 0 auto;
+}
+.whereYouAre .icon {
+  width: 12%;
+  clear: both;
 }
 .wrong {
   border: 1px solid rgba(255, 50, 101, 0.3);

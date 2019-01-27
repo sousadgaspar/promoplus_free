@@ -7,6 +7,26 @@
 
 	@include ('partials.successnotification')
 
+	<div class="whereYouAre">
+		<hr>
+			<div class="row">
+				
+				<div class="col-md-3">
+					<a href="/dashboard">
+						<img class="icon" src="/image/speedometer.svg">
+						<span>DashBoard</span>
+					</a>
+				</div>
+
+				<div class="col-md-3">
+					<img class="icon" src="/image/settings.svg">
+					<span>Configurações</span>
+				</div>
+
+			</div>
+		<hr>
+	</div>
+
 
 	<!-- Create New VipCode -->
 	<div class="card" id="newCampaignCard">
@@ -41,17 +61,34 @@
 				</div>
 
 			@endIf
+			
 
 			<div class="row">
 				<div class="col-md-12 rowOdd">
 					<a href="/subscription">
-						<img class="icon-small" src="/image/license.svg">
+						<img class="icon-small" src="/image/subscription.svg">
 					</a>
 					<a href="/subscription">
 						<span class="title-small">Subscri&ccedil;&atilde;o</span>
 					</a>
 				</div>
 			</div>
+			
+
+			@if(Auth::user()->role->name == 'Administrador')
+
+				<div class="row">
+					<div class="col-md-12 rowEven">
+						<a href="/subscription">
+							<img class="icon-small" src="/image/license.svg">
+						</a>
+						<a href="/subscription/validate">
+							<span class="title-small">Subscri&ccedil;&atilde;o pendentes</span>
+						</a>
+					</div>
+				</div>
+
+			@endIf
 
 		</div>
 		

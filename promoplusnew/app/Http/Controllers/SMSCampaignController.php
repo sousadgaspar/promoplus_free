@@ -61,6 +61,19 @@ class SMSCampaignController extends Controller
 		$campaign->message = $request->message;
 
 
+		if(!\Auth::user()->company->account) {
+
+				return redirect('campaign/sms/create')->withErrors('Adquira um plano para enviar campanhas de SMS.');
+
+		}
+
+
+		if(!\Auth::user()->company->account->canSendSMSCampaign()) {
+
+				return redirect('campaign/sms/create')->withErrors('O seu credito de SMS expirou ou terminou. Adquira um plano para enviar campanhas de SMS.');
+
+		}
+
 		
 		try {
 

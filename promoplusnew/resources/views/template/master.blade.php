@@ -26,22 +26,38 @@
 			
 			<ul>
 
-				<li id="logo">
-					<a href="/dashboard">
-						
-						<img src="/image/promopluslogo.svg" />
-						<span>PromoPlus</span>
+				@if(!Auth::check())
 
-					</a>
-					
-				</li>
+					<li id="logo">
+						<a href="/">
+							
+							<img src="/image/promopluslogo.svg" />
+							<span>PromoPlus</span>
+
+						</a>
+						
+					</li>
+
+				@endIf
 				
-				<li><a href="/dashboard">Dashboard</a></li>
+				
 
 
 				@if(Auth::check())
 
-					<li><a href="/subscription">Subscri&ccedil;&atilde;o</a></li>
+					<li id="logo">
+						<a href="/dashboard">
+							
+							<img src="/image/promopluslogo.svg" />
+							<span>PromoPlus</span>
+
+						</a>
+						
+					</li>
+
+					<li><a href="/dashboard">Dashboard</a></li>
+
+					<li><a href="/subscription">Subscri&ccedil;&atilde;o e estado</a></li>
 
 					<li><a href="/logout" class="ml">logout</a></li>
 

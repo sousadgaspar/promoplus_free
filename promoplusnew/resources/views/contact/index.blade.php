@@ -8,6 +8,26 @@
 
 @section ('content')
 
+<div class="whereYouAre">
+	<hr>
+		<div class="row">
+			
+			<div class="col-md-3">
+				<a href="/dashboard">
+					<img class="icon" src="/image/speedometer.svg">
+					<span>DashBoard</span>
+				</a>
+			</div>
+
+			<div class="col-md-3">
+				<img class="icon" src="/image/addcontacts.svg">
+				<span>Contactos</span>
+			</div>
+
+		</div>
+	<hr>
+</div>
+
 <div class="card" id="dashborad-card">
 	<div id="dashBoardIconContainer">
 		
