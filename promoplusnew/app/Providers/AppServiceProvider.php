@@ -29,6 +29,20 @@ class AppServiceProvider extends ServiceProvider
         });
 
 
+        \View::composer('subscription.dashboard', function ($view) {
+
+            $view->with('plans', \App\Plan::all());
+
+        });
+
+
+        \View::composer('subscription.validate', function ($view) {
+
+            $view->with('subscriptionRequests', \App\SubscriptionRequest::where('status', 'pending')->get());
+
+        });
+
+
     }
 
     /**

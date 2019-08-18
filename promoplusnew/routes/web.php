@@ -43,6 +43,12 @@ Route::get('/campaign/sms/create', 'SMSCampaignController@create');
 Route::post('/campaign/sms/store', 'SMSCampaignController@store');
 
 
+//sms campaign report
+
+Route::get('/campaign/sms/report', 'ReportController@index');
+
+
+
 //templates
 Route::get('/sms/templates', 'SMSTemplateController@index');
 

@@ -77,7 +77,9 @@ class SubscriptionController extends Controller
 
 				$subscriptionRequest->save();
 
-				return view('landing.index');
+				$request->session()->flash('message', 'O seu pedido de subscrição será respondido em breve.');
+
+				return redirect('/subscription');
 
 
 			} catch(Exception $e) {
@@ -101,7 +103,6 @@ class SubscriptionController extends Controller
 		$subscriptionRequests = SubscriptionRequest::where('status', 'pending')->get();
 
 		return view('subscription.validate', compact('subscriptionRequests'));
-
 
 	}
 
@@ -187,8 +188,9 @@ class SubscriptionController extends Controller
 
 		}
 		
+		$request->session()->flash('message', 'O plano '. $plan->name . ' do cliente '. $company->name . '  foi aprovado.');
 
-		return view('subscription.validate');
+		return redirect('/subscription/validate');
 
 	}
 
@@ -208,7 +210,7 @@ class SubscriptionController extends Controller
 
 		$subscriptionRequest->update();
 
-		return view('subscription.validate');
+		return view('/subscription/validate');
 
 	}
 

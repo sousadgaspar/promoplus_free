@@ -58,12 +58,22 @@ class SMSCampaignController extends Controller
 
 		$campaign->to = DistributionList::setTarget($request->toPreDefinedList, $request->toRowList);
 
+
 		$campaign->message = $request->message;
+
 
 
 		if(!\Auth::user()->company->account) {
 
-				return redirect('campaign/sms/create')->withErrors('Adquira um plano para enviar campanhas de SMS.');
+				return back()->withErrors('Adquira um plano para enviar campanhas de SMS.');
+
+		}
+
+
+
+		if(!\Auth::user()->company->account->isActive()) {
+
+ 			return back('campaign/sms/create')->withErrors('A sua conta foi desabilitada. Contacte  a nossa equipe de suporte.');
 
 		}
 
@@ -71,6 +81,23 @@ class SMSCampaignController extends Controller
 		if(!\Auth::user()->company->account->canSendSMSCampaign()) {
 
 				return redirect('campaign/sms/create')->withErrors('O seu credito de SMS expirou ou terminou. Adquira um plano para enviar campanhas de SMS.');
+
+		}
+
+
+
+		if($campaign->amountOfSMSToBeSent() > \Auth::user()->company->account->current_sms_balance) {
+
+			try {
+
+				return redirect('campaign/sms/create')->withErrors('A sua campanha requer ' . $campaign->amountOfSMSToBeSent() . ' SMSs e neste momento você só possui ' . \Auth::user()->company->account->current_sms_balance . " SMSs. \n Adquira um plano para enviar mais mensagens." );
+
+			} catch (Exception $e) {
+
+				return redirect('campaign/sms/create')->withErrors('Erro ao enviar a campanha.');
+
+			}
+			
 
 		}
 

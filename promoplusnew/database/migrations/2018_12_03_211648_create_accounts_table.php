@@ -21,6 +21,7 @@ class CreateAccountsTable extends Migration
             $table->integer('plan_id');
             $table->datetime('validFrom');
             $table->datetime('validTill');
+            $table->integer('is_active')->default(1);
             $table->timestamps();
         });
     }

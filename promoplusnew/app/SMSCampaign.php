@@ -22,37 +22,57 @@ class SMSCampaign extends Model
 	}
 
 
+	public function amountOfSMSToBeSent () {
+
+		//numberOfSMS = ceil(message/160) * length(distributionList)
+		//160 is the sms max charaters
+
+		if(strlen($this->message) != 0)
+			return (int) ceil(strlen($this->message)/160) * count($this->to);
+
+	}
+
+
 	//numberOfSMS = ceil(message/160) * length(distributionList)
 
 	//Send a SMS campaign to a list
 
 	public function send () {
 
-		//calculate the total of sms to be sent
-
-		//check the amount of sms credit
-
-		//if as credit: send the sms 
-
-		//else return a messagem that the campaign did not finish due to the credit
-
 		$SMSClient = new Client(env('TWILIO_SID'), env('TWILIO_TOKEN'));
+
+		//dd(env('TWILIO_SID'));
 
 		foreach($this->to as $contact) {
 
+			try {
 
-				$SMSClient->messages->create(
+					$result = $SMSClient->messages->create(
 
-					$contact,
+						$contact,
 
-					array(
+						array(
 
-						'from' => $this->from,
+							'from' => $this->from,
 
-						'body' => $this->message
-					)
+							'body' => $this->message
+						)
 
-				);
+
+					);
+
+					//dd($result);
+
+			} catch(Exception $e) {
+
+				return "Erro ao tentar enviar a SMS para " . $contact . " com o conteudo " . $this->message;
+
+			}
+				
+
+				\Auth::user()->company->account->debit();
+
+				\Auth::user()->company->account->update();
 
 		}
 

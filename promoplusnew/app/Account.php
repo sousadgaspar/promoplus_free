@@ -21,6 +21,13 @@ class Account extends Model
     }
 
 
+    public function isActive () {
+
+        return (bool) $this->is_active;
+
+    }
+
+
     public function canSendSMSCampaign () {
 
     	if($this->validTill < date('Y-m-d h:i:s') or $this->current_sms_balance <= 0) {
@@ -30,6 +37,13 @@ class Account extends Model
     	}
 
     	return true;
+
+    }
+
+
+    public function debit () {
+
+        $this->current_sms_balance -= 1;
 
     }
 }

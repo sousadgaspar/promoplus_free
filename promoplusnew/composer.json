@@ -9,6 +9,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "php-smpp/php-smpp": "^1.2",
         "twilio/sdk": "^5.25"
     },
     "require-dev": {
