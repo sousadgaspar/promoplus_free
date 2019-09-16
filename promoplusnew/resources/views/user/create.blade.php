@@ -63,7 +63,15 @@
 							
 								@foreach($companies as $company)
 
-									<option value="{{$company->id}}"> {{ $company->name }} </option>
+									@if($company->name == 'PromoplusAdmin' || $company->name == 'PromoplusSeller')
+
+										<option value="{{$company->id}}"> {{ $company->name }} </option>
+
+									@else
+
+										<option value="{{$company->id}}"> {{ $company->name }} </option>
+
+									@endif
 
 								@endForeach
 

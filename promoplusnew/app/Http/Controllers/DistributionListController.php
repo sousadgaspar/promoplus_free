@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use App\DistributionList;
 
+use App\Contact;
+
 class DistributionListController extends Controller
 {
 
@@ -44,6 +46,8 @@ class DistributionListController extends Controller
 
 	public function store (Request $request) {
 
+		\ini_set('max_execution_time', 300);
+
 		$this->validate($request, [
 
 			'name' => 'required'
@@ -53,13 +57,41 @@ class DistributionListController extends Controller
 
 		try {
 
-			DistributionList::create([
+			$list = DistributionList::create([
 
 				'name' => $request->name,
 
 				'description' => $request->description
 
 			]);
+
+			if($request['list']) {
+
+				$file = file($request->list->path());
+
+				if(is_array($file)) {
+
+
+					foreach($file as $numero) {
+
+						$contact = new Contact();
+
+						$contact->mobilePhoneNumber = (int) $numero;
+
+						if(is_integer($contact->mobilePhoneNumber) and ($contact->mobilePhoneNumber > 0)) {
+
+							$contact->storeFromList($list);
+
+						}
+
+						unset($contact);
+
+					}
+
+				}
+
+
+			}
 
 
 			$request->session()->flash(

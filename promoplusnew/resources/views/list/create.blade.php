@@ -50,7 +50,7 @@
 			@include ('partials.contactmenu')
 
 
-			<form id="" action="/list/store" method="POST" accept-charset="utf-8">
+			<form id="" action="/list/store" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 
 				@csrf
 				
@@ -62,9 +62,15 @@
 				<div class="textInputInvisible">
 					<label for="description">Fa&ccedil;a uma descri&ccedil;&atilde;o </label>
 					<br>
-					<textarea cols="3" rows="3" id="to" type="text" name="from" placeholder="Clientes que compraram perfumes em faze de promo&ccedil;&atilde;o">
+					<textarea cols="3" rows="3" id="to" type="text" name="description" placeholder="Ex: Clientes que compraram perfumes em faze de promo&ccedil;&atilde;o">
 
 					</textarea>
+				</div>
+
+				<div class="textInputInvisible">
+					<label for="description">Carregue um fecheiro com n&uacute;meros </label>
+					<br>
+					<input type="file" name="list">
 				</div>
 
 				<button id="sumitNewVipCodeForm" class="btn btnBase" name="sumitNewVipCodeForm" value="">Enviar</button>
