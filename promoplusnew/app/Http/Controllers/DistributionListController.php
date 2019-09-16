@@ -46,8 +46,6 @@ class DistributionListController extends Controller
 
 	public function store (Request $request) {
 
-		\ini_set('max_execution_time', 300);
-
 		$this->validate($request, [
 
 			'name' => 'required'
@@ -78,9 +76,29 @@ class DistributionListController extends Controller
 
 						$contact->mobilePhoneNumber = (int) $numero;
 
-						if(is_integer($contact->mobilePhoneNumber) and ($contact->mobilePhoneNumber > 0)) {
+						if($contact->isValidMSISDN()) {
 
-							$contact->storeFromList($list);
+							if($contacts = $contact->exitsInDatabase()) {
+
+								foreach($contacts as $contact) {
+
+									//dd($contact);
+
+									//dd($list);
+
+									$contact->distributionLists()->attach($list);
+
+								}
+
+							}
+							else {
+
+								dd($contact);
+
+								$contact->storeFromList($list);
+
+							}
+
 
 						}
 

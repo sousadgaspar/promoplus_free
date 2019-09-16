@@ -50,7 +50,7 @@
 					@foreach($lists as $list)
 					
 						<li> 
-							<a href="/list/tag/{{$list->name}}">
+							<a href="/list/tag/{{$list->id}}">
 								 {{ $list->name }}
 							</a>
 						</li>
