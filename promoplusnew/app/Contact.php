@@ -20,18 +20,42 @@ class Contact extends Model
 
 		public function storeFromList(DistributionList $list) {
 
-		if($this->isValidMSISDN) {
+		if($this->isValidMSISDN()) {
 
-			$this->save();
+			try{
 
-			$this->distributionLists()->attach($list);
+				$this->save();
 
-			$this;
+				$this->distributionLists()->attach($list);
 
-		}
-		else {
+			} catch(\PDOException $e) {
 
-			dd('Nao foi possivel salvar a lista de contactos. por favor tente denovo.');
+				//throw new \PDOException("Nao foi possivel duplicar os registos.");
+
+				try {
+
+					if($contacts = $this->exitsInDatabase()) {
+
+
+						foreach($contacts as $contact) {
+
+								//dd($contact);
+
+								//dd($list);
+
+								$contact->distributionLists()->attach($list);
+						}
+					}
+				} catch(Exception $e) {
+
+					$e->getMessage();
+				}
+
+				$e->getMessage();
+
+			}
+
+
 		}
 
 

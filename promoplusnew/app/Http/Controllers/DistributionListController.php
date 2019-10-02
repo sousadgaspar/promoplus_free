@@ -44,11 +44,42 @@ class DistributionListController extends Controller
 	}
 
 
+	public function addRowContactsTo(DistributionList $list, Request $rowContacts) {
+
+			if($rowContacts['list']) {
+
+				$file = file($rowContacts->list->path());
+
+				if(is_array($file)) {
+
+					//remove duplicate values
+					$file = array_unique($file);
+
+					foreach($file as $numero) {
+
+						$contact = new Contact();
+
+						$contact->mobilePhoneNumber = (int) $numero;
+
+						$contact->storeFromList($list);
+
+						unset($contact);
+
+					}
+
+				}
+
+
+			}
+
+	}
+
+
 	public function store (Request $request) {
 
 		$this->validate($request, [
 
-			'name' => 'required'
+			'name' => 'required|unique:distribution_lists'
 
 		]);
 
@@ -63,53 +94,8 @@ class DistributionListController extends Controller
 
 			]);
 
-			if($request['list']) {
 
-				$file = file($request->list->path());
-
-				if(is_array($file)) {
-
-
-					foreach($file as $numero) {
-
-						$contact = new Contact();
-
-						$contact->mobilePhoneNumber = (int) $numero;
-
-						if($contact->isValidMSISDN()) {
-
-							if($contacts = $contact->exitsInDatabase()) {
-
-								foreach($contacts as $contact) {
-
-									//dd($contact);
-
-									//dd($list);
-
-									$contact->distributionLists()->attach($list);
-
-								}
-
-							}
-							else {
-
-								dd($contact);
-
-								$contact->storeFromList($list);
-
-							}
-
-
-						}
-
-						unset($contact);
-
-					}
-
-				}
-
-
-			}
+			$this->addRowContactsTo($list, $request);
 
 
 			$request->session()->flash(

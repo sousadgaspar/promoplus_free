@@ -1,11 +1,12 @@
 <?php
-	session_start();
-	if(($_SESSION['logged'] == false) && is_null($_SESSION['name']) && is_null($_SESSION['mobilePhone']) && is_null($_SESSION['enterpriseId'])) {
-		header("Location: /index.php");
+	//session_start();
+	//if(($_SESSION['logged'] == false) && is_null($_SESSION['name']) && is_null($_SESSION['mobilePhone']) && is_null($_SESSION['enterpriseId'])) {
+		//header("Location: /index.php");
 		
 		
-	}
+	// }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,7 @@
 	<!-- start app header -->
 	<header class="appHeader" id="appHeader">
 		<div id="logo">
-			<img src="img/logo-vip-code-horizontal-white.png" />
+			<img src="image/logo-vip-code-horizontal-white.png" />
 		</div>
 	</header><!-- End start app header -->
 
@@ -66,13 +67,13 @@
 	    	<div id="" class="row">
 		    	<!-- dashboard icons -->
 		    	<div id="newVipCodeIcon" class="col-xs-6 col-md-6">
-		    		<img src="img/new-vip-code-icon.png"/>
+		    		<img src="image/new-vip-code-icon.png"/>
 		    		<div class="clearfix"></div>
 		    		<label>Novo código Vip</label>
 		    	</div>
 		    	
 		    	<div id="validateVipCodeIcon" class="col-xs-6 col-md-6">
-		    		<img src="img/validate-vip-code-icon.png"/>
+		    		<img src="image/validate-vip-code-icon.png"/>
 		    		<div class="clearfix"></div>
 		    		<label>Validar código Vip</label>
 		    	</div>
@@ -83,13 +84,13 @@
 	    	<div id="" class="row">
 		    	<!-- dashboard icons -->
 		    	<div id="reportsVipCodeIcon" class="col-xs-6 col-md-6">
-		    		<img src="img/vip-code-reports-icon.png"/>
+		    		<img src="image/vip-code-reports-icon.png"/>
 		    		<div class="clearfix"></div>
 		    		<label>Relat&oacute;rios</label>
 		    	</div>
 		    	
 		    	<div id="configurationVipCodeIcon" class="col-xs-6 col-md-6">
-		    		<img src="img/vip-code-configuration.png"/>
+		    		<img src="image/vip-code-configuration.png"/>
 		    		<div class="clearfix"></div>
 		    		<label>Configura&ccedil;&otilde;es</label>
 		    	</div>
@@ -100,7 +101,7 @@
 	    	<div id="" class="row">
 		    	<!-- dashboard icons -->
 		    	<div id="quitVipcodeDashIcon" class="col-xs-6 col-md-6">
-		    		<a href="" alt="sair do vipCode App"><img src="img/quit-vip-code-dash-board.png"/></a>
+		    		<a href="" alt="sair do vipCode App"><img src="image/quit-vip-code-dash-board.png"/></a>
 		    		<div class="clearfix"></div>
 		    		<label>Sair</label>
 		    	</div>
@@ -112,7 +113,7 @@
 	<div class="card notificationCard" id="successNotificationCard">
 		{UserName}, Parab&eacute;ns!
 		<br />
-		<img class="" id="success-Icon" src="img/seccess-icon.png" />
+		<img class="" id="success-Icon" src="image/seccess-icon.png" />
 		<br />
 	
 		O seu código VIP é:
