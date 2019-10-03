@@ -52,8 +52,13 @@
 				<label for="from">De:</label>
 
 				<select name="from">
+
+					@foreach(Auth::user()->company->senderIDs as $senderID)
 						
-					<option value="{{Auth::user()->company->marketingName}}">{{Auth::user()->company->name}}</option>
+						<option value="{{ $senderID->name }}">{{ $senderID->name }}</option>
+					
+					@endForeach
+
 				</select>
 			
 			</div>

@@ -71,7 +71,7 @@
 			
 			@if(Auth::check()) 
 
-				<!-- {{Auth::user()->name}} | {{Auth::user()->company->name}} -->
+				
 
 			@endif
 

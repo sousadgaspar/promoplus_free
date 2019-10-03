@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Company;
 
+use App\SenderID;
+
 
 
 class CompanyController extends Controller
@@ -53,7 +55,7 @@ class CompanyController extends Controller
 
 			'name' => 'required',
 
-			'marketingName' => 'unique:companies|required|regex:/^\w{2,15}$/',
+			'marketingName' => 'unique:Sender_i_ds|required|regex:/^\[a-zA-Z0-9]{2,15}$/',
 
 			'telephoneNumber' => 'regex:/^(244)?[9][1-9][0-9]{7}/' 
 
@@ -63,15 +65,24 @@ class CompanyController extends Controller
 		try {
 
 
-			Company::create([
+			$company = Company::create([
 
 				'name' => $request->name,
-
-				'marketingName' => $request->marketingName,
 
 				'telephoneNumber' => $request->telephoneNumber,
 
 				'address' => $request->address
+
+			]);
+
+
+			SenderID::create([
+
+				'name' => $request->marketingName,
+
+				'company_id' => $company->id,
+
+				'status' => true,
 
 			]);
 
@@ -81,7 +92,7 @@ class CompanyController extends Controller
 
 			return redirect('/company');
 
-		} catch(Exception $e) {
+		} catch(PDOException $e) {
 
 			return redirect('/company')->withErrors('Ups! parece que n&atilde;o foi poss&iacute;vel criar a empresa ' . $request->name . ' tente outra vez.');
 

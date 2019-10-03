@@ -17,7 +17,7 @@ class SMSCampaign extends Model
 	//Generate campaign ID
 	public function generateCampaignId () {
 
-		return date('Ymdhis');
+		return \Auth()->user()->company->name . date('Ymdhis');
 
 	}
 
@@ -29,6 +29,13 @@ class SMSCampaign extends Model
 
 		if(strlen($this->message) != 0)
 			return (int) ceil(strlen($this->message)/160) * count($this->to);
+
+	}
+
+
+	public function hasRecipients () {
+
+		return count($this->to) > 0;
 
 	}
 

@@ -85,6 +85,13 @@ class SMSCampaignController extends Controller
 		}
 
 
+		if(!$campaign->hasRecipients()) {
+
+				return redirect('campaign/sms/create')->withErrors("Não sabemos para quem enviar a campanha. Defina uma lista de destinatários.");
+
+		}
+
+
 
 		if($campaign->amountOfSMSToBeSent() > \Auth::user()->company->account->current_sms_balance) {
 

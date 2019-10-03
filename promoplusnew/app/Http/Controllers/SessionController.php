@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Company;
 
+use App\SenderID;
+
 use App\Role;
 
 use App\User;
@@ -20,9 +22,10 @@ class SessionController extends Controller
 
 		Company::produceIfNotExists();
 
+		SenderID::produceIfNotExists();
+
 		Role::produceIfNotExists();
 
-		//Ate ao momento nao entendi porque um metodo estatico nao funcionou.
 		(new User)->produceIfNotExists();
 
 		return view('session.create');

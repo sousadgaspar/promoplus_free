@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompaniesTable extends Migration
+class CreateSenderIDsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateCompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('sender_i_ds', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('telephoneNumber');
-            $table->string('geolocation')->nullable();
-            $table->string('address')->nullable();
-            //$table->string('logo')->nullable();
+            $table->integer('company_id');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateCompaniesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('sender_i_ds');
     }
 }

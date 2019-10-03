@@ -18,6 +18,13 @@ class Company extends Model
 	}
 
 
+	public function senderIDs () {
+
+		return $this->hasMany(SenderID::class);
+
+	}
+
+
 	public function account () {
 
 		return $this->hasOne(Account::class);
@@ -30,16 +37,12 @@ class Company extends Model
 		    		[
 		    			'name' => "PromoPlusAdmin",
 		    
-		        		'marketingName' => "PromoPlus",
-		    
 		        		'telephoneNumber' => "244920000000",
 
 		        	],
 
 		        	[
 		    			'name' => "PromoPlusSeller",
-		    
-		        		'marketingName' => "PromoPlus",
 		    
 		        		'telephoneNumber' => "244920000000",
 
@@ -59,8 +62,6 @@ class Company extends Model
         		static::create([
 
 	        		'name' => $company['name'],
-
-	        		'marketingName' => $company['marketingName'],
 
 	        		'telephoneNumber' => $company['telephoneNumber']
 
