@@ -53,9 +53,9 @@ class CompanyController extends Controller
 
 		$this->validate($request, [
 
-			'name' => 'required',
+			'name' => 'required|unique:companies',
 
-			'marketingName' => 'unique:Sender_i_ds|required|regex:/^\[a-zA-Z0-9]{2,15}$/',
+			'senderid' => 'unique:sender_i_ds|required|regex:/^[a-zA-Z0-9]{2,15}$/',
 
 			'telephoneNumber' => 'regex:/^(244)?[9][1-9][0-9]{7}/' 
 
@@ -78,7 +78,7 @@ class CompanyController extends Controller
 
 			SenderID::create([
 
-				'name' => $request->marketingName,
+				'senderid' => $request->senderid,
 
 				'company_id' => $company->id,
 

@@ -73,6 +73,17 @@
 					</a>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col-md-12 rowOdd">
+					<a href="/senderid/create">
+						<img class="icon-small" src="/image/recipient.svg">
+					</a>
+					<a href="/senderid/create">
+						<span class="title-small">Novo Remetente</span>
+					</a>
+				</div>
+			</div>
 			
 
 			@if(Auth::user()->role->name == 'Administrador')
@@ -83,10 +94,22 @@
 							<img class="icon-small" src="/image/license.svg">
 						</a>
 						<a href="/subscription/validate">
-							<span class="title-small">Subscri&ccedil;&atilde;o pendentes</span>
+							<span class="title-small">Subscri&otilde;es pendentes</span>
 						</a>
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-md-12 rowOdd">
+						<a href="/senderid/review">
+							<img class="icon-small" src="/image/rating.svg">
+						</a>
+						<a href="/senderid/review">
+							<span class="title-small">Remetentes pendentes</span>
+						</a>
+					</div>
+				</div>
+
 
 			@endIf
 

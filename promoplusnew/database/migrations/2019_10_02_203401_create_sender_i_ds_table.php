@@ -15,7 +15,7 @@ class CreateSenderIDsTable extends Migration
     {
         Schema::create('sender_i_ds', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('senderid');
             $table->integer('company_id');
             $table->boolean('status')->default(false);
             $table->timestamps();

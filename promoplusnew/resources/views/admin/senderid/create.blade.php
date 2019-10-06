@@ -2,7 +2,7 @@
 
 @section ('pageTitle')
 
- - gest&atilde;o da app
+ - Novo Remetente
 
 @endSection
 
@@ -34,8 +34,8 @@
 				</div>
 
 				<div class="col-md-3">
-					<img class="icon" src="/image/addcompanyuser.svg">
-					<span>Novo parceiro</span>
+					<img class="icon" src="/image/recipient.svg">
+					<span>Novo Rementente</span>
 				</div>
 
 			</div>
@@ -49,30 +49,23 @@
 
 			@include ('partials.admin.dashboard')
 
-			<form id="" action="/company/store" method="POST" accept-charset="utf-8">
+			<form id="" action="/senderid/store" method="POST" accept-charset="utf-8">
 
 				@csrf
 				
 				<div class="textInputInvisible">
-					<label for="name">Nome da empresa </label>
-					<input id="name" type="text" name="name" placeholder="Ex.: SGenial" value="">
+					<label for="name">Remetente </label>
+					<input id="senderid" type="text" name="senderid" placeholder="Ex.: CocaCola" value="">
 				</div>
 
 				<div class="textInputInvisible">
-					<label for="senderid">Remetente para as SMSs </label>
-					<input id="senderid" type="text" name="senderid" alt="Nome que vai aparecer na mensagem para o cliente" placeholder="Ex.: SGenial" value="">
-				</div>
-
-				<div class="textInputInvisible">
-					<label for="telephoneNumber">Telefone</label>
+					<label for="address">Regras para solicita&ccedil;&atilde;o de "Remetente"</label>
 					<br>
-					<input id="telephoneNumber" type="text" name="telephoneNumber" placeholder="Ex.: 922999999" value="">
-				</div>
-
-				<div class="textInputInvisible">
-					<label for="address">Endere&ccedil;o</label>
-					<br>
-					<input id="address" type="text" name="address" value="" placeholder="Ex.: Rua 4, Travessa 9 - Nova vida, Luanda-Angola">
+					<textarea disabled="disabled">
+						1 - Nao usar ....
+						2 - Os pedidos 
+						3 - Mais alguma coisa
+					</textarea>
 				</div>
 				
 

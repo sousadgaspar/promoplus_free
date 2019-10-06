@@ -55,7 +55,7 @@
 
 					@foreach(Auth::user()->company->senderIDs as $senderID)
 						
-						<option value="{{ $senderID->name }}">{{ $senderID->name }}</option>
+						<option value="{{ $senderID->senderid }}">{{ $senderID->senderid }}</option>
 					
 					@endForeach
 

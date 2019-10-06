@@ -133,5 +133,17 @@ Route::post('/subscription/approve', 'SubscriptionController@approve');
 Route::post('/subscription/decline', 'SubscriptionController@decline');
 
 
+//SenderID
+Route::get('/senderid/create', 'SenderIDController@create');
+
+Route::get('/senderid/review', 'SenderIDController@review');
+
+Route::post('/senderid/approve', 'SenderIDController@approve');
+
+Route::post('/senderid/decline', 'SenderIDController@decline');
+
+Route::post('/senderid/store', 'SenderIDController@store');
+
+
 
 

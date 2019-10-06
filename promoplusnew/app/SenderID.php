@@ -8,13 +8,13 @@ class SenderID extends Model
 {
 
 	 protected $fillable = [
-        'name', 'company_id', 'status',
+        'senderid', 'company_id', 'status',
     ];
 
 
 	    public static $predefinedSenderID = [
 
-    		'name' => 'Promoplus',
+    		'senderid' => 'Promoplus',
 
     		'company_id' => 1, // The first company ID will always be the Promomplus company ID
 
@@ -32,7 +32,7 @@ class SenderID extends Model
 
     		static::create([
 
-        		'name' => static::$predefinedSenderID['name'],
+        		'senderid' => static::$predefinedSenderID['senderid'],
 
         		'company_id' => static::$predefinedSenderID['company_id'],
 
