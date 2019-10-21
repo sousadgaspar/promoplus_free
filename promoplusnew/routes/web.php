@@ -42,6 +42,8 @@ Route::get('/campaign/sms/create', 'SMSCampaignController@create');
 
 Route::post('/campaign/sms/store', 'SMSCampaignController@store');
 
+Route::get('/campaign/sms/history', 'SMSCampaingReportController@showHistory');
+
 
 //sms campaign report
 

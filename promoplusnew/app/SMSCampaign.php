@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Twilio\Rest\Client;
 
-
+use App\SMSCampaignReport;
 
 class SMSCampaign extends Model
 {
@@ -48,8 +48,6 @@ class SMSCampaign extends Model
 
 		$SMSClient = new Client(env('TWILIO_SID'), env('TWILIO_TOKEN'));
 
-		//dd(env('TWILIO_SID'));
-
 		foreach($this->to as $contact) {
 
 			try {
@@ -65,35 +63,25 @@ class SMSCampaign extends Model
 
 							'body' => $this->message,
 
-							'statusCallback' => "https://postb.in/1566163808582-8564865232910"
+							'statusCallback' => "https://postb.in/1570397422807-8620559803675"
 						)
-
 
 					);
 
-					//dd($result->sid);
 
 
-					//get the result of the callback
-					// create curl resource 
-			        $ch = curl_init(); 
 
-			        // set url 
-			        curl_setopt($ch, CURLOPT_URL, "https://postb.in/1566163808582-8564865232910"); 
+					//Report the campaing
+					(new SMSCampaignReport())->report($this, 
+														['SMS_id' => $result->sid,
 
-			        //return the transfer as a string 
-			        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+														'message_status' => $result->status,
 
-			        // $output contains the output string 
-			        $output = curl_exec($ch); 
+														'error_code' => $result->errorCode,
 
-			        // close curl resource to free up system resources 
-			        curl_close($ch); 
+												]);
 
-
-			        //dd($output);
-
-			} catch(Exception $e) {
+			} catch(PDOException $e) {
 
 				return "Erro ao tentar enviar a SMS para " . $contact . " com o conteudo " . $this->message;
 

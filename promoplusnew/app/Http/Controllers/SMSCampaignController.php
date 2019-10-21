@@ -58,7 +58,6 @@ class SMSCampaignController extends Controller
 
 		$campaign->to = DistributionList::setTarget($request->toPreDefinedList, $request->toRowList);
 
-
 		$campaign->message = $request->message;
 
 
@@ -68,7 +67,6 @@ class SMSCampaignController extends Controller
 				return back()->withErrors('Adquira um plano para enviar campanhas de SMS.');
 
 		}
-
 
 
 		if(!\Auth::user()->company->account->isActive()) {
@@ -111,7 +109,6 @@ class SMSCampaignController extends Controller
 		
 		try {
 
-			$campaign->generateCampaignId();
 			$campaign->send();
 
 			$request->session()->flash('message', 'Campanha enviada com sucesso! :)');
