@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('telephoneNumber')->nullable();
             $table->string('password');
             $table->boolean('password_has_to_be_changed')->default('1');
+            $table->string('api_token', 60)->unique()->nullable();
             $table->integer('company_id');
             $table->integer('role_id');
             $table->rememberToken();

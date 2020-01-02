@@ -16,7 +16,10 @@ class CreateSMSCampaignReportsTable extends Migration
         Schema::create('SMS_campaign_reports', function (Blueprint $table) {
             $table->increments('id');
             $table->string('campaign_id')->nullable();
-            $table->string('SMS_id')->nullable();
+            $table->integer('sms_sent')->nullable();
+            $table->integer('size_of_the_list')->nullable();
+            $table->integer('sms_received')->nullable();
+            $table->string('sms_id')->nullable();
             $table->string('from');
             $table->string('to');
             $table->text('sms_content')->nullable();

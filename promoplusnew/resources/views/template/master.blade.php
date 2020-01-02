@@ -87,7 +87,7 @@
 	</main>
 	<!--Footer-->
 	<footer>
-		PromoPlus. Um produto de <a href="http://www.sgenial.co" target="_blank">SGenial.co</a>
+		PromoPlus. Um produto da <a href="http://www.waau.ao" target="_blank">Waau.ao</a>
 	</footer><!--End Footer-->
 
 	<!-- JS scrips -->

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class SMSCampaignReport extends Model
 {
 
@@ -13,7 +14,11 @@ class SMSCampaignReport extends Model
 
 	public function report (SMSCampaign $smsCampaign, $campaignResult) {
 
-		$this->campaign_id = $smsCampaign->generateCampaignId();
+		$this->campaign_id = $smsCampaign->SMSCampaignId;
+
+		$this->sms_sent = $campaignResult['sms_sent'];
+
+		$this->size_of_the_list = $campaignResult['size_of_the_list'];
 
 		$this->SMS_id = $campaignResult['SMS_id'];
 

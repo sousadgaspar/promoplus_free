@@ -32,7 +32,7 @@
 	<div id="dashBoardIconContainer">
 		<div id="" class="row">
 			<!-- dashboard icons -->
-			<div id="newVipCodeIcon" class="col-xs-6 col-md-6">
+			<div id="newVipCodeIcon" class="col-xs-4 col-md-4">
 
 				<a href="/campaign/sms/create">
 					<img src="/image/sendcampaign.svg"/>
@@ -48,7 +48,7 @@
 
 			</div>
 			
-			<div id="validateVipCodeIcon" class="col-xs-6 col-md-6">
+			<div id="validateVipCodeIcon" class="col-xs-4 col-md-4">
 
 				<a href="/sms/templates/">
 					<img src="/image/template.svg"/>
@@ -66,13 +66,9 @@
 
 				</label>
 			</div>
-		</div><!-- End row -->
-		
-		<br />
-		
-		<div id="" class="row">
+
 			<!-- dashboard icons -->
-			<div id="reportsVipCodeIcon" class="col-xs-6 col-md-6">
+			<div id="reportsVipCodeIcon" class="col-xs-4 col-md-4">
 				<a href="/campaign/sms/history">
 					
 					<img src="/image/history.svg"/>
@@ -89,7 +85,7 @@
 
 			</div>
 			
-			<div id="configurationVipCodeIcon" class="col-xs-6 col-md-6">
+<!-- 			<div id="configurationVipCodeIcon" class="col-xs-3 col-md-3">
 
 				<a href="/campaign/sms/report">
 
@@ -104,10 +100,11 @@
 						Relat&oacute;rios
 					</a>
 				</label>
-			</div>
+			</div> -->
+
+
 		</div><!-- End row -->
 		
-		<br />
 		
 	</div><!-- End dashborad-card -->
 </div>

@@ -109,9 +109,11 @@ class SMSCampaignController extends Controller
 		
 		try {
 
-			$campaign->send();
+			$campaign->sendAndReport();
 
 			$request->session()->flash('message', 'Campanha enviada com sucesso! :)');
+
+			unset( $campaign );
 
 			return redirect('campaign/sms/create');
 

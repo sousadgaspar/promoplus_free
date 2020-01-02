@@ -10,8 +10,18 @@ use App\SMSCampaignReport;
 
 class SMSCampaign extends Model
 {
+
+
+	public function __construct (){
+
+		$this->SMSCampaignId = $this->generateCampaignId();
+
+	}
+
     
 	public $guarded = [];
+
+	public $SMSCampaignId;
 
 
 	//Generate campaign ID
@@ -44,14 +54,14 @@ class SMSCampaign extends Model
 
 	//Send a SMS campaign to a list
 
-	public function send () {
+	public function sendAndReport () {
 
 		$SMSClient = new Client(env('TWILIO_SID'), env('TWILIO_TOKEN'));
+
 
 		foreach($this->to as $contact) {
 
 			try {
-					$campaignId = $this->generateCampaignId();
 
 					$result = $SMSClient->messages->create(
 
@@ -77,9 +87,14 @@ class SMSCampaign extends Model
 
 														'message_status' => $result->status,
 
+														'sms_sent' => ($result->errorCode == NULL)? 1:0,
+
 														'error_code' => $result->errorCode,
 
+														'size_of_the_list' => count($this->to),
+
 												]);
+
 
 			} catch(PDOException $e) {
 
